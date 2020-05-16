@@ -9,5 +9,6 @@ import Login from './src/components/Authentication/Login/login';
 import Register from './src/components/Authentication/Register/register';
 import ForgetPassword from './src/components/Authentication/ForgetPassword/forget-password';
 import ListCourses from './src/components/Courses/ListCourses/list-courses';
+import CourseDetail from './src/components/CourseDetail/course-detail';
 
-AppRegistry.registerComponent(appName, () => ListCourses);
+AppRegistry.registerComponent(appName, () => CourseDetail);

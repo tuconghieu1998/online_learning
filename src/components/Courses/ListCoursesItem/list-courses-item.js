@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {Image} from 'react-native-elements';
 import CourseInfo from '../../Common/course-info';
 
 const ListCoursesItem = (props) => {
@@ -16,8 +17,7 @@ export default ListCoursesItem;
 const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
-    paddingTop: 10,
-    paddingBottom: 10,
+    padding: 10,
   },
   image: {
     width: 80,
