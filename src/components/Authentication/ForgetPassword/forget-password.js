@@ -8,7 +8,7 @@ const ForgetPassword = () => {
     <View style={styles.container}>
       <Image
         style={styles.logo}
-        source={require('../../../assets/images/logo_icon.jpg')}
+        source={require('../../../assets/images/logo_icon.png')}
       />
       <Input
         label="Enter email to get password"
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     alignSelf: 'center',
-    backgroundColor: 'grey',
+    resizeMode: 'center',
+    marginBottom: 20,
   },
 });

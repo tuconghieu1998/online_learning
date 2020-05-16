@@ -1,14 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import {Input, Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Login = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Image
         style={styles.logo}
-        source={require('../../../assets/images/logo_icon.jpg')}
+        source={require('../../../assets/images/logo_icon.png')}
       />
       <Input
         placeholder="Username or Email"
@@ -22,7 +22,7 @@ const Login = () => {
       <Button title="SIGN IN" type="solid" containerStyle={styles.button} />
       <Button title="SIGN UP" type="outline" containerStyle={styles.button} />
       <Button title="FORGOT PASSWORD?" type="clear" />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -31,7 +31,7 @@ export default Login;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     padding: 20,
   },
   button: {
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     alignSelf: 'center',
-    backgroundColor: 'grey',
+    resizeMode: 'center',
+    marginBottom: 10,
   },
 });
