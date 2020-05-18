@@ -1,13 +1,7 @@
 import React from 'react';
-import {View, TouchableOpacity, StyleSheet, Image} from 'react-native';
-import {
-  VIDEO_BACKWARD,
-  VIDEO_PREVIOUS,
-  VIDEO_PAUSE,
-  VIDEO_PLAY,
-  VIDEO_NEXT,
-  VIDEO_FORWARD,
-} from '../../../assets/icons';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // interface Props {
 //   playing: boolean;
@@ -41,25 +35,29 @@ const PlayerControls = ({
         style={[styles.touchable, previousDisabled && styles.touchableDisabled]}
         onPress={onPrevious}
         disabled={previousDisabled}>
-        <Image source={VIDEO_PREVIOUS} />
+        <MaterialIcons name="skip-previous" size={24} color="white" />
       </TouchableOpacity>
     )}
 
     {showSkip && (
       <TouchableOpacity style={styles.touchable} onPress={skipBackwards}>
-        <Image source={VIDEO_BACKWARD} />
+        <MaterialIcons name="replay-10" size={24} color="white" />
       </TouchableOpacity>
     )}
 
     <TouchableOpacity
       style={styles.touchable}
       onPress={playing ? onPause : onPlay}>
-      {playing ? <Image source={VIDEO_PAUSE} /> : <Image source={VIDEO_PLAY} />}
+      {playing ? (
+        <Icon name="pause" size={24} color="white" />
+      ) : (
+        <Icon name="play" size={24} color="white" />
+      )}
     </TouchableOpacity>
 
     {showSkip && (
       <TouchableOpacity style={styles.touchable} onPress={skipForwards}>
-        <Image source={VIDEO_FORWARD} />
+        <MaterialIcons name="forward-10" size={24} color="white" />
       </TouchableOpacity>
     )}
 
@@ -68,7 +66,7 @@ const PlayerControls = ({
         style={[styles.touchable, nextDisabled && styles.touchableDisabled]}
         onPress={onNext}
         disabled={nextDisabled}>
-        <Image source={VIDEO_NEXT} />
+        <MaterialIcons name="skip-next" size={24} color="white" />
       </TouchableOpacity>
     )}
   </View>

@@ -2,14 +2,6 @@ import React from 'react';
 import Slider from '@react-native-community/slider';
 import {View, Text, StyleSheet} from 'react-native';
 
-// interface Props {
-//   currentTime: number;
-//   duration: number;
-//   onSlideCapture: (data: {seekTime: number}) => void;
-//   onSlideStart: () => void;
-//   onSlideComplete: () => void;
-// }
-
 const ProgressBar = ({
   currentTime,
   duration,
@@ -22,22 +14,22 @@ const ProgressBar = ({
 
   return (
     <View style={styles.wrapper}>
-      <Slider
-        value={currentTime}
-        minimumValue={0}
-        maximumValue={duration}
-        step={1}
-        onValueChange={handleOnSlide}
-        onSlidingStart={onSlideStart}
-        onSlidingComplete={onSlideComplete}
-        minimumTrackTintColor={'#F44336'}
-        maximumTrackTintColor={'#FFFFFF'}
-        thumbTintColor={'#F44336'}
-      />
-      <View style={styles.timeWrapper}>
-        <Text style={styles.timeLeft}>{position}</Text>
-        <Text style={styles.timeRight}>{fullDuration}</Text>
+      <Text style={styles.timeLeft}>{position}</Text>
+      <View style={{flex: 1}}>
+        <Slider
+          value={currentTime}
+          minimumValue={0}
+          maximumValue={duration}
+          step={1}
+          onValueChange={handleOnSlide}
+          onSlidingStart={onSlideStart}
+          onSlidingComplete={onSlideComplete}
+          minimumTrackTintColor={'#F44336'}
+          maximumTrackTintColor={'#FFFFFF'}
+          thumbTintColor={'#F44336'}
+        />
       </View>
+      <Text style={styles.timeRight}>{fullDuration}</Text>
     </View>
   );
 
@@ -60,6 +52,8 @@ export default ProgressBar;
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   timeWrapper: {
     flexDirection: 'row',
@@ -68,14 +62,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   timeLeft: {
-    flex: 1,
-    fontSize: 16,
+    fontSize: 12,
     color: '#FFFFFF',
     paddingLeft: 10,
   },
   timeRight: {
-    flex: 1,
-    fontSize: 16,
+    fontSize: 12,
     color: '#FFFFFF',
     textAlign: 'right',
     paddingRight: 10,

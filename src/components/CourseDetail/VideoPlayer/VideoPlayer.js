@@ -8,7 +8,6 @@ import {
   StatusBar,
   TouchableWithoutFeedback,
   ScrollView,
-  Image,
 } from 'react-native';
 import Video, {
   OnSeekData,
@@ -16,7 +15,7 @@ import Video, {
   OnProgressData,
 } from 'react-native-video';
 import Orientation from 'react-native-orientation-locker';
-import {FULLSCREEN_CLOSE, FULLSCREEN_OPEN} from '../../../assets/icons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import PlayerControls from './PlayerControls';
 import ProgressBar from './ProgressBar';
 
@@ -60,16 +59,6 @@ const VideoPlayer = () => {
           />
           {state.showControls && (
             <View style={styles.controlOverlay}>
-              <TouchableOpacity
-                onPress={handleFullscreen}
-                hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
-                style={styles.fullscreenButton}>
-                {state.fullscreen ? (
-                  <Image source={FULLSCREEN_CLOSE} />
-                ) : (
-                  <Image source={FULLSCREEN_OPEN} />
-                )}
-              </TouchableOpacity>
               <PlayerControls
                 onPlay={handlePlayPause}
                 onPause={handlePlayPause}
@@ -79,13 +68,29 @@ const VideoPlayer = () => {
                 skipBackwards={skipBackward}
                 skipForwards={skipForward}
               />
-              <ProgressBar
-                currentTime={state.currentTime}
-                duration={state.duration > 0 ? state.duration : 0}
-                onSlideStart={handlePlayPause}
-                onSlideComplete={handlePlayPause}
-                onSlideCapture={onSeek}
-              />
+              <View style={styles.videoFooter}>
+                <ProgressBar
+                  currentTime={state.currentTime}
+                  duration={state.duration > 0 ? state.duration : 0}
+                  onSlideStart={handlePlayPause}
+                  onSlideComplete={handlePlayPause}
+                  onSlideCapture={onSeek}
+                />
+                <TouchableOpacity
+                  onPress={handleFullscreen}
+                  hitSlop={{top: 5, bottom: 5, left: 5, right: 5}}
+                  style={styles.fullscreenButton}>
+                  {state.fullscreen ? (
+                    <MaterialIcons
+                      name="fullscreen-exit"
+                      size={24}
+                      color="white"
+                    />
+                  ) : (
+                    <MaterialIcons name="fullscreen" size={24} color="white" />
+                  )}
+                </TouchableOpacity>
+              </View>
             </View>
           )}
         </View>
@@ -194,10 +199,6 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
   },
   fullscreenButton: {
-    flex: 1,
-    flexDirection: 'row',
-    alignSelf: 'flex-end',
-    alignItems: 'center',
     paddingRight: 10,
   },
   controlOverlay: {
@@ -208,5 +209,10 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: '#000000c4',
     justifyContent: 'space-between',
+  },
+  videoFooter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom: 5,
   },
 });
