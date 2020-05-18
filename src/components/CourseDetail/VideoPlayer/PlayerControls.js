@@ -3,19 +3,6 @@ import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-// interface Props {
-//   playing: boolean;
-//   showPreviousAndNext: boolean;
-//   showSkip: boolean;
-//   previousDisabled?: boolean;
-//   nextDisabled?: boolean;
-//   onPlay: () => void;
-//   onPause: () => void;
-//   skipForwards?: () => void;
-//   skipBackwards?: () => void;
-//   onNext?: () => void;
-//   onPrevious?: () => void;
-// }
 const PlayerControls = ({
   playing,
   showPreviousAndNext,

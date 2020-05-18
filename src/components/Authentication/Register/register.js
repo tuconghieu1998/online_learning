@@ -1,51 +1,51 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
-import {Input, Button} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {StyleSheet, Text, View} from 'react-native';
+import {BackButton, Input, HeaderText, TextButton} from '../../Common';
+import Icon5 from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {GREY, GREEN} from '../../../globals/config/color';
 
-const Register = () => {
+const Regiter = () => {
   return (
-    <ScrollView style={styles.container}>
-      <Image
-        style={styles.logo}
-        source={require('../../../assets/images/logo_icon.png')}
-      />
-      <Input
-        placeholder="Username or Email"
-        leftIcon={<Icon name="user" size={24} color="black" />}
-      />
-      <Input
-        placeholder="Password"
-        secureTextEntry={true}
-        leftIcon={<Icon name="lock" size={24} color="black" />}
-      />
-      <Input
-        placeholder="Confirm Password"
-        secureTextEntry={true}
-        leftIcon={<Icon name="lock" size={24} color="black" />}
-      />
-      <Button title="SIGN UP" type="solid" containerStyle={styles.button} />
-      <Button title="SIGN IN" type="outline" containerStyle={styles.button} />
-    </ScrollView>
+    <View style={styles.container}>
+      <BackButton />
+      <View style={styles.container}>
+        <View style={styles.title}>
+          <HeaderText color={GREEN}>Sign up</HeaderText>
+        </View>
+        <Input
+          leftIcon={<Icon5 name="user-alt" size={20} color={GREY} />}
+          placeholder="Enter your name"
+        />
+        <Input
+          leftIcon={<MaterialIcons name="email" size={22} color={GREY} />}
+          placeholder="Enter your email"
+        />
+        <Input
+          leftIcon={<MaterialIcons name="lock" size={22} color={GREY} />}
+          placeholder="Enter your password"
+          password={true}
+        />
+        <Input
+          leftIcon={<MaterialIcons name="lock" size={22} color={GREY} />}
+          placeholder="Confirm your password"
+          password={true}
+        />
+        <TextButton>abcd</TextButton>
+      </View>
+    </View>
   );
 };
 
-export default Register;
+export default Regiter;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //justifyContent: 'center',
-    padding: 20,
+    padding: 10,
   },
-  button: {
-    marginBottom: 10,
-  },
-  logo: {
-    width: 100,
-    height: 100,
-    alignSelf: 'center',
-    resizeMode: 'center',
-    marginBottom: 10,
+  title: {
+    marginTop: 20,
+    marginBottom: 30,
   },
 });
