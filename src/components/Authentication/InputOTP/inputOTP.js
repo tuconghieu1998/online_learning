@@ -1,53 +1,41 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {BackButton, Input, HeaderText, TextButton, Button} from '../../Common';
-import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GREY, GREEN, BLACK} from '../../../globals/config/color';
 
-const Regiter = () => {
+const Login = () => {
   return (
     <ScrollView style={styles.container}>
       <BackButton />
       <View style={styles.container}>
         <View style={styles.title}>
-          <HeaderText color={GREEN}>Sign up</HeaderText>
+          <HeaderText color={GREEN}>Input OTP</HeaderText>
+          <Text style={{color: BLACK}}>Enter OTP sent to your email</Text>
         </View>
         <View>
           <Input
-            leftIcon={<Icon5 name="user-alt" size={20} color={GREY} />}
-            placeholder="Enter your name"
-          />
-          <Input
-            leftIcon={<MaterialIcons name="email" size={22} color={GREY} />}
-            placeholder="Enter your email"
-          />
-          <Input
-            leftIcon={<MaterialIcons name="lock" size={22} color={GREY} />}
-            placeholder="Enter your password"
-            password={true}
-          />
-          <Input
-            leftIcon={<MaterialIcons name="lock" size={22} color={GREY} />}
-            placeholder="Confirm your password"
-            password={true}
+            leftIcon={
+              <MaterialIcons name="verified-user" size={22} color={GREY} />
+            }
+            placeholder="Enter your OTP"
+            keyboardType="numeric"
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button size={18}>Sign up</Button>
+          <Button size={18}>Verify your account</Button>
         </View>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.textFooter}>Already have account? </Text>
         <TextButton color={GREEN} size={16}>
-          LOGIN
+          Resend email
         </TextButton>
       </View>
     </ScrollView>
   );
 };
 
-export default Regiter;
+export default Login;
 
 const styles = StyleSheet.create({
   container: {
@@ -58,7 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   buttonContainer: {
-    marginTop: 30,
+    marginTop: 20,
   },
   footer: {
     flexDirection: 'row',

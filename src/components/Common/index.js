@@ -6,6 +6,7 @@ import TitleSectionList from './title-section-list';
 import BackButton from './back-button';
 import HeaderText from './header-text';
 import TextButton from './text-button';
+import Button from './button';
 
 export {
   Card,
@@ -16,4 +17,5 @@ export {
   BackButton,
   HeaderText,
   TextButton,
+  Button,
 };

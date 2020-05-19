@@ -10,11 +10,13 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Login from './components/Authentication/Login/login';
 import Register from './components/Authentication/Register/register';
+import ForgotPassword from './components/Authentication/ForgotPassword/forgot-password';
+import InputOTP from './components/Authentication/InputOTP/inputOTP';
 
 const App = () => {
   return (
     <View style={styles.container}>
-      <Register />
+      <InputOTP />
     </View>
   );
 };
