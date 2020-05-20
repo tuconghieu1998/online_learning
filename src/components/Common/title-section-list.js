@@ -1,16 +1,21 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {BLACK, LIGHT_BLACK} from '../../globals/config/color';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const TitleSectionList = (props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity>
-        <Text>{props.title}</Text>
+        <Text style={styles.title}>{props.title}</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.more}>
         <Text style={styles.textExpand}>{props.textExpand}</Text>
-        <MaterialIcons name="keyboard-arrow-right" size={12} color="black" />
+        <MaterialIcons
+          name="keyboard-arrow-right"
+          size={12}
+          color={LIGHT_BLACK}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -22,7 +27,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 5,
+    paddingTop: 10,
+  },
+  title: {
+    color: BLACK,
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   more: {
     flexDirection: 'row',
@@ -30,6 +43,6 @@ const styles = StyleSheet.create({
   },
   textExpand: {
     fontSize: 12,
-    color: 'black',
+    color: LIGHT_BLACK,
   },
 });

@@ -20,5 +20,6 @@ export default FlatListHorizontal;
 const styles = StyleSheet.create({
   container: {
     paddingRight: 10,
+    paddingBottom: 5,
   },
 });

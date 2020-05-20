@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, View, TextInput, TouchableOpacity} from 'react-native';
 import {LIGHT_GRAY, GREY} from '../../globals/config/color';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 

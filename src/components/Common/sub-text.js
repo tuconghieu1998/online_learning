@@ -1,8 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
+import {LIGHT_BLACK} from '../../globals/config/color';
 
 const SubText = (props) => {
-  return <Text style={styles.subText}>{props.content}</Text>;
+  const {children} = props;
+  return <Text style={styles.subText}>{children}</Text>;
 };
 
 export default SubText;
@@ -10,6 +12,6 @@ export default SubText;
 const styles = StyleSheet.create({
   subText: {
     fontSize: 11,
-    color: 'dimgrey',
+    color: LIGHT_BLACK,
   },
 });
