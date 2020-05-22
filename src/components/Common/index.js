@@ -7,6 +7,8 @@ import BackButton from './back-button';
 import HeaderText from './header-text';
 import TextButton from './text-button';
 import Button from './button';
+import MenuPopup from './menuPopup';
+import Alert from './alert';
 
 export {
   Card,
@@ -18,4 +20,6 @@ export {
   HeaderText,
   TextButton,
   Button,
+  MenuPopup,
+  Alert,
 };

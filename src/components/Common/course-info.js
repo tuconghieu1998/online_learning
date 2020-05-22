@@ -5,7 +5,7 @@ import SubText from '../Common/sub-text';
 import {BLACK, GREY} from '../../globals/config/color';
 
 const CourseInfo = (props) => {
-  const {info, ratingBackgroundColor} = props;
+  const {info, ratingBackgroundColor, tintColor} = props;
   return (
     <View>
       <Text style={{color: BLACK}}>{info.title}</Text>
@@ -21,8 +21,8 @@ const CourseInfo = (props) => {
                 readonly
                 startingValue={info.rating}
                 style={styles.rating}
-                ratingBackgroundColor={GREY}
-                tintColor={ratingBackgroundColor}
+                ratingBackgroundColor={ratingBackgroundColor}
+                tintColor={tintColor}
               />
               <SubText>{' (' + info.countRating + ')'}</SubText>
             </View>

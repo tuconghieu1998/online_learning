@@ -13,11 +13,12 @@ import Register from './components/Authentication/Register/register';
 import ForgotPassword from './components/Authentication/ForgotPassword/forgot-password';
 import InputOTP from './components/Authentication/InputOTP/inputOTP';
 import Home from './components/Main/Home/home';
+import Download from './components/Main/Download/download';
 
 const App = () => {
   return (
     <View style={styles.container}>
-      <Home />
+      <Download />
     </View>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
-import CourseInfo from './course-info';
-import {LIGHT_GRAY} from '../../globals/config/color';
+import {CourseInfo, MenuPopup} from '../Common';
+import {LIGHT_GRAY, GREY} from '../../globals/config/color';
 
 const Card = (props) => {
   const {data} = props;
@@ -9,8 +9,17 @@ const Card = (props) => {
     <TouchableOpacity style={styles.container}>
       <Image source={{uri: data.image}} style={styles.image} />
       <View style={styles.infoContainer}>
-        <CourseInfo info={data} ratingBackgroundColor={LIGHT_GRAY} />
+        <CourseInfo
+          info={data}
+          ratingBackgroundColor={GREY}
+          tintColor={LIGHT_GRAY}
+        />
       </View>
+      {data.author && (
+        <View style={styles.menuPopupContainer}>
+          <MenuPopup iconColor="white" />
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
@@ -44,5 +53,10 @@ const styles = StyleSheet.create({
     height: 100,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
+  },
+  menuPopupContainer: {
+    position: 'absolute',
+    alignSelf: 'flex-end',
+    padding: 10,
   },
 });

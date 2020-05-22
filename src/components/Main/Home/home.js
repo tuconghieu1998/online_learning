@@ -353,7 +353,7 @@ const DATA = [
 
 const Home = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <SectionListHorizontal data={DATA} />
     </View>
   );
@@ -361,4 +361,8 @@ const Home = () => {
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

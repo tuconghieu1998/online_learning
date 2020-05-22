@@ -1,13 +1,18 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import {Image} from 'react-native-elements';
-import CourseInfo from '../../Common/course-info';
+import {StyleSheet, TouchableOpacity, Image, View} from 'react-native';
+import {CourseInfo, MenuPopup} from '../../Common';
+import {BLACK} from '../../../globals/config/color';
 
 const ListCoursesItem = (props) => {
   return (
     <TouchableOpacity style={styles.item}>
       <Image style={styles.image} source={{uri: props.item.image}} />
-      <CourseInfo info={props.item} />
+      <View style={styles.infoContainer}>
+        <CourseInfo info={props.item} />
+      </View>
+      <View style={styles.menuPopUpConatainer}>
+        <MenuPopup iconColor={BLACK} />
+      </View>
     </TouchableOpacity>
   );
 };
@@ -24,5 +29,11 @@ const styles = StyleSheet.create({
     height: 50,
     marginRight: 5,
     marginTop: 4,
+  },
+  infoContainer: {
+    flex: 1,
+  },
+  menuPopUpConatainer: {
+    justifyContent: 'center',
   },
 });
