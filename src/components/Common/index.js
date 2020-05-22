@@ -9,6 +9,9 @@ import TextButton from './text-button';
 import Button from './button';
 import MenuPopup from './menuPopup';
 import Alert from './alert';
+import ImageButton from './image-button';
+import Tag from './tag';
+import Avatar from './avatar';
 
 export {
   Card,
@@ -22,4 +25,7 @@ export {
   Button,
   MenuPopup,
   Alert,
+  ImageButton,
+  Tag,
+  Avatar,
 };

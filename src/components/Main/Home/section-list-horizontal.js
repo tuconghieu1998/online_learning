@@ -2,11 +2,10 @@ import React from 'react';
 import {StyleSheet, Text, View, SectionList, FlatList} from 'react-native';
 import TitleSectionList from '../../Common/title-section-list';
 import FlatListHorizontal from './flat-list-horizontal';
-import {MenuProvider} from 'react-native-popup-menu';
 
 const SectionListHorizontal = (props) => {
   return (
-    <MenuProvider style={styles.container}>
+    <View>
       <SectionList
         sections={props.data}
         renderSectionHeader={({section}) => (
@@ -19,16 +18,13 @@ const SectionListHorizontal = (props) => {
         )}
         keyExtractor={(item, index) => item + index}
       />
-    </MenuProvider>
+    </View>
   );
 };
 
 export default SectionListHorizontal;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   itemContainer: {
     marginBottom: 10,
   },

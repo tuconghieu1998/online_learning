@@ -14,12 +14,14 @@ import ForgotPassword from './components/Authentication/ForgotPassword/forgot-pa
 import InputOTP from './components/Authentication/InputOTP/inputOTP';
 import Home from './components/Main/Home/home';
 import Download from './components/Main/Download/download';
+import Browse from './components/Main/Browse/browse';
+import {MenuProvider} from 'react-native-popup-menu';
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Download />
-    </View>
+    <MenuProvider style={styles.container}>
+      <Browse />
+    </MenuProvider>
   );
 };
 

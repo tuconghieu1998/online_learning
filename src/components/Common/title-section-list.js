@@ -4,19 +4,22 @@ import {BLACK, LIGHT_BLACK} from '../../globals/config/color';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const TitleSectionList = (props) => {
+  const {title, textExpand} = props;
   return (
     <View style={styles.container}>
       <TouchableOpacity>
-        <Text style={styles.title}>{props.title}</Text>
+        <Text style={styles.title}>{title}</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.more}>
-        <Text style={styles.textExpand}>{props.textExpand}</Text>
-        <MaterialIcons
-          name="keyboard-arrow-right"
-          size={12}
-          color={LIGHT_BLACK}
-        />
-      </TouchableOpacity>
+      {textExpand && (
+        <TouchableOpacity style={styles.more}>
+          <Text style={styles.textExpand}>{textExpand}</Text>
+          <MaterialIcons
+            name="keyboard-arrow-right"
+            size={12}
+            color={LIGHT_BLACK}
+          />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
