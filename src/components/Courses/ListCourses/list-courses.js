@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: LIGHT_GREY,
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 15,
+    marginRight: 15,
   },
 });

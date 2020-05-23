@@ -12,15 +12,16 @@ import Login from './components/Authentication/Login/login';
 import Register from './components/Authentication/Register/register';
 import ForgotPassword from './components/Authentication/ForgotPassword/forgot-password';
 import InputOTP from './components/Authentication/InputOTP/inputOTP';
-import Home from './components/Main/Home/home';
-import Download from './components/Main/Download/download';
-import Browse from './components/Main/Browse/browse';
 import {MenuProvider} from 'react-native-popup-menu';
+import {NavigationContainer} from '@react-navigation/native';
+import {AppNavigation} from './navigation/index';
 
 const App = () => {
   return (
     <MenuProvider style={styles.container}>
-      <Browse />
+      <NavigationContainer>
+        <AppNavigation />
+      </NavigationContainer>
     </MenuProvider>
   );
 };
@@ -28,7 +29,6 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffff',
   },
 });
 

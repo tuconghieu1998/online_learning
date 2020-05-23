@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
   headerList: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
     paddingTop: 10,
   },
   headerListText: {
@@ -95,5 +95,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
 });

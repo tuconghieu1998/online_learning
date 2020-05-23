@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   container: {
     width: 200,
     height: 195,
-    marginLeft: 10,
+    marginLeft: 15,
     borderRadius: 5,
     shadowColor: '#000',
     shadowOffset: {

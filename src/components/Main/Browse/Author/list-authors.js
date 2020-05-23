@@ -9,7 +9,7 @@ const ListAuthors = (props) => {
     <View>
       <TitleSectionList title={title} />
       <FlatList
-        style={styles.listAuthors}
+        contentContainerStyle={styles.listAuthors}
         data={authors}
         renderItem={({item}) => <ListAuthorItem author={item} />}
         keyExtractor={(item) => item.id}
@@ -24,8 +24,8 @@ export default ListAuthors;
 
 const styles = StyleSheet.create({
   listAuthors: {
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 15,
+    paddingRight: 5,
     marginBottom: 10,
   },
 });

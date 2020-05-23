@@ -135,8 +135,8 @@ const AUTHORS = [
 
 const Browse = () => {
   return (
-    <ScrollView>
-      <View>
+    <ScrollView style={styles.container}>
+      <View style={styles.imagesContainer}>
         <ImageButton height={80} textAbove="NEW" textBelow="RELEASES" />
         <ImageButton height={80} textAbove="RECOMMENDED" textBelow="FOR YOU" />
       </View>
@@ -149,4 +149,11 @@ const Browse = () => {
 
 export default Browse;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+  },
+  imagesContainer: {
+    marginTop: 10,
+  },
+});

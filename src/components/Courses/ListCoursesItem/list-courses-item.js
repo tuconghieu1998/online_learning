@@ -22,7 +22,10 @@ export default ListCoursesItem;
 const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
-    padding: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   image: {
     width: 80,

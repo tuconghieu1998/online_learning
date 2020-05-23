@@ -8,7 +8,7 @@ const ListSkills = (props) => {
     <View style={styles.container}>
       <TitleSectionList title={title} />
       <FlatList
-        style={styles.listSkills}
+        contentContainerStyle={styles.listSkills}
         data={skills}
         renderItem={({item}) => <Tag name={item.name} />}
         keyExtractor={(item) => item.id}
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   listSkills: {
-    paddingLeft: 10,
+    paddingLeft: 15,
+    paddingRight: 10,
   },
 });
