@@ -3,11 +3,13 @@ import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {BackButton, Input, HeaderText, TextButton, Button} from '../../Common';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GREY, GREEN, BLACK} from '../../../globals/config/color';
+import {AuthContext} from '../../../App';
 
-const Login = () => {
+const InputOTP = ({navigation}) => {
+  const {signUp} = React.useContext(AuthContext);
   return (
     <ScrollView style={styles.container}>
-      <BackButton />
+      <BackButton onPress={() => navigation.goBack()} />
       <View style={styles.container}>
         <View style={styles.title}>
           <HeaderText color={GREEN}>Input OTP</HeaderText>
@@ -23,7 +25,9 @@ const Login = () => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button size={18}>Verify your account</Button>
+          <Button size={18} onPress={() => signUp()}>
+            Verify your account
+          </Button>
         </View>
       </View>
       <View style={styles.footer}>
@@ -35,7 +39,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default InputOTP;
 
 const styles = StyleSheet.create({
   container: {

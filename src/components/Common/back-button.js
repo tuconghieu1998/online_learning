@@ -3,9 +3,10 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {BLACK} from '../../globals/config/color';
 
-const BackButton = () => {
+const BackButton = (props) => {
+  const {onPress} = props;
   return (
-    <TouchableOpacity style={styles.touchContainer}>
+    <TouchableOpacity style={styles.touchContainer} onPress={onPress}>
       <MaterialIcons name="arrow-back" size={27} color={BLACK} />
     </TouchableOpacity>
   );

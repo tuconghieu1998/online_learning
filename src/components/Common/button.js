@@ -3,9 +3,9 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {GREEN} from '../../globals/config/color';
 
 const Button = (props) => {
-  const {children, size} = props;
+  const {children, size, onPress} = props;
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={{...styles.textButton, ...{fontSize: size}}}>
         {children}
       </Text>

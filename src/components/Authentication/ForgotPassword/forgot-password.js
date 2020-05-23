@@ -5,10 +5,10 @@ import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GREY, GREEN, BLACK} from '../../../globals/config/color';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({navigation}) => {
   return (
     <ScrollView style={styles.container}>
-      <BackButton />
+      <BackButton onPress={() => navigation.goBack()} />
       <View style={styles.container}>
         <View style={styles.title}>
           <HeaderText color={GREEN}>Forgot your password?</HeaderText>

@@ -5,10 +5,10 @@ import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GREY, GREEN, BLACK} from '../../../globals/config/color';
 
-const Regiter = () => {
+const Regiter = ({navigation}) => {
   return (
     <ScrollView style={styles.container}>
-      <BackButton />
+      <BackButton onPress={() => navigation.goBack()} />
       <View style={styles.container}>
         <View style={styles.title}>
           <HeaderText color={GREEN}>Sign up</HeaderText>
@@ -34,12 +34,17 @@ const Regiter = () => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button size={18}>Sign up</Button>
+          <Button size={18} onPress={() => navigation.navigate('InputOTP')}>
+            Sign up
+          </Button>
         </View>
       </View>
       <View style={styles.footer}>
         <Text style={styles.textFooter}>Already have account? </Text>
-        <TextButton color={GREEN} size={16}>
+        <TextButton
+          color={GREEN}
+          size={16}
+          onPress={() => navigation.navigate('Login')}>
           LOGIN
         </TextButton>
       </View>
