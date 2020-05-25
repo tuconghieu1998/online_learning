@@ -1,27 +1,25 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Image, View} from 'react-native';
-import {CourseInfo, MenuPopup, Avatar} from '../../Common';
+import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
+import {Avatar, SubText} from '../../Common';
 import {BLACK} from '../../../globals/config/color';
 
-const ListCoursesItem = (props) => {
+const ListAuthorItem = (props) => {
   const {item} = props;
+  console.log(item.name);
   return (
     <TouchableOpacity style={styles.item}>
-      <Image style={styles.image} source={{uri: item.image}} />
-
-      <View style={styles.infoContainer}>
-        <CourseInfo info={item} />
+      <View style={styles.avatarContainer}>
+        <Avatar source={item.avatar} size={50} />
       </View>
-      {item.author && (
-        <View style={styles.menuPopUpConatainer}>
-          <MenuPopup iconColor={BLACK} />
-        </View>
-      )}
+      <View style={styles.infoContainer}>
+        <Text style={{color: BLACK}}>{item.name}</Text>
+        <SubText>{`${item.countCourses} Courses`}</SubText>
+      </View>
     </TouchableOpacity>
   );
 };
 
-export default ListCoursesItem;
+export default ListAuthorItem;
 
 const styles = StyleSheet.create({
   item: {
@@ -37,16 +35,8 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 10,
   },
-  image: {
-    width: 80,
-    height: 50,
-    marginRight: 5,
-    marginTop: 4,
-  },
   infoContainer: {
     flex: 1,
-  },
-  menuPopUpConatainer: {
     justifyContent: 'center',
   },
 });

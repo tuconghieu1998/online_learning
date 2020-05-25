@@ -12,6 +12,7 @@ import Alert from './alert';
 import ImageButton from './image-button';
 import Tag from './tag';
 import Avatar from './avatar';
+import SearchBar from './search-bar';
 
 export {
   Card,
@@ -28,4 +29,5 @@ export {
   ImageButton,
   Tag,
   Avatar,
+  SearchBar,
 };
