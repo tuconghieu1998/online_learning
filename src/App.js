@@ -12,6 +12,7 @@ import {MenuProvider} from 'react-native-popup-menu';
 import {NavigationContainer} from '@react-navigation/native';
 import {AppNavigation, AuthNavigation} from './navigation/index';
 import AsyncStorage from '@react-native-community/async-storage';
+import Search from './components/Main/Search/search';
 
 export const AuthContext = React.createContext();
 
@@ -96,6 +97,7 @@ const App = ({navigation}) => {
           {state.userToken == null ? <AuthNavigation /> : <AppNavigation />}
         </NavigationContainer>
       </AuthContext.Provider>
+      {/* <Search /> */}
     </MenuProvider>
   );
 };
