@@ -13,6 +13,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {AppNavigation, AuthNavigation} from './navigation/index';
 import AsyncStorage from '@react-native-community/async-storage';
 import Search from './components/Main/Search/search';
+import Profile from './components/AccountManagement/profile';
 
 export const AuthContext = React.createContext();
 
@@ -92,12 +93,13 @@ const App = ({navigation}) => {
   );
   return (
     <MenuProvider style={styles.container}>
-      <AuthContext.Provider value={authContext}>
+      {/* <AuthContext.Provider value={authContext}>
         <NavigationContainer>
           {state.userToken == null ? <AuthNavigation /> : <AppNavigation />}
         </NavigationContainer>
-      </AuthContext.Provider>
+      </AuthContext.Provider> */}
       {/* <Search /> */}
+      <Profile />
     </MenuProvider>
   );
 };

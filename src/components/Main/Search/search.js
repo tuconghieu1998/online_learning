@@ -140,7 +140,7 @@ const RESULTS = [
 ];
 const Search = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <SearchBar />
       <SectionListResult data={RESULTS} />
     </View>
@@ -149,4 +149,9 @@ const Search = () => {
 
 export default Search;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+});
