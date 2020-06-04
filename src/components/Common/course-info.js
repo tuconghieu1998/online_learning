@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Rating} from 'react-native-elements';
+import {Rating} from 'react-native-ratings';
 import SubText from '../Common/sub-text';
 import {BLACK, GREY} from '../../globals/config/color';
 

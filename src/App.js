@@ -14,6 +14,7 @@ import {AppNavigation, AuthNavigation} from './navigation/index';
 import AsyncStorage from '@react-native-community/async-storage';
 import Search from './components/Main/Search/search';
 import Profile from './components/AccountManagement/profile';
+import CourseDetail from './components/CourseDetail/course-detail';
 
 export const AuthContext = React.createContext();
 
@@ -99,7 +100,8 @@ const App = ({navigation}) => {
         </NavigationContainer>
       </AuthContext.Provider> */}
       {/* <Search /> */}
-      <Profile />
+      {/* <Profile /> */}
+      <CourseDetail />
     </MenuProvider>
   );
 };

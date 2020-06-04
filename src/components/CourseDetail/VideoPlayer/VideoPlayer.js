@@ -3,11 +3,10 @@ import {
   StyleSheet,
   Dimensions,
   View,
-  Text,
   TouchableOpacity,
   StatusBar,
   TouchableWithoutFeedback,
-  ScrollView,
+  Text,
 } from 'react-native';
 import Video, {
   OnSeekData,
@@ -95,17 +94,6 @@ const VideoPlayer = () => {
           )}
         </View>
       </TouchableWithoutFeedback>
-      <ScrollView>
-        <Text style={styles.text}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus enim
-          suscipit ipsa impedit laboriosam saepe, sapiente excepturi molestiae
-          laudantium, non tempora cumque, quam assumenda deserunt? Similique
-          eaque voluptas itaque corporis. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Sequi unde iusto vel facere quibusdam nisi placeat,
-          debitis veritatis autem deserunt at voluptas nam ut mollitia qui fugit
-          minus minima quod.
-        </Text>
-      </ScrollView>
     </View>
   );
 
@@ -179,7 +167,6 @@ export default VideoPlayer;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#ebebeb',
   },
   video: {
@@ -191,12 +178,6 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width,
     width: Dimensions.get('window').height,
     backgroundColor: 'black',
-  },
-  text: {
-    marginTop: 30,
-    marginHorizontal: 20,
-    fontSize: 15,
-    textAlign: 'justify',
   },
   fullscreenButton: {
     paddingRight: 10,
