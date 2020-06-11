@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import ListCourses from '../../Courses/ListCourses/list-courses';
-import {TextButton, Alert} from '../../Common';
+import {TextButton, Alert, Header} from '../../Common';
 import {GREEN, BLACK} from '../../../globals/config/color';
 
 const DATA = [
@@ -61,6 +61,7 @@ const Download = () => {
 
   return (
     <View style={styles.container}>
+      <Header title="Downloads" />
       <View style={styles.headerList}>
         <Text style={styles.headerListText}>{`${DATA.length} course${
           DATA.length > 1 && 's'

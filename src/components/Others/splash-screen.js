@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {GREY, LIGHT_BLACK} from '../../globals/config/color';
 

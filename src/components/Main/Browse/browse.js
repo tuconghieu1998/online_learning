@@ -1,9 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import {ImageButton} from '../../Common';
+import {ImageButton, Header} from '../../Common';
 import ListSkills from './TagSkill/list-skills';
 import SectionListHorizontal from '../../Main/Home/section-list-horizontal';
 import ListAuthors from './Author/list-authors';
+import {floor} from 'react-native-reanimated';
 
 const SKILLS = [
   {
@@ -135,15 +136,22 @@ const AUTHORS = [
 
 const Browse = () => {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.imagesContainer}>
-        <ImageButton height={80} textAbove="NEW" textBelow="RELEASES" />
-        <ImageButton height={80} textAbove="RECOMMENDED" textBelow="FOR YOU" />
-      </View>
-      <ListSkills title="Popular Skills" skills={SKILLS} />
-      <SectionListHorizontal data={PATH} />
-      <ListAuthors title="Top authors" authors={AUTHORS} />
-    </ScrollView>
+    <View style={styles.container}>
+      <Header title="Browse" />
+      <ScrollView>
+        <View style={styles.imagesContainer}>
+          <ImageButton height={80} textAbove="NEW" textBelow="RELEASES" />
+          <ImageButton
+            height={80}
+            textAbove="RECOMMENDED"
+            textBelow="FOR YOU"
+          />
+        </View>
+        <ListSkills title="Popular Skills" skills={SKILLS} />
+        <SectionListHorizontal data={PATH} />
+        <ListAuthors title="Top authors" authors={AUTHORS} />
+      </ScrollView>
+    </View>
   );
 };
 
@@ -151,6 +159,7 @@ export default Browse;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: 'white',
   },
   imagesContainer: {

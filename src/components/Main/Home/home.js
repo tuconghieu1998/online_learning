@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import SectionListHorizontal from './section-list-horizontal';
+import {Header} from '../../Common';
 
 const DATA = [
   {
@@ -354,6 +355,7 @@ const DATA = [
 const Home = () => {
   return (
     <View style={styles.container}>
+      <Header title="Home" />
       <SectionListHorizontal data={DATA} />
     </View>
   );

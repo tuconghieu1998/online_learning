@@ -10,10 +10,9 @@ import {LIGHT_BLACK, GREEN, BLACK} from '../globals/config/color';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Avatar} from '../components/Common';
 
-const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const TabNavigation = () => {
+const AppNavigation = () => {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -46,53 +45,53 @@ const TabNavigation = () => {
   );
 };
 
-function getHeaderTitle(route) {
-  const routeName = route.state
-    ? route.state.routes[route.state.index].name
-    : route.params?.screen || 'Home';
+// function getHeaderTitle(route) {
+//   const routeName = route.state
+//     ? route.state.routes[route.state.index].name
+//     : route.params?.screen || 'Home';
 
-  switch (routeName) {
-    case 'Home':
-      return 'Home';
-    case 'Download':
-      return 'Downloads';
-    case 'Browse':
-      return 'Browse';
-    case 'Search':
-      return 'Search';
-  }
-}
+//   switch (routeName) {
+//     case 'Home':
+//       return 'Home';
+//     case 'Download':
+//       return 'Downloads';
+//     case 'Browse':
+//       return 'Browse';
+//     case 'Search':
+//       return 'Search';
+//   }
+// }
 
-const AppNavigation = ({route, navigation}) => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerTintColor: BLACK,
-      }}
-      headerStyle={{height: 80}}>
-      <Stack.Screen
-        name="mainApp"
-        component={TabNavigation}
-        options={({route}) => ({
-          headerTitle: getHeaderTitle(route),
-          headerRight: () => (
-            <View style={styles.headerRightContainer}>
-              <TouchableOpacity style={styles.headerButton}>
-                <Avatar
-                  source="https://pluralsight.imgix.net/author/lg/4f7a6642-77f2-418d-b361-5f4a6b2c1a2c.jpg"
-                  size={24}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.headerButton}>
-                <MaterialIcons name="settings" size={24} color={BLACK} />
-              </TouchableOpacity>
-            </View>
-          ),
-        })}
-      />
-    </Stack.Navigator>
-  );
-};
+// const AppNavigation = ({route, navigation}) => {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         headerTintColor: BLACK,
+//       }}
+//       headerStyle={{height: 80}}>
+//       <Stack.Screen
+//         name="mainApp"
+//         component={TabNavigation}
+//         options={({route}) => ({
+//           headerTitle: getHeaderTitle(route),
+//           headerRight: () => (
+//             <View style={styles.headerRightContainer}>
+//               <TouchableOpacity style={styles.headerButton}>
+//                 <Avatar
+//                   source="https://pluralsight.imgix.net/author/lg/4f7a6642-77f2-418d-b361-5f4a6b2c1a2c.jpg"
+//                   size={24}
+//                 />
+//               </TouchableOpacity>
+//               <TouchableOpacity style={styles.headerButton}>
+//                 <MaterialIcons name="settings" size={24} color={BLACK} />
+//               </TouchableOpacity>
+//             </View>
+//           ),
+//         })}
+//       />
+//     </Stack.Navigator>
+//   );
+// };
 
 export default AppNavigation;
 

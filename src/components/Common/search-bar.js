@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {LIGHT_BLACK, LIGHT_GRAY} from '../../globals/config/color';
+import {LIGHT_BLACK, GREY, LIGHT_GRAY} from '../../globals/config/color';
 
 const SearchBar = () => {
   const [isFocussing, setIsFocussing] = useState(false);
@@ -60,16 +60,19 @@ export default SearchBar;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: LIGHT_GRAY,
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 7,
-    marginLeft: 15,
-    marginRight: 15,
+    borderRadius: 15,
+    paddingLeft: 5,
+    paddingRight: 5,
+    borderWidth: 0.5,
+    borderColor: GREY,
+    backgroundColor: LIGHT_GRAY,
   },
   input: {
     flex: 1,
     fontSize: 16,
+    padding: 7,
   },
   button: {
     marginLeft: 5,
