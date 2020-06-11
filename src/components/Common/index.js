@@ -13,6 +13,7 @@ import ImageButton from './image-button';
 import Tag from './tag';
 import Avatar from './avatar';
 import SearchBar from './search-bar';
+import MySwitch from './my-switch';
 
 export {
   Card,
@@ -30,4 +31,5 @@ export {
   Tag,
   Avatar,
   SearchBar,
+  MySwitch,
 };

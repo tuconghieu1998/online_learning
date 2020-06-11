@@ -15,6 +15,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Search from './components/Main/Search/search';
 import Profile from './components/AccountManagement/profile';
 import CourseDetail from './components/CourseDetail/course-detail';
+import SplashScreen from './components/Others/splash-screen';
+import Settings from './components/AccountManagement/settings';
 
 export const AuthContext = React.createContext();
 
@@ -101,7 +103,9 @@ const App = ({navigation}) => {
       </AuthContext.Provider> */}
       {/* <Search /> */}
       {/* <Profile /> */}
-      <CourseDetail />
+      {/* <CourseDetail /> */}
+      {/* <SplashScreen /> */}
+      <Settings />
     </MenuProvider>
   );
 };
@@ -109,6 +113,7 @@ const App = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
 });
 
