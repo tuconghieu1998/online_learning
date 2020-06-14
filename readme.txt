@@ -10,8 +10,8 @@ B4: Chạy câu lệnh react-native run-android
 
 ---------------
 Deadline 1: Mock-up UI/UX cho toàn bộ ứng dụng
-  - Commit ID: ed656c0
+  - Commit ID: 395bd40
 Deadline 2: Xây dựng ứng dụng offline cho toàn bộ ứng dụng
-  - Commit ID: da382e1
+  - Commit ID: 79419d9
   - Video demo: https://youtu.be/dQYjX8x41qo
 ---------------------------------------------
