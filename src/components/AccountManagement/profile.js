@@ -4,6 +4,7 @@ import {BackButton, HeaderText, SubText, Button} from '../Common';
 import {GREEN, LIGHT_GRAY, GREY} from '../../globals/config/color';
 import Information from './information';
 import ProfileManagementItem from './profile-management-item';
+import {useNavigation} from '@react-navigation/native';
 
 const ACTIONS = [
   {
@@ -48,11 +49,12 @@ const Profile = () => {
   const handleEditProfile = () => {
     console.log('edit profile');
   };
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       <View style={styles.headerContainer}>
         <View style={styles.header}>
-          <BackButton color="white" />
+          <BackButton color="white" onPress={() => navigation.goBack()} />
           <View style={styles.textHeaderContainer}>
             <HeaderText color="white">Profiles</HeaderText>
           </View>
@@ -113,6 +115,7 @@ const styles = StyleSheet.create({
     marginTop: -20,
     marginLeft: 20,
     marginRight: 20,
+    marginBottom: 20,
   },
   expireContainer: {
     flexDirection: 'row',

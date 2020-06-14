@@ -2,11 +2,15 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity, Image, View} from 'react-native';
 import {CourseInfo, MenuPopup, Avatar} from '../../Common';
 import {BLACK} from '../../../globals/config/color';
+import {useNavigation} from '@react-navigation/native';
 
 const ListCoursesItem = (props) => {
+  const navigation = useNavigation();
   const {item} = props;
   return (
-    <TouchableOpacity style={styles.item}>
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => navigation.push('CourseDetail')}>
       <Image style={styles.image} source={{uri: item.image}} />
 
       <View style={styles.infoContainer}>

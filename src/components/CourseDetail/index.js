@@ -1,8 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Modal} from 'react-native';
 import VideoPlayer from './VideoPlayer/VideoPlayer';
 import Introdution from './Introdution/introdution';
-import ListLessons from './ListLessons/list-lessons';
+import CourseDetailTopNavigation from '../../navigation/CourseDetailTopNavigation';
 
 const COURSE = {
   id: '1',
@@ -94,11 +94,11 @@ const CourseDetail = () => {
     countRating: COURSE.countRating,
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={{backgroundColor: 'white', flex: 1}}>
       <VideoPlayer />
       <ScrollView>
         <Introdution data={INTRO_DATA} />
-        <ListLessons lessons={COURSE.lessons} />
+        <CourseDetailTopNavigation />
       </ScrollView>
     </View>
   );

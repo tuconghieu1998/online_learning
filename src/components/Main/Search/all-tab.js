@@ -1,9 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {Input, SearchBar} from '../../Common';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {LIGHT_BLACK, LIGHT_GREY, GREY} from '../../../globals/config/color';
-import SectionListResult from './section-list-result';
+import {StyleSheet, Text, View, SectionList} from 'react-native';
+import {TitleSectionList} from '../../Common';
+import ListCoursesItem from '../../Courses/ListCoursesItem/list-courses-item';
+import {LIGHT_GREY} from '../../../globals/config/color';
+import ListAuthorItem from './list-author-item';
 
 const RESULTS = [
   {
@@ -138,31 +138,44 @@ const RESULTS = [
     ],
   },
 ];
-const Search = () => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <SearchBar />
-      </View>
 
-      <SectionListResult data={RESULTS} />
+const AllTab = (props) => {
+  const {data} = props;
+  return (
+    <View style={{flex: 1, backgroundColor: 'white'}}>
+      <SectionList
+        sections={RESULTS}
+        renderSectionHeader={({section}) => (
+          <View style={styles.headerContainer}>
+            <TitleSectionList title={section.title} textExpand="See all" />
+          </View>
+        )}
+        renderItem={({item}) =>
+          item.avatar ? (
+            <ListAuthorItem item={item} />
+          ) : (
+            <ListCoursesItem item={item} />
+          )
+        }
+        keyExtractor={(item, index) => item + index}
+        SectionSeparatorComponent={() => <View style={styles.separator} />}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+      />
     </View>
   );
 };
 
-export default Search;
+export default AllTab;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
+  separator: {
+    height: 1,
+    backgroundColor: LIGHT_GREY,
+    marginLeft: 15,
+    marginRight: 15,
   },
   headerContainer: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    paddingTop: 10,
-    paddingBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: GREY,
+    marginTop: 10,
+    marginBottom: 5,
   },
 });

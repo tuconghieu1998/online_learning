@@ -3,20 +3,24 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {BLACK} from '../../globals/config/color';
 import {Avatar} from '../Common';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
 
 const Header = (props) => {
   const {title} = props;
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <View style={{flexDirection: 'row'}}>
-        <TouchableOpacity style={{marginRight: 10}}>
+        <TouchableOpacity
+          style={{marginRight: 10}}
+          onPress={() => navigation.navigate('Profile')}>
           <Avatar
             source="https://pluralsight.imgix.net/author/lg/4f7a6642-77f2-418d-b361-5f4a6b2c1a2c.jpg"
             size={26}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
           <MaterialIcons name="settings" size={26} color={BLACK} />
         </TouchableOpacity>
       </View>

@@ -2,11 +2,15 @@ import React from 'react';
 import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
 import {CourseInfo, MenuPopup} from '../Common';
 import {LIGHT_GRAY, GREY} from '../../globals/config/color';
+import {useNavigation} from '@react-navigation/native';
 
 const Card = (props) => {
   const {data} = props;
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.push('CourseDetail')}>
       <Image source={{uri: data.image}} style={styles.image} />
       <View style={styles.infoContainer}>
         <CourseInfo

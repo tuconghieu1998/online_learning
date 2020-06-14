@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
   },
   funcButtonContainer: {
     flexDirection: 'row',
-    margin: 15,
+    marginHorizontal: 15,
+    marginVertical: 25,
     justifyContent: 'space-around',
   },
 });
