@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, ScrollView, Modal} from 'react-native';
 import VideoPlayer from './VideoPlayer/VideoPlayer';
 import Introdution from './Introdution/introdution';
 import CourseDetailTopNavigation from '../../navigation/CourseDetailTopNavigation';
+import {floor} from 'react-native-reanimated';
 
 const COURSE = {
   id: '1',
@@ -94,16 +95,23 @@ const CourseDetail = () => {
     countRating: COURSE.countRating,
   };
   return (
-    <View style={{backgroundColor: 'white', flex: 1}}>
+    <View style={styles.container}>
       <VideoPlayer />
-      <ScrollView>
-        <Introdution data={INTRO_DATA} />
-        <CourseDetailTopNavigation />
-      </ScrollView>
+      <View style={{flex: 1}}>
+        <ScrollView>
+          <Introdution data={INTRO_DATA} />
+          <CourseDetailTopNavigation />
+        </ScrollView>
+      </View>
     </View>
   );
 };
 
 export default CourseDetail;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+});

@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Search from '../components/Main/Search';
 import CourseDetail from '../components/CourseDetail';
+import {ScreenKeys} from '../globals/constants';
 
 const Stack = createStackNavigator();
 
@@ -12,8 +13,11 @@ const DownStackNavigation = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="SearchScreen" component={Search} />
-      <Stack.Screen name="CourseDetail" component={CourseDetail} />
+      <Stack.Screen name={ScreenKeys.app.mainTab.search} component={Search} />
+      <Stack.Screen
+        name={ScreenKeys.app.courseDetail}
+        component={CourseDetail}
+      />
     </Stack.Navigator>
   );
 };

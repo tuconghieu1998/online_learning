@@ -3,6 +3,7 @@ import {StyleSheet, TouchableOpacity, Image, View} from 'react-native';
 import {CourseInfo, MenuPopup, Avatar} from '../../Common';
 import {BLACK} from '../../../globals/config/color';
 import {useNavigation} from '@react-navigation/native';
+import {ScreenKeys} from '../../../globals/constants';
 
 const ListCoursesItem = (props) => {
   const navigation = useNavigation();
@@ -10,7 +11,7 @@ const ListCoursesItem = (props) => {
   return (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => navigation.push('CourseDetail')}>
+      onPress={() => navigation.push(ScreenKeys.app.courseDetail)}>
       <Image style={styles.image} source={{uri: item.image}} />
 
       <View style={styles.infoContainer}>

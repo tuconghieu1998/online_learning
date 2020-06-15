@@ -6,6 +6,7 @@ import CoursesTab from '../components/Main/Search/courses-tab';
 import PathsTab from '../components/Main/Search/paths-tab';
 import AuthorsTab from '../components/Main/Search/authors-tab';
 import {GREEN, GREY} from '../globals/config/color';
+import {ScreenKeys} from '../globals/constants';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -18,10 +19,26 @@ const SearchTopNavigation = () => {
         labelStyle: {fontWeight: 'bold'},
         indicatorStyle: {backgroundColor: GREEN},
       }}>
-      <Tab.Screen name="ALL" component={AllTab} />
-      <Tab.Screen name="COURSES" component={CoursesTab} />
-      <Tab.Screen name="PATHS" component={PathsTab} />
-      <Tab.Screen name="AUTHORS" component={AuthorsTab} />
+      <Tab.Screen
+        name={ScreenKeys.app.searchTab.all}
+        component={AllTab}
+        options={{tabBarLabel: 'ALL'}}
+      />
+      <Tab.Screen
+        name={ScreenKeys.app.searchTab.course}
+        component={CoursesTab}
+        options={{tabBarLabel: 'COURSES'}}
+      />
+      <Tab.Screen
+        name={ScreenKeys.app.searchTab.path}
+        component={PathsTab}
+        options={{tabBarLabel: 'PATHS'}}
+      />
+      <Tab.Screen
+        name={ScreenKeys.app.searchTab.author}
+        component={AuthorsTab}
+        options={{tabBarLabel: 'AUTHORS'}}
+      />
     </Tab.Navigator>
   );
 };

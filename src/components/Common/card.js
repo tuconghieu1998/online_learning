@@ -3,6 +3,7 @@ import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
 import {CourseInfo, MenuPopup} from '../Common';
 import {LIGHT_GRAY, GREY} from '../../globals/config/color';
 import {useNavigation} from '@react-navigation/native';
+import {ScreenKeys} from '../../globals/constants';
 
 const Card = (props) => {
   const {data} = props;
@@ -10,7 +11,7 @@ const Card = (props) => {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.push('CourseDetail')}>
+      onPress={() => navigation.push(ScreenKeys.app.courseDetail)}>
       <Image source={{uri: data.image}} style={styles.image} />
       <View style={styles.infoContainer}>
         <CourseInfo

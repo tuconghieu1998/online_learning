@@ -5,7 +5,6 @@ import {BLACK} from '../../../globals/config/color';
 
 const ListAuthorItem = (props) => {
   const {item} = props;
-  console.log(item.name);
   return (
     <TouchableOpacity style={styles.item}>
       <View style={styles.avatarContainer}>

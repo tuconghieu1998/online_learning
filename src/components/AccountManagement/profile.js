@@ -79,11 +79,14 @@ const Profile = () => {
           </View>
         </View>
         <View style={styles.profileManagement}>
-          <FlatList
+          {/* <FlatList
             data={ACTIONS}
             renderItem={({item}) => <ProfileManagementItem item={item} />}
             keyExtractor={(item) => item.id}
-          />
+          /> */}
+          {ACTIONS.map((item) => (
+            <ProfileManagementItem item={item} />
+          ))}
         </View>
         <Button size={16}>Sign out</Button>
       </View>

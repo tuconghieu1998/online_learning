@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../components/Main/Home';
 import CourseDetail from '../components/CourseDetail';
 import Profile from '../components/AccountManagement/profile';
 import Settings from '../components/AccountManagement/settings';
+import {ScreenKeys} from '../globals/constants';
 
 const Stack = createStackNavigator();
 
@@ -14,10 +15,13 @@ const HomeStackNavigation = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="HomeScreen" component={Home} />
-      <Stack.Screen name="CourseDetail" component={CourseDetail} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name={ScreenKeys.app.mainTab.home} component={Home} />
+      <Stack.Screen
+        name={ScreenKeys.app.courseDetail}
+        component={CourseDetail}
+      />
+      <Stack.Screen name={ScreenKeys.app.profile} component={Profile} />
+      <Stack.Screen name={ScreenKeys.app.settings} component={Settings} />
     </Stack.Navigator>
   );
 };

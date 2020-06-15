@@ -4,6 +4,7 @@ import {BLACK} from '../../globals/config/color';
 import {Avatar} from '../Common';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
+import {ScreenKeys} from '../../globals/constants';
 
 const Header = (props) => {
   const {title} = props;
@@ -11,16 +12,17 @@ const Header = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <View style={{flexDirection: 'row'}}>
+      <View style={styles.right}>
         <TouchableOpacity
           style={{marginRight: 10}}
-          onPress={() => navigation.navigate('Profile')}>
+          onPress={() => navigation.navigate(ScreenKeys.app.profile)}>
           <Avatar
             source="https://pluralsight.imgix.net/author/lg/4f7a6642-77f2-418d-b361-5f4a6b2c1a2c.jpg"
             size={26}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(ScreenKeys.app.settings)}>
           <MaterialIcons name="settings" size={26} color={BLACK} />
         </TouchableOpacity>
       </View>
@@ -36,11 +38,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: 'white',
-    paddingLeft: 15,
-    paddingRight: 15,
-    paddingBottom: 10,
-    paddingTop: 10,
-
+    paddingHorizontal: 15,
+    paddingVertical: 10,
     shadowColor: BLACK,
     shadowOffset: {
       width: 0,
@@ -54,5 +53,8 @@ const styles = StyleSheet.create({
     fontSize: 21,
     fontWeight: 'bold',
     color: BLACK,
+  },
+  right: {
+    flexDirection: 'row',
   },
 });
