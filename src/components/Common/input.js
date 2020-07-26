@@ -5,7 +5,15 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 const Input = (props) => {
   const [showPassword, setShowPassword] = useState(false);
-  const {placeholder, leftIcon, password, keyboardType} = props;
+  const {
+    placeholder,
+    leftIcon,
+    password,
+    keyboardType,
+    autoFocus = false,
+    data,
+    name,
+  } = props;
   const handleShowPassword = () => {
     setShowPassword(true);
   };
@@ -17,10 +25,16 @@ const Input = (props) => {
       <View style={styles.leftIcon}>{leftIcon}</View>
       <View style={styles.inputContainer}>
         <TextInput
+          name={name}
+          autoFocus={autoFocus}
           style={styles.input}
           placeholder={placeholder}
           secureTextEntry={password && !showPassword}
           keyboardType={keyboardType}
+          value={data.value}
+          onChangeText={(input) => {
+            props.handleChange(input, name);
+          }}
         />
       </View>
       {password && (

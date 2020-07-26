@@ -98,7 +98,7 @@ const CourseDetail = () => {
     <View style={styles.container}>
       <VideoPlayer />
       <View style={{flex: 1}}>
-        <ScrollView>
+        <ScrollView stickyHeaderIndices={[2]}>
           <Introdution data={INTRO_DATA} />
           <CourseDetailTopNavigation />
         </ScrollView>

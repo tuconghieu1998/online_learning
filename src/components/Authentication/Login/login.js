@@ -1,11 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {BackButton, Input, HeaderText, TextButton, Button} from '../../Common';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GREY, GREEN, BLACK} from '../../../globals/config/color';
 import {AuthContext} from '../../../App';
 
+const initialState = {
+  email: {
+    value: '',
+    isValid: true,
+    errMessage: 'Email không đúng định dạng',
+  },
+  password: {
+    value: '',
+    isValid: true,
+    errMessage: 'Mật khẩu tối thiểu 8 kí tự, bao gồm cả chữ và số',
+  },
+};
+
 const Login = ({navigation}) => {
+  const [data, setData] = useState(initialState);
   const {signIn} = React.useContext(AuthContext);
   return (
     <ScrollView style={styles.container}>
@@ -16,10 +30,12 @@ const Login = ({navigation}) => {
         </View>
         <View>
           <Input
+            data={data.email}
             leftIcon={<MaterialIcons name="email" size={22} color={GREY} />}
             placeholder="Enter your email"
           />
           <Input
+            data={data.password}
             leftIcon={<MaterialIcons name="lock" size={22} color={GREY} />}
             placeholder="Enter your password"
             password={true}

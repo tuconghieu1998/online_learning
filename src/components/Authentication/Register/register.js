@@ -1,11 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {BackButton, Input, HeaderText, TextButton, Button} from '../../Common';
 import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GREY, GREEN, BLACK} from '../../../globals/config/color';
 
+const initialState = {
+  name: {
+    value: '',
+    isValid: true,
+    errMessage: 'Tên tài khoản tối thiểu 1 kí tự',
+  },
+  email: {
+    value: '',
+    isValid: true,
+    errMessage: 'Email không đúng định dạng',
+  },
+  phone: {
+    value: '',
+    isValid: true,
+    errMessage: 'Số điện thoại không đúng định dạng',
+  },
+  password: {
+    value: '',
+    isValid: true,
+    errMessage: 'Mật khẩu tối thiểu 8 kí tự, bao gồm cả chữ và số',
+  },
+  confirmPassword: {
+    value: '',
+    isValid: true,
+    errMessage: 'Mật khẩu không khớp',
+  },
+};
+
 const Regiter = ({navigation}) => {
+  const [data, setData] = useState(initialState);
+
+  const handleChange = (input, name) => {
+    setData((prevState) => ({
+      ...prevState,
+      [name]: {...prevState[name], value: input},
+    }));
+  };
+
   return (
     <ScrollView style={styles.container}>
       <BackButton onPress={() => navigation.goBack()} />
@@ -15,19 +52,31 @@ const Regiter = ({navigation}) => {
         </View>
         <View>
           <Input
+            data={data.name}
+            name="name"
+            autoFocus={true}
             leftIcon={<Icon5 name="user-alt" size={20} color={GREY} />}
             placeholder="Enter your name"
+            handleChange={handleChange}
           />
           <Input
+            data={data.email}
             leftIcon={<MaterialIcons name="email" size={22} color={GREY} />}
             placeholder="Enter your email"
           />
           <Input
+            data={data.phone}
+            leftIcon={<MaterialIcons name="phone" size={22} color={GREY} />}
+            placeholder="Enter your phone"
+          />
+          <Input
+            data={data.password}
             leftIcon={<MaterialIcons name="lock" size={22} color={GREY} />}
             placeholder="Enter your password"
             password={true}
           />
           <Input
+            data={data.password}
             leftIcon={<MaterialIcons name="lock" size={22} color={GREY} />}
             placeholder="Confirm your password"
             password={true}
