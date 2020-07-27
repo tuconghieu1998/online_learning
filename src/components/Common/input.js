@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, TextInput, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 import {LIGHT_GRAY, GREY} from '../../globals/config/color';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -20,36 +26,41 @@ const Input = (props) => {
   const handleHidePassword = () => {
     setShowPassword(false);
   };
+  const {value, errMessage, isValid} = data;
+
   return (
-    <View style={styles.container}>
-      <View style={styles.leftIcon}>{leftIcon}</View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          name={name}
-          autoFocus={autoFocus}
-          style={styles.input}
-          placeholder={placeholder}
-          secureTextEntry={password && !showPassword}
-          keyboardType={keyboardType}
-          value={data.value}
-          onChangeText={(input) => {
-            props.handleChange(input, name);
-          }}
-        />
-      </View>
-      {password && (
-        <View style={styles.rightIcon}>
-          {showPassword ? (
-            <TouchableOpacity onPress={handleHidePassword}>
-              <MaterialCommunityIcons name="eye-off" size={20} color={GREY} />
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity onPress={handleShowPassword}>
-              <MaterialCommunityIcons name="eye" size={20} color={GREY} />
-            </TouchableOpacity>
-          )}
+    <View>
+      <View style={styles.container}>
+        <View style={styles.leftIcon}>{leftIcon}</View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            name={name}
+            autoFocus={autoFocus}
+            style={styles.input}
+            placeholder={placeholder}
+            secureTextEntry={password && !showPassword}
+            keyboardType={keyboardType}
+            value={value}
+            onChangeText={(input) => {
+              props.handleChange(input, name);
+            }}
+          />
         </View>
-      )}
+        {password && (
+          <View style={styles.rightIcon}>
+            {showPassword ? (
+              <TouchableOpacity onPress={handleHidePassword}>
+                <MaterialCommunityIcons name="eye-off" size={20} color={GREY} />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={handleShowPassword}>
+                <MaterialCommunityIcons name="eye" size={20} color={GREY} />
+              </TouchableOpacity>
+            )}
+          </View>
+        )}
+      </View>
+      {!isValid && <Text style={styles.error}>{errMessage}</Text>}
     </View>
   );
 };
@@ -66,6 +77,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 17,
     paddingRight: 17,
+    borderWidth: 0.5,
+    borderColor: 'black',
   },
   input: {
     height: 45,
@@ -79,5 +92,11 @@ const styles = StyleSheet.create({
   },
   rightIcon: {
     marginLeft: 7,
+  },
+  error: {
+    fontSize: 12,
+    color: 'red',
+    alignSelf: 'flex-end',
+    marginBottom: 10,
   },
 });

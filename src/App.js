@@ -14,6 +14,10 @@ import {AppNavigation, AuthNavigation} from './navigation/index';
 import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from './components/Others/splash-screen';
 
+import createStore from './redux/';
+import {Provider} from 'react-redux';
+const {store} = createStore();
+
 export const AuthContext = React.createContext();
 
 const App = ({navigation}) => {
@@ -83,24 +87,26 @@ const App = ({navigation}) => {
   //   return <SplashScreen />;
   // }
   return (
-    <MenuProvider style={styles.container}>
-      <AuthContext.Provider value={authContext}>
-        <NavigationContainer>
-          {splash ? (
-            <SplashScreen />
-          ) : state.userToken == null ? (
-            <AuthNavigation />
-          ) : (
-            <AppNavigation />
-          )}
-        </NavigationContainer>
-      </AuthContext.Provider>
-      {/* <Search /> */}
-      {/* <Profile /> */}
-      {/* <CourseDetail /> */}
-      {/* <SplashScreen /> */}
-      {/* <Settings /> */}
-    </MenuProvider>
+    <Provider store={store}>
+      <MenuProvider style={styles.container}>
+        <AuthContext.Provider value={authContext}>
+          <NavigationContainer>
+            {splash ? (
+              <SplashScreen />
+            ) : state.userToken == null ? (
+              <AuthNavigation />
+            ) : (
+              <AppNavigation />
+            )}
+          </NavigationContainer>
+        </AuthContext.Provider>
+        {/* <Search /> */}
+        {/* <Profile /> */}
+        {/* <CourseDetail /> */}
+        {/* <SplashScreen /> */}
+        {/* <Settings /> */}
+      </MenuProvider>
+    </Provider>
   );
 };
 

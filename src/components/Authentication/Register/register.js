@@ -4,6 +4,9 @@ import {BackButton, Input, HeaderText, TextButton, Button} from '../../Common';
 import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GREY, GREEN, BLACK} from '../../../globals/config/color';
+import loGet from 'lodash/get';
+import {connect} from 'react-redux';
+import UserActions from '../../../redux/userRedux';
 
 const initialState = {
   name: {
@@ -33,14 +36,32 @@ const initialState = {
   },
 };
 
-const Regiter = ({navigation}) => {
+const Regiter = (props) => {
+  const {navigation} = props;
   const [data, setData] = useState(initialState);
 
   const handleChange = (input, name) => {
+    // console.log(input + ',' + name);
     setData((prevState) => ({
       ...prevState,
       [name]: {...prevState[name], value: input},
     }));
+  };
+
+  const handleSignup = () => {
+    if (data.password.value === data.confirmPassword.value) {
+      const params = {
+        name: data.name.value,
+        email: data.email.value,
+        phone: data.phone.value,
+        password: data.password.value,
+      };
+      props.register(params, (reponse) => {
+        console.log(reponse);
+      });
+    }
+    //
+    //navigation.navigate('InputOTP')
   };
 
   return (
@@ -61,29 +82,37 @@ const Regiter = ({navigation}) => {
           />
           <Input
             data={data.email}
+            name="email"
             leftIcon={<MaterialIcons name="email" size={22} color={GREY} />}
             placeholder="Enter your email"
+            handleChange={handleChange}
           />
           <Input
+            name="phone"
             data={data.phone}
             leftIcon={<MaterialIcons name="phone" size={22} color={GREY} />}
             placeholder="Enter your phone"
+            handleChange={handleChange}
           />
           <Input
+            name="password"
             data={data.password}
             leftIcon={<MaterialIcons name="lock" size={22} color={GREY} />}
             placeholder="Enter your password"
             password={true}
+            handleChange={handleChange}
           />
           <Input
-            data={data.password}
+            name="confirmPassword"
+            data={data.confirmPassword}
             leftIcon={<MaterialIcons name="lock" size={22} color={GREY} />}
             placeholder="Confirm your password"
             password={true}
+            handleChange={handleChange}
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button size={18} onPress={() => navigation.navigate('InputOTP')}>
+          <Button size={18} onPress={handleSignup}>
             Sign up
           </Button>
         </View>
@@ -101,7 +130,16 @@ const Regiter = ({navigation}) => {
   );
 };
 
-export default Regiter;
+const mapStateToProps = (state) => ({
+  message: loGet(state, ['user', 'message'], undefined),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  register: (params, actionSuccess) =>
+    dispatch(UserActions.registerRequest(params, actionSuccess)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Regiter);
 
 const styles = StyleSheet.create({
   container: {

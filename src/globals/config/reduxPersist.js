@@ -7,8 +7,12 @@ const REDUX_PERSIST = {
   storeConfig: {
     key: 'primary',
     storage: AsyncStorage,
-    whitelist: ['user'], // TODO: 'app'
-    transform: [immutableTransform],
+
+    transforms: [
+      immutableTransform({
+        whitelist: ['user'], // TODO: 'app'
+      }),
+    ],
   },
 };
 

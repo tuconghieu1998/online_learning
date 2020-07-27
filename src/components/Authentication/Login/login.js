@@ -30,11 +30,13 @@ const Login = ({navigation}) => {
         </View>
         <View>
           <Input
+            name="email"
             data={data.email}
             leftIcon={<MaterialIcons name="email" size={22} color={GREY} />}
             placeholder="Enter your email"
           />
           <Input
+            name="password"
             data={data.password}
             leftIcon={<MaterialIcons name="lock" size={22} color={GREY} />}
             placeholder="Enter your password"
