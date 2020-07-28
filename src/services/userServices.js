@@ -3,6 +3,9 @@ import {request} from '../globals/config/axios';
 import {USER} from '../globals/config/url';
 
 export const register = (params) => {
-  console.log(params);
   return request.post(`/${USER}/register`, params);
+};
+
+export const login = (params) => {
+  return request.post(`/${USER}/login`, params);
 };

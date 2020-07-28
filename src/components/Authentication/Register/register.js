@@ -60,10 +60,7 @@ const Regiter = (props) => {
       };
       props.register(params, (reponse) => {
         console.log(reponse);
-        navigation.navigate(ScreenKeys.auth.login, {
-          email: data.email.value,
-          password: data.password.value,
-        });
+        navigation.navigate(ScreenKeys.auth.login);
       });
     }
     //

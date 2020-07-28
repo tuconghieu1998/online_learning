@@ -16,10 +16,11 @@ request.interceptors.request.use(async (config) => {
 
 request.interceptors.response.use(
   (response) => {
+    // console.log(response, 'HIEU');
     // if (response.message !== 'OK') {
     //   return Promise.reject({code: 400, message: response.message});
     // }
-    return response;
+    return response.data;
   },
   (error) => {
     console.log(JSON.stringify(error));
