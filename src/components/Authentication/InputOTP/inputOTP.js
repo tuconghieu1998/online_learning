@@ -6,7 +6,7 @@ import {GREY, GREEN, BLACK} from '../../../globals/config/color';
 import {AuthContext} from '../../../App';
 
 const InputOTP = ({navigation}) => {
-  const {signUp} = React.useContext(AuthContext);
+  // const {signUp} = React.useContext(AuthContext);
   return (
     <ScrollView style={styles.container}>
       <BackButton onPress={() => navigation.goBack()} />
@@ -25,9 +25,7 @@ const InputOTP = ({navigation}) => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button size={18} onPress={() => signUp()}>
-            Verify your account
-          </Button>
+          <Button size={18}>Verify your account</Button>
         </View>
       </View>
       <View style={styles.footer}>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {BackButton, Input, HeaderText, TextButton, Button} from '../../Common';
 import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -7,6 +8,7 @@ import {GREY, GREEN, BLACK} from '../../../globals/config/color';
 import loGet from 'lodash/get';
 import {connect} from 'react-redux';
 import UserActions from '../../../redux/userRedux';
+import {ScreenKeys} from '../../../globals/constants';
 
 const initialState = {
   name: {
@@ -37,8 +39,8 @@ const initialState = {
 };
 
 const Regiter = (props) => {
-  const {navigation} = props;
   const [data, setData] = useState(initialState);
+  const navigation = useNavigation();
 
   const handleChange = (input, name) => {
     // console.log(input + ',' + name);
@@ -58,6 +60,10 @@ const Regiter = (props) => {
       };
       props.register(params, (reponse) => {
         console.log(reponse);
+        navigation.navigate(ScreenKeys.auth.login, {
+          email: data.email.value,
+          password: data.password.value,
+        });
       });
     }
     //

@@ -7,6 +7,7 @@ import rootSaga from '../saga';
 /*---------------------------- Assemble the Reducers ------------------- */
 export const reducers = combineReducers({
   user: require('./userRedux').reducer,
+  app: require('./appRedux').reducer,
 });
 
 export default () => {

@@ -4,5 +4,5 @@ import {USER} from '../globals/config/url';
 
 export const register = (params) => {
   console.log(params);
-  return request.post(`/${USER}/register`, queryString.stringify(params));
+  return request.post(`/${USER}/register`, params);
 };

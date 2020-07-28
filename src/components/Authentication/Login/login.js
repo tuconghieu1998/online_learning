@@ -3,7 +3,6 @@ import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {BackButton, Input, HeaderText, TextButton, Button} from '../../Common';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GREY, GREEN, BLACK} from '../../../globals/config/color';
-import {AuthContext} from '../../../App';
 
 const initialState = {
   email: {
@@ -20,7 +19,7 @@ const initialState = {
 
 const Login = ({navigation}) => {
   const [data, setData] = useState(initialState);
-  const {signIn} = React.useContext(AuthContext);
+  // const {signIn} = React.useContext(AuthContext);
   return (
     <ScrollView style={styles.container}>
       <BackButton />
@@ -52,9 +51,7 @@ const Login = ({navigation}) => {
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <Button size={18} onPress={() => signIn()}>
-            Login
-          </Button>
+          <Button size={18}>Login</Button>
         </View>
       </View>
       <View style={styles.footer}>

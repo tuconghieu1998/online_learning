@@ -1,5 +1,6 @@
 import {takeLatest, all, call, put} from 'redux-saga/effects';
 import UserActions, {UserTypes} from '../redux/userRedux';
+import AppActions from '../redux/appRedux';
 import * as api from '../services/userServices';
 
 function* userRootSagas() {
@@ -15,11 +16,12 @@ function* register({params, actionSuccess}) {
       actionSuccess({message});
     }
     //yield put(AppActions.hideIndicator());
-    //yield put(AppActions.showSuccess('Đăng ký thành công'));
+    yield put(AppActions.showSuccess('Đăng ký thành công'));
   } catch (error) {
     //yield put(AppActions.hideIndicator());
+    console.log(JSON.stringify(error));
     yield put(UserActions.registerFailure(error));
-    //yield put(AppActions.showError(error.message));
+    yield put(AppActions.showError(error.message));
   }
 }
 

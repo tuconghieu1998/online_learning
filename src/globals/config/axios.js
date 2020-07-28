@@ -16,12 +16,13 @@ request.interceptors.request.use(async (config) => {
 
 request.interceptors.response.use(
   (response) => {
-    if (response.message !== 'OK') {
-      return Promise.reject({code: 400, message: response.message});
-    }
-    return response.data;
+    // if (response.message !== 'OK') {
+    //   return Promise.reject({code: 400, message: response.message});
+    // }
+    return response;
   },
   (error) => {
+    console.log(JSON.stringify(error));
     if (error.response) {
       return Promise.reject({
         message: error.response.data.message,
