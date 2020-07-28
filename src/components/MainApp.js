@@ -20,7 +20,6 @@ const MainApp = (props) => {
 
   useEffect(() => {
     setLogedIn(props.hasLogedInYet);
-    console.log('hasLogedInYet');
   }, [props.hasLogedInYet]);
   return (
     <>

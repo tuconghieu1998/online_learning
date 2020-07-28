@@ -54,9 +54,7 @@ const Profile = (props) => {
   const navigation = useNavigation();
 
   const handleSignOut = () => {
-    props.logout(() => {
-      console.log('logout success');
-    });
+    props.logout();
   };
   return (
     <ScrollView style={styles.container}>

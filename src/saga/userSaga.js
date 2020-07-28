@@ -10,6 +10,7 @@ function* userRootSagas() {
     yield takeLatest(UserTypes.REGISTER_REQUEST, register),
     yield takeLatest(UserTypes.LOGIN_REQUEST, login),
     yield takeLatest(UserTypes.LOGOUT, logout),
+    yield takeLatest(UserTypes.GET_INFO_USER_REQUEST, getInfoUserRequest),
   ]);
 }
 
@@ -30,7 +31,6 @@ function* register({params, actionSuccess}) {
     );
   } catch (error) {
     //yield put(AppActions.hideIndicator());
-    console.log(JSON.stringify(error));
     yield put(UserActions.registerFailure(error));
     yield put(AppActions.showError(error.message));
   }
@@ -54,8 +54,24 @@ function* login({params, actionSuccess}) {
     yield put(AppActions.startupSuccess());
   } catch (error) {
     //yield put(AppActions.hideIndicator());
-    console.log(JSON.stringify(error));
     yield put(UserActions.loginFailure(error));
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* getInfoUserRequest({actionSuccess}) {
+  //yield put (AppActions.showIndicator());
+  try {
+    const {payload, message} = yield call(api.getInfoUser);
+    yield put(UserActions.getInfoUserSuccess(payload, message));
+    if (actionSuccess) {
+      console.log('success');
+      actionSuccess({payload, message});
+    }
+    //yield put(AppActions.hideIndicator());
+  } catch (error) {
+    //yield put(AppActions.hideIndicator());
+    yield put(UserActions.getInfoUserFailure(error));
     yield put(AppActions.showError(error.message));
   }
 }

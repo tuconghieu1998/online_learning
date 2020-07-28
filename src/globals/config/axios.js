@@ -9,21 +9,16 @@ request.defaults.timeout = 30000;
 request.defaults.baseURL = env.SERVER_PRODUCTION_URL;
 
 request.interceptors.request.use(async (config) => {
-  const accessToken = await getToken();
-  config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : '';
+  const token = await getToken();
+  config.headers.Authorization = token ? `Bearer ${token}` : '';
   return config;
 });
 
 request.interceptors.response.use(
   (response) => {
-    // console.log(response, 'HIEU');
-    // if (response.message !== 'OK') {
-    //   return Promise.reject({code: 400, message: response.message});
-    // }
     return response.data;
   },
   (error) => {
-    console.log(JSON.stringify(error));
     if (error.response) {
       return Promise.reject({
         message: error.response.data.message,
@@ -44,7 +39,7 @@ const getToken = async () => {
   let user = await AsyncStorage.getItem('user');
   try {
     user = JSON.parse(user);
-    return user.access.token;
+    return user.token;
   } catch (error) {
     return undefined;
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStackNavigation from './HomeStackNavigation';
 import DownloadStackNavigation from './DownloadStackNavigation';
@@ -7,10 +7,17 @@ import Browse from '../components/Main/Browse/browse';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {LIGHT_BLACK, GREEN} from '../globals/config/color';
 import {ScreenKeys} from '../globals/constants';
+import loGet from 'lodash/get';
+import UserActions from '../redux/userRedux';
+import {connect} from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
-const AppNavigation = () => {
+const AppNavigation = (props) => {
+  useEffect(() => {
+    props.getInfoUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -65,4 +72,11 @@ const AppNavigation = () => {
   );
 };
 
-export default AppNavigation;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  getInfoUser: (actionSuccess) =>
+    dispatch(UserActions.getInfoUserRequest(actionSuccess)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppNavigation);

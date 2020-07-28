@@ -9,3 +9,7 @@ export const register = (params) => {
 export const login = (params) => {
   return request.post(`/${USER}/login`, params);
 };
+
+export const getInfoUser = () => {
+  return request.get(`/${USER}/me`);
+};

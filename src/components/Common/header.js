@@ -5,9 +5,11 @@ import {Avatar} from '../Common';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import {ScreenKeys} from '../../globals/constants';
+import {connect} from 'react-redux';
+import loGet from 'lodash/get';
 
 const Header = (props) => {
-  const {title} = props;
+  const {title, payload} = props;
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -17,7 +19,8 @@ const Header = (props) => {
           style={{marginRight: 10}}
           onPress={() => navigation.navigate(ScreenKeys.app.profile)}>
           <Avatar
-            source="https://pluralsight.imgix.net/author/lg/4f7a6642-77f2-418d-b361-5f4a6b2c1a2c.jpg"
+            source={payload && payload.avatar}
+            //source="https://pluralsight.imgix.net/author/lg/4f7a6642-77f2-418d-b361-5f4a6b2c1a2c.jpg"
             size={26}
           />
         </TouchableOpacity>
@@ -30,7 +33,11 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  payload: state.user.payload,
+});
+
+export default connect(mapStateToProps)(Header);
 
 const styles = StyleSheet.create({
   container: {
