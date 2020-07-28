@@ -5,6 +5,8 @@ import {GREEN, LIGHT_GRAY, GREY} from '../../globals/config/color';
 import Information from './information';
 import ProfileManagementItem from './profile-management-item';
 import {useNavigation} from '@react-navigation/native';
+import UserActions from '../../redux/userRedux';
+import {connect} from 'react-redux';
 
 const ACTIONS = [
   {
@@ -45,11 +47,17 @@ const ACTIONS = [
   },
 ];
 
-const Profile = () => {
+const Profile = (props) => {
   const handleEditProfile = () => {
     console.log('edit profile');
   };
   const navigation = useNavigation();
+
+  const handleSignOut = () => {
+    props.logout(() => {
+      console.log('logout success');
+    });
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.headerContainer}>
@@ -88,13 +96,21 @@ const Profile = () => {
             <ProfileManagementItem item={item} />
           ))}
         </View>
-        <Button size={16}>Sign out</Button>
+        <Button size={16} onPress={handleSignOut}>
+          Sign out
+        </Button>
       </View>
     </ScrollView>
   );
 };
 
-export default Profile;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  logout: (actionSuccess) => dispatch(UserActions.logout(actionSuccess)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
 
 const styles = StyleSheet.create({
   container: {

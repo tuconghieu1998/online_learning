@@ -10,6 +10,8 @@ const {Types, Creators} = createActions({
   loginRequest: ['params', 'actionSuccess'],
   loginFailure: null,
   loginSuccess: ['userInfo', 'token', 'message'],
+
+  logout: ['actionSuccess'],
 });
 
 export const UserTypes = Types;
@@ -41,11 +43,15 @@ const loginRequest = (state) => {
 };
 
 const loginSuccess = (state, {userInfo, token, message}) => {
-  return state.merge({user: userInfo, token, message});
+  return state.merge({userInfo, token, message});
 };
 
 const loginFailure = (state, {error}) => {
   return state.merge({error});
+};
+
+const logout = (state) => {
+  return INITIAL_STATE;
 };
 
 /* ------------------------- Hookup Reducers To Types -------------*/
@@ -57,4 +63,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_REQUEST]: loginRequest,
   [Types.LOGIN_SUCCESS]: loginSuccess,
   [Types.LOGIN_FAILURE]: loginFailure,
+
+  [Types.LOGOUT]: logout,
 });

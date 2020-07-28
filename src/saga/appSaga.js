@@ -12,6 +12,7 @@ function* startupRequest({actionSuccess, actionFailure}) {
     let user = yield AsyncStorage.getItem('user') || undefined;
     user = JSON.parse(user);
     const token = user.token;
+    console.log(token, 'HIEU123');
     yield setToken(token);
     // yield put(ProfileActions.getInfoUserRequest());
     yield put(AppActions.startupSuccess());

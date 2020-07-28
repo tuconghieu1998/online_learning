@@ -6,15 +6,22 @@ import {AuthNavigation, AppNavigation} from '../navigation';
 import FlashMessage from 'react-native-flash-message';
 import loGet from 'lodash/get';
 import {connect} from 'react-redux';
+import AppActions from '../redux/appRedux';
 
 const MainApp = (props) => {
-  const {logedIn} = props;
+  const [logedIn, setLogedIn] = useState(undefined);
   const [loadingSplash, setLoadingSplash] = useState(true);
   useEffect(() => {
     setTimeout(() => {
       setLoadingSplash(false);
     }, 2000);
-  }, []);
+    props.startUp();
+  }, [props]);
+
+  useEffect(() => {
+    setLogedIn(props.hasLogedInYet);
+    console.log('hasLogedInYet');
+  }, [props.hasLogedInYet]);
   return (
     <>
       {loadingSplash ? (
@@ -33,9 +40,14 @@ const MainApp = (props) => {
 
 const mapStateToProps = (state) => ({
   // isRequesting: loGet(state, ['app', 'isShowingIndicator'], false),
-  logedIn: loGet(state, ['app', 'logedIn'], undefined),
+  hasLogedInYet: state.app.logedIn,
 });
 
-export default connect(mapStateToProps)(MainApp);
+const mapDispatchToProps = (dispatch) => ({
+  startUp: (actionSuccess, actionFailure) =>
+    dispatch(AppActions.startupRequest(actionSuccess, actionFailure)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainApp);
 
 const styles = StyleSheet.create({});
