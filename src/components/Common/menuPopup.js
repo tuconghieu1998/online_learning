@@ -13,8 +13,13 @@ const MenuPopUp = (props) => {
   const {iconColor} = props;
   return (
     <Menu>
-      <MenuTrigger>
-        <MaterialIcons name="more-vert" size={18} color={iconColor} />
+      <MenuTrigger style={styles.menuTrigger}>
+        <MaterialIcons
+          name="more-vert"
+          size={18}
+          color={iconColor}
+          style={styles.iconTrigger}
+        />
       </MenuTrigger>
       <MenuOptions customStyles={{optionsContainer: styles.menuOptions}}>
         <MenuOption>
@@ -34,6 +39,14 @@ const MenuPopUp = (props) => {
 export default MenuPopUp;
 
 const styles = StyleSheet.create({
+  menuTrigger: {
+    padding: 5,
+  },
+  iconTrigger: {
+    shadowOpacity: 10,
+    textShadowRadius: 5,
+    textShadowOffset: {width: 0, height: 0},
+  },
   menuOptions: {
     marginTop: 25,
     width: 150,

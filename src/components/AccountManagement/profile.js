@@ -48,6 +48,7 @@ const ACTIONS = [
 ];
 
 const Profile = (props) => {
+  const {payload} = props;
   const handleEditProfile = () => {
     console.log('edit profile');
   };
@@ -66,9 +67,9 @@ const Profile = (props) => {
           </View>
         </View>
         <Information
-          avatar="https://pluralsight.imgix.net/author/lg/4f7a6642-77f2-418d-b361-5f4a6b2c1a2c.jpg"
-          name="Tu Cong Hieu"
-          sub_info="Front-end Developer"
+          avatar={payload && payload.avatar}
+          name={payload && payload.name}
+          sub_info={payload && payload.type}
           onPressEdit={handleEditProfile}
         />
       </View>
@@ -102,7 +103,9 @@ const Profile = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  payload: state.user.payload,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   logout: (actionSuccess) => dispatch(UserActions.logout(actionSuccess)),

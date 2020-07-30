@@ -3,28 +3,35 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Rating} from 'react-native-ratings';
 import SubText from '../Common/sub-text';
 import {BLACK, GREY} from '../../globals/config/color';
+import moment from 'moment';
 
 const CourseInfo = (props) => {
   const {info, ratingBackgroundColor, tintColor} = props;
   return (
     <View>
-      <Text style={{color: BLACK}}>{info.title}</Text>
-      {info.author && (
+      <Text numberOfLines={2} style={{color: BLACK}}>
+        {info.title}
+      </Text>
+      {info['instructor.user.name'] && (
         <View>
-          <SubText>{info.author}</SubText>
-          <SubText>{`${info.level}  ‧  ${info.released}  ‧  ${info.duration}`}</SubText>
+          <SubText>{info['instructor.user.name']}</SubText>
+          <SubText>{`${moment(info.updatedAt).format('DD/MM/YYYY')}  ‧  ${
+            info.videoNumber
+          } video${info.videoNumber > 1 ? 's' : ''}  ‧  ${
+            info.totalHours
+          } giờ`}</SubText>
           {info.countRating !== 0 && (
             <View style={styles.rowInfo}>
               <Rating
                 type="custom"
                 imageSize={11}
                 readonly
-                startingValue={info.rating}
+                startingValue={info.ratedNumber}
                 style={styles.rating}
                 ratingBackgroundColor={ratingBackgroundColor}
                 tintColor={tintColor}
               />
-              <SubText>{' (' + info.countRating + ')'}</SubText>
+              {/* <SubText>{' (' + info.countRating + ')'}</SubText> */}
             </View>
           )}
         </View>

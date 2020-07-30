@@ -9,14 +9,18 @@ import {connect} from 'react-redux';
 import AppActions from '../redux/appRedux';
 
 const MainApp = (props) => {
-  const [logedIn, setLogedIn] = useState(undefined);
+  const [logedIn, setLogedIn] = useState(false);
   const [loadingSplash, setLoadingSplash] = useState(true);
+  const {startUp} = props;
   useEffect(() => {
     setTimeout(() => {
       setLoadingSplash(false);
     }, 2000);
-    props.startUp();
-  }, [props]);
+    console.log('start');
+    startUp();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setLogedIn(props.hasLogedInYet);

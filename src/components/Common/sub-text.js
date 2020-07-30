@@ -13,5 +13,6 @@ const styles = StyleSheet.create({
   subText: {
     fontSize: 11,
     color: LIGHT_BLACK,
+    marginBottom: 2,
   },
 });

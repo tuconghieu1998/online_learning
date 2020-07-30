@@ -1,17 +1,19 @@
 import React from 'react';
-import {StyleSheet, FlatList} from 'react-native';
-import Card from '../../Common/card';
+import {StyleSheet, FlatList, View} from 'react-native';
+import {Card, TitleSectionList} from '../../Common';
 
 const FlatListHorizontal = (props) => {
   return (
-    <FlatList
-      data={props.data}
-      renderItem={({item}) => <Card data={item} />}
-      keyExtractor={(item) => item.id}
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={styles.container}
-    />
+    <View>
+      <FlatList
+        data={props.data}
+        renderItem={({item}) => <Card data={item} />}
+        keyExtractor={(item) => item.id}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.container}
+      />
+    </View>
   );
 };
 

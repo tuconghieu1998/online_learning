@@ -1,10 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import {ImageButton, Header} from '../../Common';
+import {StyleSheet, Text, View, ScrollView, FlatList} from 'react-native';
+import {ImageButton, Header, TitleSectionList} from '../../Common';
 import ListSkills from './TagSkill/list-skills';
 import SectionListHorizontal from '../../Main/Home/section-list-horizontal';
 import ListAuthors from './Author/list-authors';
 import {floor} from 'react-native-reanimated';
+import TopRating from './TopRating/top-rating';
+import TopSelling from './TopSelling/top-selling';
 
 const SKILLS = [
   {
@@ -140,15 +142,23 @@ const Browse = () => {
       <Header title="Browse" />
       <ScrollView>
         <View style={styles.imagesContainer}>
-          <ImageButton height={80} textAbove="NEW" textBelow="RELEASES" />
+          <ImageButton
+            height={80}
+            textAbove="NEW"
+            textBelow="RELEASES"
+            uri="https://community.arm.com/cfs-file/__key/communityserver-blogs-components-weblogfiles/00-00-00-19-98/Code-on-screen-1600x900.jpg"
+          />
           <ImageButton
             height={80}
             textAbove="RECOMMENDED"
             textBelow="FOR YOU"
+            uri="https://community.arm.com/cfs-file/__key/communityserver-blogs-components-weblogfiles/00-00-00-19-98/Code-on-screen-1600x900.jpg"
           />
         </View>
-        <ListSkills title="Popular Skills" skills={SKILLS} />
-        <SectionListHorizontal data={PATH} />
+        <TopSelling />
+        <TopRating />
+        {/* <ListSkills title="Popular Skills" skills={SKILLS} /> */}
+        {/* <SectionListHorizontal data={PATH} /> */}
         <ListAuthors title="Top authors" authors={AUTHORS} />
       </ScrollView>
     </View>

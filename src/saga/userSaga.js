@@ -65,7 +65,6 @@ function* getInfoUserRequest({actionSuccess}) {
     const {payload, message} = yield call(api.getInfoUser);
     yield put(UserActions.getInfoUserSuccess(payload, message));
     if (actionSuccess) {
-      console.log('success');
       actionSuccess({payload, message});
     }
     //yield put(AppActions.hideIndicator());
@@ -83,7 +82,7 @@ function* logout({actionSuccess}) {
     if (actionSuccess) {
       actionSuccess();
     }
-    yield put(AppActions.showSuccess('Đăng xuất thành công.'));
+    // yield put(AppActions.showSuccess('Đăng xuất thành công.'));
   } catch (error) {}
 }
 

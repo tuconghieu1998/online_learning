@@ -2,18 +2,12 @@ import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
 const ImageButton = (props) => {
-  const {textAbove, textBelow, height, onPress} = props;
+  const {textAbove, textBelow, height, onPress, uri} = props;
   return (
     <TouchableOpacity
       style={{...styles.container, ...{height: height}}}
       onPress={onPress}>
-      <Image
-        style={styles.image}
-        source={{
-          uri:
-            'https://community.arm.com/cfs-file/__key/communityserver-blogs-components-weblogfiles/00-00-00-19-98/Code-on-screen-1600x900.jpg',
-        }}
-      />
+      <Image style={styles.image} source={{uri}} />
       <View style={styles.textContainer}>
         <Text style={styles.text}>{textAbove}</Text>
         <Text style={styles.text}>{textBelow}</Text>

@@ -12,7 +12,7 @@ const Card = (props) => {
     <TouchableOpacity
       style={styles.container}
       onPress={() => navigation.push(ScreenKeys.app.courseDetail)}>
-      <Image source={{uri: data.image}} style={styles.image} />
+      <Image source={{uri: data.imageUrl}} style={styles.image} />
       <View style={styles.infoContainer}>
         <CourseInfo
           info={data}
@@ -20,7 +20,7 @@ const Card = (props) => {
           tintColor={LIGHT_GRAY}
         />
       </View>
-      {data.author && (
+      {data['instructor.user.name'] && (
         <View style={styles.menuPopupContainer}>
           <MenuPopup iconColor="white" />
         </View>
@@ -62,6 +62,6 @@ const styles = StyleSheet.create({
   menuPopupContainer: {
     position: 'absolute',
     alignSelf: 'flex-end',
-    padding: 10,
+    padding: 5,
   },
 });
