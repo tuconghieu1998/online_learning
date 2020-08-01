@@ -1,101 +1,98 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView, FlatList} from 'react-native';
-import {ImageButton, Header, TitleSectionList} from '../../Common';
-import ListSkills from './TagSkill/list-skills';
-import SectionListHorizontal from '../../Main/Home/section-list-horizontal';
+import {ImageButton, Header} from '../../Common';
 import ListAuthors from './Author/list-authors';
-import {floor} from 'react-native-reanimated';
 import TopRating from './TopRating/top-rating';
 import TopSelling from './TopSelling/top-selling';
 
-const SKILLS = [
-  {
-    id: '1',
-    name: 'Angular',
-  },
-  {
-    id: '2',
-    name: 'JavaScript',
-  },
-  {
-    id: '3',
-    name: 'C#',
-  },
-  {
-    id: '4',
-    name: 'Java',
-  },
-  {
-    id: '5',
-    name: 'Data Analysis',
-  },
-  {
-    id: '6',
-    name: 'ASP.NET',
-  },
-  {
-    id: '7',
-    name: 'Node.js',
-  },
-  {
-    id: '8',
-    name: 'Design Patterns',
-  },
-  {
-    id: '9',
-    name: 'Python',
-  },
-  {
-    id: '10',
-    name: 'React',
-  },
-];
+// const SKILLS = [
+//   {
+//     id: '1',
+//     name: 'Angular',
+//   },
+//   {
+//     id: '2',
+//     name: 'JavaScript',
+//   },
+//   {
+//     id: '3',
+//     name: 'C#',
+//   },
+//   {
+//     id: '4',
+//     name: 'Java',
+//   },
+//   {
+//     id: '5',
+//     name: 'Data Analysis',
+//   },
+//   {
+//     id: '6',
+//     name: 'ASP.NET',
+//   },
+//   {
+//     id: '7',
+//     name: 'Node.js',
+//   },
+//   {
+//     id: '8',
+//     name: 'Design Patterns',
+//   },
+//   {
+//     id: '9',
+//     name: 'Python',
+//   },
+//   {
+//     id: '10',
+//     name: 'React',
+//   },
+// ];
 
-const PATH = [
-  {
-    title: 'Paths',
-    data: [
-      [
-        {
-          id: '1',
-          title: 'React',
-          image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-          countCourses: 12,
-        },
-        {
-          id: '2',
-          title: 'Security in Google Cloud',
-          image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-          countCourses: 12,
-        },
-        {
-          id: '3',
-          title: 'React',
-          image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-          countCourses: 12,
-        },
-        {
-          id: '4',
-          title: 'Security in Google Cloud',
-          image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-          countCourses: 12,
-        },
-        {
-          id: '5',
-          title: 'React',
-          image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-          countCourses: 12,
-        },
-        {
-          id: '6',
-          title: 'Security in Google Cloud',
-          image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-          countCourses: 12,
-        },
-      ],
-    ],
-  },
-];
+// const PATH = [
+//   {
+//     title: 'Paths',
+//     data: [
+//       [
+//         {
+//           id: '1',
+//           title: 'React',
+//           image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
+//           countCourses: 12,
+//         },
+//         {
+//           id: '2',
+//           title: 'Security in Google Cloud',
+//           image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
+//           countCourses: 12,
+//         },
+//         {
+//           id: '3',
+//           title: 'React',
+//           image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
+//           countCourses: 12,
+//         },
+//         {
+//           id: '4',
+//           title: 'Security in Google Cloud',
+//           image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
+//           countCourses: 12,
+//         },
+//         {
+//           id: '5',
+//           title: 'React',
+//           image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
+//           countCourses: 12,
+//         },
+//         {
+//           id: '6',
+//           title: 'Security in Google Cloud',
+//           image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
+//           countCourses: 12,
+//         },
+//       ],
+//     ],
+//   },
+// ];
 
 const AUTHORS = [
   {

@@ -1,15 +1,17 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Avatar} from '../../../Common';
 import {BLACK} from '../../../../globals/config/color';
 
 const ListAuthorItem = (props) => {
-  const {author} = props;
+  const {avatar, name, onPress} = props;
   return (
-    <View style={styles.container}>
-      <Avatar source={author.avatar} size={80} />
-      <Text style={styles.name}>{author.name}</Text>
-    </View>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <Avatar source={avatar} size={80} />
+      <Text numberOfLines={2} style={styles.name}>
+        {name}
+      </Text>
+    </TouchableOpacity>
   );
 };
 
