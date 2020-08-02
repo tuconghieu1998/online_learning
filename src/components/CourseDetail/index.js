@@ -3,7 +3,6 @@ import {StyleSheet, Text, View, ScrollView, Modal} from 'react-native';
 import VideoPlayer from './VideoPlayer/VideoPlayer';
 import Introdution from './Introdution/introdution';
 import CourseDetailTopNavigation from '../../navigation/CourseDetailTopNavigation';
-import {floor} from 'react-native-reanimated';
 
 const COURSE = {
   id: '1',

@@ -14,10 +14,6 @@ const DownStackNavigation = () => {
         headerShown: false,
       }}>
       <Stack.Screen name={ScreenKeys.app.mainTab.search} component={Search} />
-      <Stack.Screen
-        name={ScreenKeys.app.courseDetail}
-        component={CourseDetail}
-      />
     </Stack.Navigator>
   );
 };

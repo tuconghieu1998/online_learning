@@ -10,14 +10,37 @@ import {ScreenKeys} from '../globals/constants';
 import loGet from 'lodash/get';
 import UserActions from '../redux/userRedux';
 import {connect} from 'react-redux';
+import {createStackNavigator} from '@react-navigation/stack';
+import CourseDetail from '../components/CourseDetail';
+import Profile from '../components/AccountManagement/profile';
+import Settings from '../components/AccountManagement/settings';
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const AppNavigation = (props) => {
   useEffect(() => {
     props.getInfoUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  return (
+    <Stack.Navigator
+      mode="modal"
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen component={BottomTabNavigation} name="Main" />
+      <Stack.Screen
+        component={CourseDetail}
+        name={ScreenKeys.app.courseDetail}
+      />
+      <Stack.Screen name={ScreenKeys.app.profile} component={Profile} />
+      <Stack.Screen name={ScreenKeys.app.settings} component={Settings} />
+    </Stack.Navigator>
+  );
+};
+
+const BottomTabNavigation = (props) => {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
