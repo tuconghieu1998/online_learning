@@ -21,7 +21,6 @@ export const INITIAL_STATE = Immutable({
 
 /*-----------------------Reducers ---------------------------------- */
 const getInstructorsRequest = (state) => {
-  console.log('redux');
   return state.merge({});
 };
 

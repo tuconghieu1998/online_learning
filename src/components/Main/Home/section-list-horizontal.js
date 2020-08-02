@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, SectionList, FlatList} from 'react-native';
 import TitleSectionList from '../../Common/title-section-list';
-import FlatListHorizontal from './flat-list-horizontal';
+//import FlatListHorizontal from './flat-list-horizontal';
 
 const SectionListHorizontal = (props) => {
   return (
@@ -13,7 +13,7 @@ const SectionListHorizontal = (props) => {
         )}
         renderItem={({item}) => (
           <View style={styles.itemContainer}>
-            <FlatListHorizontal data={item} />
+            {/* <FlatListHorizontal data={item} /> */}
           </View>
         )}
         keyExtractor={(item, index) => item + index}

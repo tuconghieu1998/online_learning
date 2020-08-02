@@ -9,7 +9,6 @@ function* appRootSagas() {
 
 function* startupRequest({actionSuccess, actionFailure}) {
   try {
-    console.log('start up');
     let user = yield AsyncStorage.getItem('user') || undefined;
     user = JSON.parse(user);
     const token = user.token;

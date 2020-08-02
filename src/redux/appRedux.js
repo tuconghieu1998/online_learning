@@ -58,7 +58,6 @@ export const startupSuccess = (state) => {
 };
 
 export const startupFailure = (state) => {
-  console.log('setFailure');
   return state.merge({logedIn: false});
 };
 

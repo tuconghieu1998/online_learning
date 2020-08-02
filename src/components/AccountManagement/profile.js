@@ -92,7 +92,7 @@ const Profile = (props) => {
             keyExtractor={(item) => item.id}
           /> */}
           {ACTIONS.map((item) => (
-            <ProfileManagementItem item={item} />
+            <ProfileManagementItem key={item.id} item={item} />
           ))}
         </View>
         <Button size={16} onPress={handleSignOut}>

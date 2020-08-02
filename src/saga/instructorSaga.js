@@ -11,7 +11,6 @@ function* instructorRootSaga() {
 
 function* getInstructors({actionSuccess}) {
   try {
-    console.log('saga');
     const response = yield call(apiInstructor.getInstructors);
     //yield put(CourseActions.getTopSellingSuccess(response));
     if (actionSuccess) {

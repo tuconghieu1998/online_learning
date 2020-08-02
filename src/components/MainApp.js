@@ -16,7 +16,6 @@ const MainApp = (props) => {
     setTimeout(() => {
       setLoadingSplash(false);
     }, 2000);
-    console.log('start');
     startUp();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

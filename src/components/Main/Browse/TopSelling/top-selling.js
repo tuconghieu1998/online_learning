@@ -7,7 +7,6 @@ import {connect} from 'react-redux';
 const TopSelling = (props) => {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
-    console.log('khoi tao');
     const params = {
       limit: 10,
       page: 1,
@@ -32,6 +31,7 @@ const TopSelling = (props) => {
             countVideo={item.videoNumber}
             duration={item.totalHours}
             rating={item.ratedNumber}
+            price={item.price}
           />
         )}
         keyExtractor={(item) => item.id}

@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
-import {CourseInfo, MenuPopup} from '../Common';
+import CourseInfo from './course-info';
+import MenuPopup from './menuPopup';
 import {LIGHT_GRAY, GREY} from '../../globals/config/color';
 import {useNavigation} from '@react-navigation/native';
 import {ScreenKeys} from '../../globals/constants';
@@ -15,7 +16,8 @@ const Card = (props) => {
     countVideo,
     duration,
     rating,
-    onPress,
+    lastLearningTime,
+    price,
   } = props;
   const navigation = useNavigation();
   return (
@@ -25,7 +27,16 @@ const Card = (props) => {
       <Image source={{uri: image}} style={styles.image} />
       <View style={styles.infoContainer}>
         <CourseInfo
-          info={{title, instructor, released, countVideo, duration, rating}}
+          info={{
+            title,
+            instructor,
+            released,
+            countVideo,
+            duration,
+            rating,
+            lastLearningTime,
+            price,
+          }}
           ratingBackgroundColor={GREY}
           tintColor={LIGHT_GRAY}
         />

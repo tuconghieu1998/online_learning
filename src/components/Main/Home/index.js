@@ -1,7 +1,17 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  Dimensions,
+} from 'react-native';
 import SectionListHorizontal from './section-list-horizontal';
 import {Header} from '../../Common';
+import Introduction from './introduction';
+import ContinueLearning from './continue-learning';
+import CoursesInFavoriteCat from './courses-in-favorite-cat';
 
 const DATA = [
   {
@@ -356,7 +366,12 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Header title="Home" />
-      <SectionListHorizontal data={DATA} />
+      <ScrollView>
+        <Introduction />
+        <ContinueLearning />
+        <CoursesInFavoriteCat />
+        {/* <SectionListHorizontal data={DATA} /> */}
+      </ScrollView>
     </View>
   );
 };
@@ -367,6 +382,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingBottom: 50,
   },
 });

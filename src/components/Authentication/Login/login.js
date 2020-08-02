@@ -38,7 +38,7 @@ const Login = (props) => {
       password: data.password.value,
     };
     props.login(params, (response) => {
-      console.log(response, 'HIEU');
+      // console.log(response, 'HIEU');
       //navigation.navigate(ScreenKeys.auth.login);
     });
 

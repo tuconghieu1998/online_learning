@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Modal} from 'react-native';
-import {TextButton} from '../Common';
+import TextButton from './text-button';
 import {GREEN, BLACK} from '../../globals/config/color';
 
 const Alert = (props) => {

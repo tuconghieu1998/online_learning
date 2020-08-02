@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {BLACK} from '../../globals/config/color';
-import {Avatar} from '../Common';
+import Avatar from './avatar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import {ScreenKeys} from '../../globals/constants';

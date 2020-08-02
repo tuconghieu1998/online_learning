@@ -1,12 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Rating} from 'react-native-ratings';
-import SubText from '../Common/sub-text';
-import {BLACK, GREY} from '../../globals/config/color';
-import moment from 'moment';
+import SubText from './sub-text';
+import {BLACK} from '../../globals/config/color';
+import moment from 'moment/min/moment-with-locales';
+import {formatPrice} from '../../globals/helper';
 
 const CourseInfo = (props) => {
   const {info, ratingBackgroundColor, tintColor} = props;
+  moment.locale('vi');
   return (
     <View>
       <Text numberOfLines={2} style={{color: BLACK}}>
@@ -14,11 +16,20 @@ const CourseInfo = (props) => {
       </Text>
       <View>
         <SubText>{info.instructor}</SubText>
-        <SubText>{`${moment(info.released).format('DD/MM/YYYY')}  ‧  ${
-          info.countVideo
-        } video${info.countVideo > 1 ? 's' : ''}  ‧  ${
-          info.duration
-        } giờ`}</SubText>
+        {info.released && (
+          <SubText>{`${moment(info.released).format('DD/MM/YYYY')}  ‧  ${
+            info.countVideo
+          } video${info.countVideo > 1 ? 's' : ''}  ‧  ${
+            info.duration
+          } giờ`}</SubText>
+        )}
+        {info.lastLearningTime && (
+          <SubText>{`Lần học: ${moment(info.lastLearningTime)
+            .startOf('second')
+            .fromNow()}  ‧  ${info.countVideo} video${
+            info.countVideo > 1 ? 's' : ''
+          }`}</SubText>
+        )}
         <View style={styles.rowInfo}>
           <Rating
             type="custom"
@@ -29,6 +40,15 @@ const CourseInfo = (props) => {
             ratingBackgroundColor={ratingBackgroundColor}
             tintColor={tintColor}
           />
+          <View>
+            {info.price !== undefined && (
+              <Text style={styles.price}>
+                {info.price === 0
+                  ? 'Miễn phí'
+                  : `${formatPrice(info.price)} VND`}
+              </Text>
+            )}
+          </View>
         </View>
       </View>
     </View>
@@ -44,5 +64,9 @@ const styles = StyleSheet.create({
   },
   rating: {
     marginRight: 5,
+  },
+  price: {
+    fontSize: 11,
+    color: BLACK,
   },
 });

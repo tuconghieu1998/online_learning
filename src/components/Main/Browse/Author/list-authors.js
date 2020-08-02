@@ -8,7 +8,6 @@ import {connect} from 'react-redux';
 const ListAuthors = (props) => {
   const [authors, setAuthors] = useState([]);
   useEffect(() => {
-    console.log('khoi tao');
     props.getInstructors((res) => {
       setAuthors(res.payload);
     });

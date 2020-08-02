@@ -59,7 +59,7 @@ const Regiter = (props) => {
         password: data.password.value,
       };
       props.register(params, (reponse) => {
-        console.log(reponse);
+        // console.log(reponse);
         navigation.navigate(ScreenKeys.auth.login);
       });
     }

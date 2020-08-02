@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStackNavigation from './HomeStackNavigation';
 import DownloadStackNavigation from './DownloadStackNavigation';
+import BrowseStackNavigation from './BrowseStackNavigation';
 import SearchStackNavigation from './SearchStackNavigation';
-import Browse from '../components/Main/Browse/browse';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {LIGHT_BLACK, GREEN} from '../globals/config/color';
 import {ScreenKeys} from '../globals/constants';
@@ -56,7 +56,7 @@ const AppNavigation = (props) => {
       />
       <Tab.Screen
         name={ScreenKeys.app.mainTab.browse}
-        component={Browse}
+        component={BrowseStackNavigation}
         options={{
           tabBarLabel: 'Browse',
         }}
