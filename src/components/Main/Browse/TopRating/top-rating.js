@@ -22,7 +22,18 @@ const TopRating = (props) => {
       <TitleSectionList title="Top rating" />
       <FlatList
         data={courses}
-        renderItem={({item}) => <Card data={item} />}
+        renderItem={({item}) => (
+          <Card
+            id={item.id}
+            image={item.imageUrl}
+            title={item.title}
+            instructor={item['instructor.user.name']}
+            released={item.updatedAt}
+            countVideo={item.videoNumber}
+            duration={item.totalHours}
+            rating={item.ratedNumber}
+          />
+        )}
         keyExtractor={(item) => item.id}
         horizontal={true}
         showsHorizontalScrollIndicator={false}

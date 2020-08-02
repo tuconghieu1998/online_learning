@@ -12,31 +12,25 @@ const CourseInfo = (props) => {
       <Text numberOfLines={2} style={{color: BLACK}}>
         {info.title}
       </Text>
-      {info['instructor.user.name'] && (
-        <View>
-          <SubText>{info['instructor.user.name']}</SubText>
-          <SubText>{`${moment(info.updatedAt).format('DD/MM/YYYY')}  ‧  ${
-            info.videoNumber
-          } video${info.videoNumber > 1 ? 's' : ''}  ‧  ${
-            info.totalHours
-          } giờ`}</SubText>
-          {info.countRating !== 0 && (
-            <View style={styles.rowInfo}>
-              <Rating
-                type="custom"
-                imageSize={11}
-                readonly
-                startingValue={info.ratedNumber}
-                style={styles.rating}
-                ratingBackgroundColor={ratingBackgroundColor}
-                tintColor={tintColor}
-              />
-              {/* <SubText>{' (' + info.countRating + ')'}</SubText> */}
-            </View>
-          )}
+      <View>
+        <SubText>{info.instructor}</SubText>
+        <SubText>{`${moment(info.released).format('DD/MM/YYYY')}  ‧  ${
+          info.countVideo
+        } video${info.countVideo > 1 ? 's' : ''}  ‧  ${
+          info.duration
+        } giờ`}</SubText>
+        <View style={styles.rowInfo}>
+          <Rating
+            type="custom"
+            imageSize={11}
+            readonly
+            startingValue={info.rating}
+            style={styles.rating}
+            ratingBackgroundColor={ratingBackgroundColor}
+            tintColor={tintColor}
+          />
         </View>
-      )}
-      {info.countCourses && <SubText>{`${info.countCourses} courses`}</SubText>}
+      </View>
     </View>
   );
 };

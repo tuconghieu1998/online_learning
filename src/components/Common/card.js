@@ -6,25 +6,33 @@ import {useNavigation} from '@react-navigation/native';
 import {ScreenKeys} from '../../globals/constants';
 
 const Card = (props) => {
-  const {data} = props;
+  const {
+    id,
+    image,
+    title,
+    instructor,
+    released,
+    countVideo,
+    duration,
+    rating,
+    onPress,
+  } = props;
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={() => navigation.push(ScreenKeys.app.courseDetail)}>
-      <Image source={{uri: data.imageUrl}} style={styles.image} />
+      <Image source={{uri: image}} style={styles.image} />
       <View style={styles.infoContainer}>
         <CourseInfo
-          info={data}
+          info={{title, instructor, released, countVideo, duration, rating}}
           ratingBackgroundColor={GREY}
           tintColor={LIGHT_GRAY}
         />
       </View>
-      {data['instructor.user.name'] && (
-        <View style={styles.menuPopupContainer}>
-          <MenuPopup iconColor="white" />
-        </View>
-      )}
+      <View style={styles.menuPopupContainer}>
+        <MenuPopup iconColor="white" />
+      </View>
     </TouchableOpacity>
   );
 };
