@@ -22,6 +22,10 @@ const {Types, Creators} = createActions({
   getIntroPageRequest: ['actionSuccess'],
   getIntroPageFailure: null,
   getIntroPageSuccess: ['courses', 'payload'],
+
+  getCourseDetailRequest: ['params', 'actionSuccess'],
+  getCourseDetailFailure: null,
+  getCourseDetailSuccess: ['courses', 'payload'],
 });
 
 export const CourseTypes = Types;
@@ -86,6 +90,16 @@ const getIntroPageFailure = (state, {error}) => {
   return state.merge({error});
 };
 
+const getCourseDetailRequest = (state) => {
+  return state.merge({});
+};
+const getCourseDetailSuccess = (state) => {
+  return state.merge();
+};
+const getCourseDetailFailure = (state, {error}) => {
+  return state.merge({error});
+};
+
 /* ------------------------- Hookup Reducers To Types -------------*/
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_TOP_SELLING_REQUEST]: getTopSellingRequest,
@@ -107,4 +121,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_INTRO_PAGE_REQUEST]: getIntroPageRequest,
   [Types.GET_INTRO_PAGE_SUCCESS]: getIntroPageSuccess,
   [Types.GET_INTRO_PAGE_FAILURE]: getIntroPageFailure,
+
+  [Types.GET_COURSE_DETAIL_REQUEST]: getCourseDetailRequest,
+  [Types.GET_COURSE_DETAIL_SUCCESS]: getCourseDetailSuccess,
+  [Types.GET_COURSE_DETAIL_FAILURE]: getCourseDetailFailure,
 });

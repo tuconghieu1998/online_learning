@@ -20,3 +20,7 @@ export const getCoursesInFavoriteCat = (params) => {
 export const getIntroPage = () => {
   return request.get(`/${USER}/intro-page`);
 };
+
+export const getCourseDetail = (params) => {
+  return request.get(`/${COURSE}/get-course-detail/${params.id}/underfined`);
+};

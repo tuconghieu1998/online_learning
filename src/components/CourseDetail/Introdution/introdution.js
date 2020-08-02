@@ -4,36 +4,40 @@ import {SubText} from '../../Common';
 import {Rating} from 'react-native-ratings';
 import AuthorTagList from './author-tag-list';
 import FuncButton from './func-button';
-import {BLACK} from '../../../globals/config/color';
+import {BLACK, GREY, LIGHT_GRAY} from '../../../globals/config/color';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontistoIcons from 'react-native-vector-icons/Fontisto';
+import moment from 'moment';
 
 const Introdution = (props) => {
   const {
     title,
     authors,
-    level,
     duration,
     released,
     rating,
     countRating,
+    countVideo,
   } = props.data;
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <AuthorTagList authors={authors} />
       <View style={styles.subInfoContainer}>
-        <SubText>{`${level}  ‧  ${released}  ‧  ${duration}h   `}</SubText>
+        <Text style={styles.subText}>{`${moment(released).format(
+          'DD/MM/YYYY',
+        )}  ‧  ${countVideo} video${
+          countVideo > 1 ? 's' : ''
+        }  ‧  ${duration}h   `}</Text>
         <Rating
           type="custom"
-          imageSize={11}
+          imageSize={14}
           readonly
           startingValue={rating}
           style={styles.rating}
-          ratingBackgroundColor="white"
+          ratingBackgroundColor={GREY}
           tintColor="white"
         />
-        <SubText>{' (' + countRating + ')'}</SubText>
       </View>
       <View style={styles.funcButtonContainer}>
         <FuncButton
@@ -70,6 +74,9 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
     alignItems: 'center',
+  },
+  subText: {
+    color: BLACK,
   },
   funcButtonContainer: {
     flexDirection: 'row',

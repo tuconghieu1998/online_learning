@@ -1,8 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Search from '../components/Main/Search';
-import CourseDetail from '../components/CourseDetail';
 import {ScreenKeys} from '../globals/constants';
 
 const Stack = createStackNavigator();

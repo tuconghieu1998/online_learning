@@ -23,7 +23,7 @@ const Card = (props) => {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.push(ScreenKeys.app.courseDetail)}>
+      onPress={() => navigation.push(ScreenKeys.app.courseDetail, {id})}>
       <Image source={{uri: image}} style={styles.image} />
       <View style={styles.infoContainer}>
         <CourseInfo

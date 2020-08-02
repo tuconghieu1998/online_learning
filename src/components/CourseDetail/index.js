@@ -1,104 +1,43 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, ScrollView, Modal} from 'react-native';
 import VideoPlayer from './VideoPlayer/VideoPlayer';
 import Introdution from './Introdution/introdution';
 import CourseDetailTopNavigation from '../../navigation/CourseDetailTopNavigation';
+import {connect} from 'react-redux';
+import CourseActions from '../../redux/courseRedux';
+import InstructorActions from '../../redux/instructorRedux';
 
-const COURSE = {
-  id: '1',
-  title: 'React: Getting Started',
-  authors: [
-    {
-      id: '1',
-      name: 'Samer Buna',
-      avatar:
-        'https://pluralsight.imgix.net/author/lg/4f7a6642-77f2-418d-b361-5f4a6b2c1a2c.jpg',
-    },
-    {
-      id: '2',
-      name: 'Joe Eames',
-      avatar:
-        'https://pluralsight.imgix.net/author/lg/4f7a6642-77f2-418d-b361-5f4a6b2c1a2c.jpg',
-    },
-    {
-      id: '3',
-      name: 'Jim Cooper',
-      avatar:
-        'https://pluralsight.imgix.net/author/lg/4f7a6642-77f2-418d-b361-5f4a6b2c1a2c.jpg',
-    },
-  ],
-  level: 'Beginer',
-  released: 'thg 4 20 2020',
-  duration: 4.9,
-  rating: 4.5,
-  countRating: 2229,
-  summary: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus enim
-  suscipit ipsa impedit laboriosam saepe, sapiente excepturi molestiae
-  laudantium, non tempora cumque, quam assumenda deserunt? Similique
-  eaque voluptas itaque corporis. Lorem ipsum dolor sit amet consectetur
-  adipisicing elit. Sequi unde iusto vel facere quibusdam nisi placeat,
-  debitis veritatis autem deserunt at voluptas nam ut mollitia qui fugit
-  minus minima quod.`,
-  lessons: [
-    {
-      id: '1',
-      title: 'Course Overview',
-      source:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      duration: 1980,
-      active: true,
-    },
-    {
-      id: '2',
-      title: 'The Basics',
-      source:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      duration: 2550,
-      active: true,
-    },
-    {
-      id: '3',
-      title: 'Modern JavaScript Crash Courseabcd',
-      source:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      duration: 1202,
-      active: false,
-    },
-    {
-      id: '4',
-      title: 'The GitHub Cards App',
-      source:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      duration: 2412,
-      active: false,
-    },
-    {
-      id: '5',
-      title: 'The Star Match Game',
-      source:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      duration: 2610,
-      active: false,
-    },
-  ],
-};
+const CourseDetail = (props) => {
+  const {id} = props.route.params;
+  console.log(id);
 
-const CourseDetail = () => {
-  const INTRO_DATA = {
-    title: COURSE.title,
-    authors: COURSE.authors,
-    level: COURSE.level,
-    duration: COURSE.duration,
-    released: COURSE.released,
-    rating: COURSE.rating,
-    countRating: COURSE.countRating,
-  };
+  const [data, setData] = useState({});
+  const [instructor, setInstructor] = useState({});
+  useEffect(() => {
+    props.getCourseDetail({id}, (res) => {
+      setData(res.payload);
+      props.getInstructorDetail({id: res.payload.instructorId}, (res) => {
+        setInstructor(res.payload);
+      });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <View style={styles.container}>
       <VideoPlayer />
       <View style={{flex: 1}}>
         <ScrollView stickyHeaderIndices={[2]}>
-          <Introdution data={INTRO_DATA} />
+          <Introdution
+            data={{
+              title: data.title,
+              authors: [instructor],
+              duration: data.totalHours,
+              released: data.updatedAt,
+              rating: data.ratedNumber,
+              countVideo: data.videoNumber,
+            }}
+          />
           <CourseDetailTopNavigation />
         </ScrollView>
       </View>
@@ -106,7 +45,18 @@ const CourseDetail = () => {
   );
 };
 
-export default CourseDetail;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  getCourseDetail: (params, actionSuccess) =>
+    dispatch(CourseActions.getCourseDetailRequest(params, actionSuccess)),
+  getInstructorDetail: (params, actionSuccess) =>
+    dispatch(
+      InstructorActions.getInstructorDetailRequest(params, actionSuccess),
+    ),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseDetail);
 
 const styles = StyleSheet.create({
   container: {

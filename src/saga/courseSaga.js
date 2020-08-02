@@ -16,6 +16,7 @@ function* courseRootSaga() {
       getCoursesInFavoriteCat,
     ),
     yield takeLatest(CourseTypes.GET_INTRO_PAGE_REQUEST, getIntroPage),
+    yield takeLatest(CourseTypes.GET_COURSE_DETAIL_REQUEST, getCourseDetail),
   ]);
 }
 
@@ -74,6 +75,19 @@ function* getCoursesInFavoriteCat({params, actionSuccess}) {
 function* getIntroPage({actionSuccess}) {
   try {
     const response = yield call(apiCourse.getIntroPage);
+    //yield put(CourseActions.getTopRatingSuccess(response));
+    if (actionSuccess) {
+      actionSuccess(response);
+    }
+  } catch (error) {
+    // yield put(CourseActions.getTopRatingFailure(error));
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* getCourseDetail({params, actionSuccess}) {
+  try {
+    const response = yield call(apiCourse.getCourseDetail, params);
     //yield put(CourseActions.getTopRatingSuccess(response));
     if (actionSuccess) {
       actionSuccess(response);
