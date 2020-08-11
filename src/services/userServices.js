@@ -13,3 +13,7 @@ export const login = (params) => {
 export const getInfoUser = () => {
   return request.get(`/${USER}/me`);
 };
+
+export const forgotPassword = (params) => {
+  return request.post(`/${USER}/forget-pass/send-email`, params);
+};

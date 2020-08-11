@@ -9,12 +9,14 @@ import loGet from 'lodash/get';
 import {connect} from 'react-redux';
 import UserActions from '../../../redux/userRedux';
 import {ScreenKeys} from '../../../globals/constants';
+import {EMAIL, PASSWORD, VN_PHONE} from '../../../globals/config/regex';
+import {handleValidate} from '../../../globals/helper';
 
 const initialState = {
   name: {
     value: '',
     isValid: true,
-    errMessage: 'Tên tài khoản tối thiểu 1 kí tự',
+    errMessage: 'Tên người dùng không được rỗng',
   },
   email: {
     value: '',
@@ -51,7 +53,30 @@ const Regiter = (props) => {
   };
 
   const handleSignup = () => {
-    if (data.password.value === data.confirmPassword.value) {
+    const isValidEmail = handleValidate(data.email.value, EMAIL);
+    const isValidName = data.name.value !== '';
+    const isValidPhone = handleValidate(data.phone.value, VN_PHONE);
+    const isValidPassword = handleValidate(data.password.value, PASSWORD);
+    const isValidConfirmPassword =
+      data.password.value === data.confirmPassword.value;
+    setData((prevState) => ({
+      ...prevState,
+      email: {...prevState.email, isValid: isValidEmail},
+      name: {...prevState.name, isValid: isValidName},
+      phone: {...prevState.phone, isValid: isValidPhone},
+      password: {...prevState.password, isValid: isValidPassword},
+      confirmPassword: {
+        ...prevState.confirmPassword,
+        isValid: isValidConfirmPassword,
+      },
+    }));
+    if (
+      isValidEmail &&
+      isValidPhone &&
+      isValidName &&
+      isValidPassword &&
+      isValidConfirmPassword
+    ) {
       const params = {
         name: data.name.value,
         email: data.email.value,

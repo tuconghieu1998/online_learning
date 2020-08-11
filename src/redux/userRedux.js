@@ -15,6 +15,10 @@ const {Types, Creators} = createActions({
   getInfoUserFailure: null,
   getInfoUserSuccess: ['payload', 'message'],
 
+  forgotPasswordRequest: ['params', 'actionSuccess'],
+  forgotPasswordFailure: null,
+  forgotPasswordSuccess: ['message'],
+
   logout: ['actionSuccess'],
 });
 
@@ -35,11 +39,9 @@ export const INITIAL_STATE = Immutable({
 const registerRequest = (state) => {
   return state.merge({});
 };
-
 const registerSuccess = (state, {message}) => {
   return state.merge({message});
 };
-
 const registerFailure = (state) => {
   return state.merge({});
 };
@@ -47,11 +49,9 @@ const registerFailure = (state) => {
 const loginRequest = (state) => {
   return state.merge({});
 };
-
 const loginSuccess = (state, {userInfo, token, message}) => {
   return state.merge({userInfo, token, message});
 };
-
 const loginFailure = (state, {error}) => {
   return state.merge({error});
 };
@@ -63,12 +63,20 @@ const logout = (state) => {
 const getInfoUserRequest = (state) => {
   return state.merge({});
 };
-
 const getInfoUserSuccess = (state, {payload, message}) => {
   return state.merge({payload, message});
 };
-
 const getInfoUserFailure = (state, {error}) => {
+  return state.merge({error});
+};
+
+const forgotPasswordRequest = (state) => {
+  return state.merge({});
+};
+const forgotPasswordSuccess = (state, {message}) => {
+  return state.merge({message});
+};
+const forgotPasswordFailure = (state, {error}) => {
   return state.merge({error});
 };
 
@@ -87,4 +95,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_INFO_USER_FAILURE]: getInfoUserFailure,
 
   [Types.LOGOUT]: logout,
+
+  [Types.FORGOT_PASSWORD_REQUEST]: forgotPasswordRequest,
+  [Types.FORGOT_PASSWORD_SUCCESS]: forgotPasswordSuccess,
+  [Types.FORGOT_PASSWORD_FAILURE]: forgotPasswordFailure,
 });

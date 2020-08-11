@@ -7,6 +7,8 @@ import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import loGet from 'lodash/get';
 import UserActions from '../../../redux/userRedux';
+import {EMAIL, PASSWORD} from '../../../globals/config/regex';
+import {handleValidate} from '../../../globals/helper';
 
 const initialState = {
   email: {
@@ -33,14 +35,25 @@ const Login = (props) => {
   };
 
   const handleLogin = () => {
-    const params = {
-      email: data.email.value,
-      password: data.password.value,
-    };
-    props.login(params, (response) => {
-      // console.log(response, 'HIEU');
-      //navigation.navigate(ScreenKeys.auth.login);
-    });
+    // validate
+    const isValidEmail = handleValidate(data.email.value, EMAIL);
+    const isValidPassword = handleValidate(data.password.value, PASSWORD);
+    setData((prevState) => ({
+      ...prevState,
+      email: {...prevState.email, isValid: isValidEmail},
+      password: {...prevState.password, isValid: isValidPassword},
+    }));
+
+    if (isValidEmail && isValidPassword) {
+      const params = {
+        email: data.email.value,
+        password: data.password.value,
+      };
+      props.login(params, (response) => {
+        // console.log(response, 'HIEU');
+        //navigation.navigate(ScreenKeys.auth.login);
+      });
+    }
 
     //
     //navigation.navigate('InputOTP')

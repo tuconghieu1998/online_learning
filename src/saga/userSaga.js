@@ -10,7 +10,8 @@ function* userRootSagas() {
     yield takeLatest(UserTypes.REGISTER_REQUEST, register),
     yield takeLatest(UserTypes.LOGIN_REQUEST, login),
     yield takeLatest(UserTypes.LOGOUT, logout),
-    yield takeLatest(UserTypes.GET_INFO_USER_REQUEST, getInfoUserRequest),
+    yield takeLatest(UserTypes.GET_INFO_USER_REQUEST, getInfoUser),
+    yield takeLatest(UserTypes.FORGOT_PASSWORD_REQUEST, forgotPassword),
   ]);
 }
 
@@ -59,7 +60,7 @@ function* login({params, actionSuccess}) {
   }
 }
 
-function* getInfoUserRequest({actionSuccess}) {
+function* getInfoUser({actionSuccess}) {
   //yield put (AppActions.showIndicator());
   try {
     const {payload, message} = yield call(api.getInfoUser);
@@ -84,6 +85,28 @@ function* logout({actionSuccess}) {
     }
     // yield put(AppActions.showSuccess('Đăng xuất thành công.'));
   } catch (error) {}
+}
+
+function* forgotPassword({params, actionSuccess}) {
+  //yield put (AppActions.showIndicator());
+  try {
+    const {message} = yield call(api.forgotPassword, params);
+    yield put(UserActions.forgotPasswordSuccess(message));
+    if (actionSuccess) {
+      actionSuccess({message});
+    }
+    //yield put(AppActions.hideIndicator());
+
+    yield put(
+      AppActions.showSuccess(
+        'Email đã được gửi đi. Hãy kiểm tra hòm thư của bạn.',
+      ),
+    );
+  } catch (error) {
+    //yield put(AppActions.hideIndicator());
+    yield put(UserActions.forgotPasswordFailure(error));
+    yield put(AppActions.showError(error.message));
+  }
 }
 
 export default userRootSagas;
