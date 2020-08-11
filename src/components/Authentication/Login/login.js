@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {BackButton, Input, HeaderText, TextButton, Button} from '../../Common';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesignIcons from 'react-native-vector-icons/AntDesign';
 import {GREY, GREEN, BLACK, LIGHT_BLACK} from '../../../globals/config/color';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
@@ -68,7 +68,6 @@ const Login = (props) => {
   // const {signIn} = React.useContext(AuthContext);
   return (
     <ScrollView style={styles.container}>
-      <BackButton />
       <View style={styles.container}>
         <View style={styles.title}>
           <HeaderText color={GREEN}>Welcome back</HeaderText>
@@ -110,11 +109,7 @@ const Login = (props) => {
             <View style={styles.line} />
           </View>
           <TouchableOpacity style={styles.googleButton}>
-            <MaterialCommunityIcons
-              name="google-plus"
-              size={28}
-              color="#D24432"
-            />
+            <AntDesignIcons name="googleplus" size={28} color="#D24432" />
           </TouchableOpacity>
         </View>
       </View>
@@ -147,7 +142,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: {
-    marginTop: 20,
+    marginTop: 40,
     marginBottom: 30,
   },
   buttonContainer: {
