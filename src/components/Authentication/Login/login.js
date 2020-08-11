@@ -1,8 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import {BackButton, Input, HeaderText, TextButton, Button} from '../../Common';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {GREY, GREEN, BLACK} from '../../../globals/config/color';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {GREY, GREEN, BLACK, LIGHT_BLACK} from '../../../globals/config/color';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import loGet from 'lodash/get';
@@ -93,8 +100,22 @@ const Login = (props) => {
         </View>
         <View style={styles.buttonContainer}>
           <Button size={18} onPress={handleLogin}>
-            Login
+            Log in
           </Button>
+        </View>
+        <View style={{alignItems: 'center'}}>
+          <View style={styles.labelContainer}>
+            <View style={styles.line} />
+            <Text style={styles.subText}> Sign in with </Text>
+            <View style={styles.line} />
+          </View>
+          <TouchableOpacity style={styles.googleButton}>
+            <MaterialCommunityIcons
+              name="google-plus"
+              size={28}
+              color="#D24432"
+            />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.footer}>
@@ -144,5 +165,25 @@ const styles = StyleSheet.create({
   forgotPass: {
     alignSelf: 'flex-end',
     marginTop: 5,
+  },
+  labelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 30,
+    marginBottom: 15,
+  },
+  line: {
+    width: 30,
+    height: 1,
+    backgroundColor: GREY,
+  },
+  subText: {
+    color: LIGHT_BLACK,
+  },
+  googleButton: {
+    borderWidth: 0.5,
+    borderRadius: 20,
+    borderColor: GREY,
+    padding: 6,
   },
 });
