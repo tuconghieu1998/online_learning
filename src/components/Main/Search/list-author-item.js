@@ -12,7 +12,7 @@ const ListAuthorItem = (props) => {
       </View>
       <View style={styles.infoContainer}>
         <Text style={{color: BLACK}}>{item.name}</Text>
-        <SubText>{`${item.countCourses} Courses`}</SubText>
+        <SubText>{`${item.numcourses} Courses`}</SubText>
       </View>
     </TouchableOpacity>
   );

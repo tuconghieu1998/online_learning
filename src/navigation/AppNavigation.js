@@ -62,6 +62,7 @@ const BottomTabNavigation = (props) => {
       tabBarOptions={{
         activeTintColor: GREEN,
         inactiveTintColor: LIGHT_BLACK,
+        keyboardHidesTabBar: true,
       }}>
       <Tab.Screen
         name={ScreenKeys.app.mainTab.home}

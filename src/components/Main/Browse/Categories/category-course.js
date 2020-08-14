@@ -41,7 +41,7 @@ const CategoryCourse = (props) => {
               id={item.id}
               image={item.imageUrl}
               title={item.title}
-              instructor={item['instructor.user.name']}
+              instructor={item.name}
               released={item.updatedAt}
               countVideo={item.videoNumber}
               duration={item.totalHours}

@@ -8,8 +8,10 @@ import {
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {LIGHT_BLACK, GREY, LIGHT_GRAY} from '../../globals/config/color';
+import {connect} from 'react-redux';
+import CourseActions from '../../redux/courseRedux';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const [isFocussing, setIsFocussing] = useState(false);
   const [text, setText] = useState('');
   const textInput = useRef(null);
@@ -21,6 +23,10 @@ const SearchBar = () => {
   };
   const handleOnPressClearText = () => {
     setText('');
+  };
+  const handleSearch = () => {
+    // save keyword to redux
+    props.search(text);
   };
   return (
     <View style={styles.container}>
@@ -44,6 +50,8 @@ const SearchBar = () => {
         onChangeText={(text) => setText(text)}
         defaultValue={text}
         placeholder="Enter keyword"
+        returnKeyType="search"
+        onSubmitEditing={handleSearch}
       />
       {text !== '' && (
         <TouchableOpacity
@@ -56,13 +64,19 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  search: (keyword) => dispatch(CourseActions.searchRequest(keyword)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 15,
+    borderRadius: 10,
     paddingLeft: 5,
     paddingRight: 5,
     borderWidth: 0.5,

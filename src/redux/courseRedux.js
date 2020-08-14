@@ -22,6 +22,8 @@ const {Types, Creators} = createActions({
   searchV2Request: ['params', 'actionSuccess'],
 
   getFavoriteCoursesRequest: ['actionSuccess'],
+
+  searchRequest: ['keyword'],
 });
 
 export const CourseTypes = Types;
@@ -30,6 +32,7 @@ export default Creators;
 /* ----------------------Initial State---------------------------- */
 
 export const INITIAL_STATE = Immutable({
+  keyword: undefined,
   courses: undefined,
   payload: undefined,
   error: undefined,
@@ -76,6 +79,10 @@ const getFavoriteCoursesRequest = (state) => {
   return state.merge({});
 };
 
+const searchRequest = (state, {keyword}) => {
+  return state.merge({keyword});
+};
+
 /* ------------------------- Hookup Reducers To Types -------------*/
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_TOP_SELLING_REQUEST]: getTopSellingRequest,
@@ -97,4 +104,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEARCH_V2_REQUEST]: searchV2Request,
 
   [Types.GET_FAVORITE_COURSES_REQUEST]: getFavoriteCoursesRequest,
+
+  [Types.SEARCH_REQUEST]: searchRequest,
 });
