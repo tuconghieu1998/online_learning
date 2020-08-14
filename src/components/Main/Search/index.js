@@ -5,20 +5,29 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {LIGHT_BLACK, LIGHT_GREY, GREY} from '../../../globals/config/color';
 import SectionListResult from './section-list-result';
 import SearchTopNavigation from '../../../navigation/SearchTopNavigation';
+import {connect} from 'react-redux';
+import Histories from './histories';
 
-const Search = () => {
+const Search = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <SearchBar />
       </View>
-      <SearchTopNavigation />
+      {props.keyword ? <SearchTopNavigation /> : <Histories />}
+
       {/* <SectionListResult data={RESULTS} /> */}
     </View>
   );
 };
 
-export default Search;
+const mapStateToProps = (state) => ({
+  keyword: state.course.keyword,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
 
 const styles = StyleSheet.create({
   container: {

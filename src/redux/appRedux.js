@@ -9,7 +9,7 @@ const {Types, Creators} = createActions({
   showError: ['errorMessage'],
   showSuccess: ['message'],
   startupRequest: ['actionSuccess', 'actionFailure'],
-  startupSuccess: null,
+  startupSuccess: ['token'],
   startupFailure: null,
 });
 export const AppTypes = Types;
@@ -20,6 +20,7 @@ export const INITIAL_STATE = Immutable({
   error: '',
   // isShowingIndicator: false,
   logedIn: undefined,
+  token: undefined,
 });
 
 /* ------------- Reducers ------------- */
@@ -53,8 +54,8 @@ export const startupRequest = (state) => {
   return state.merge({});
 };
 
-export const startupSuccess = (state) => {
-  return state.merge({logedIn: true});
+export const startupSuccess = (state, {token}) => {
+  return state.merge({logedIn: true, token});
 };
 
 export const startupFailure = (state) => {

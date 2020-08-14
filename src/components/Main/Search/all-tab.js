@@ -6,13 +6,17 @@ import {LIGHT_GREY} from '../../../globals/config/color';
 import ListAuthorItem from './list-author-item';
 import {connect} from 'react-redux';
 import CourseActions from '../../../redux/courseRedux';
+import {useIsFocused} from '@react-navigation/native';
 
 const AllTab = (props) => {
   const [result, setResult] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const isFocused = useIsFocused();
+
   useEffect(() => {
-    if (props.keyword) {
+    if (props.keyword && isFocused && props.token) {
       const params = {
+        token: props.token,
         keyword: props.keyword,
         limit: 10,
         offset: 0,
@@ -39,7 +43,7 @@ const AllTab = (props) => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.keyword]);
+  }, [props.keyword, isFocused, props.token]);
   return (
     <View style={styles.container}>
       {result.length === 0 && !isLoading ? (
@@ -85,6 +89,7 @@ const AllTab = (props) => {
 
 const mapStateToProps = (state) => ({
   keyword: state.course.keyword,
+  token: state.app.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -14,7 +14,7 @@ function* startupRequest({actionSuccess, actionFailure}) {
     const token = user.token;
     yield setToken(token);
     // yield put(ProfileActions.getInfoUserRequest());
-    yield put(AppActions.startupSuccess());
+    yield put(AppActions.startupSuccess(token));
     if (actionSuccess) {
       actionSuccess();
     }

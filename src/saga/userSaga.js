@@ -52,7 +52,7 @@ function* login({params, actionSuccess}) {
     setToken(token);
     // yield put(AppActions.hideIndicator());
     yield put(AppActions.showSuccess('Đăng nhập thành công'));
-    yield put(AppActions.startupSuccess());
+    yield put(AppActions.startupSuccess(token));
   } catch (error) {
     //yield put(AppActions.hideIndicator());
     yield put(UserActions.loginFailure(error));

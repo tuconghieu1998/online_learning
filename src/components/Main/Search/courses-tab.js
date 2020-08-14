@@ -5,25 +5,47 @@ import {LIGHT_GREY} from '../../../globals/config/color';
 import {connect} from 'react-redux';
 import CourseActions from '../../../redux/courseRedux';
 import {NoData} from '../../Common';
+import {useIsFocused} from '@react-navigation/native';
 
 const CoursesTab = (props) => {
   const [courses, setCourses] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+  const LIMIT = 6;
+  const isFocused = useIsFocused();
   useEffect(() => {
-    if (props.keyword) {
+    setPage(1);
+    if (props.keyword && isFocused && props.token) {
       const params = {
+        token: props.token,
         keyword: props.keyword,
-        limit: 10,
+        limit: LIMIT,
         offset: 0,
       };
       props.searchV2(params, (res) => {
         setCourses(res.payload.courses.data);
         setLoading(false);
+        setTotal(res.payload.courses.total);
       });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.keyword]);
+  }, [props.keyword, isFocused, props.token]);
+  const handleLoadMore = () => {
+    if (total > page * LIMIT) {
+      console.log('load');
+      const params = {
+        keyword: props.keyword,
+        limit: LIMIT,
+        offset: page * LIMIT,
+      };
+      props.searchV2(params, (res) => {
+        setCourses([...courses, ...res.payload.courses.data]);
+        setPage(page + 1);
+      });
+    }
+  };
   return (
     <View style={styles.container}>
       {courses.length === 0 && !isLoading ? (
@@ -46,6 +68,8 @@ const CoursesTab = (props) => {
           )}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
+          onEndReachedThreshold={0}
+          onEndReached={handleLoadMore}
         />
       )}
     </View>
@@ -54,6 +78,7 @@ const CoursesTab = (props) => {
 
 const mapStateToProps = (state) => ({
   keyword: state.course.keyword,
+  token: state.app.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({
