@@ -3,7 +3,6 @@ import {StyleSheet, Text, View} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import AllTab from '../components/Main/Search/all-tab';
 import CoursesTab from '../components/Main/Search/courses-tab';
-import PathsTab from '../components/Main/Search/paths-tab';
 import AuthorsTab from '../components/Main/Search/authors-tab';
 import {GREEN, GREY} from '../globals/config/color';
 import {ScreenKeys} from '../globals/constants';
@@ -28,11 +27,6 @@ const SearchTopNavigation = () => {
         name={ScreenKeys.app.searchTab.course}
         component={CoursesTab}
         options={{tabBarLabel: 'COURSES'}}
-      />
-      <Tab.Screen
-        name={ScreenKeys.app.searchTab.path}
-        component={PathsTab}
-        options={{tabBarLabel: 'PATHS'}}
       />
       <Tab.Screen
         name={ScreenKeys.app.searchTab.author}

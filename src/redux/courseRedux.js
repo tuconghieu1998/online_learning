@@ -20,6 +20,8 @@ const {Types, Creators} = createActions({
   getCourseDetailRequest: ['params', 'actionSuccess'],
 
   searchV2Request: ['params', 'actionSuccess'],
+
+  getFavoriteCoursesRequest: ['actionSuccess'],
 });
 
 export const CourseTypes = Types;
@@ -70,6 +72,10 @@ const searchV2Request = (state) => {
   return state.merge({});
 };
 
+const getFavoriteCoursesRequest = (state) => {
+  return state.merge({});
+};
+
 /* ------------------------- Hookup Reducers To Types -------------*/
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_TOP_SELLING_REQUEST]: getTopSellingRequest,
@@ -89,4 +95,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_COURSE_DETAIL_REQUEST]: getCourseDetailRequest,
 
   [Types.SEARCH_V2_REQUEST]: searchV2Request,
+
+  [Types.GET_FAVORITE_COURSES_REQUEST]: getFavoriteCoursesRequest,
 });

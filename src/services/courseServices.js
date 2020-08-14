@@ -21,6 +21,10 @@ export const getIntroPage = () => {
   return request.get(`/${USER}/intro-page`);
 };
 
+export const getFavoriteCourses = () => {
+  return request.get(`/${USER}/get-favorite-courses`);
+};
+
 export const getCourseDetail = (params) => {
   return request.get(`/${COURSE}/get-course-detail/${params.id}/underfined`);
 };

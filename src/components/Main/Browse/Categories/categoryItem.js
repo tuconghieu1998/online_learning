@@ -43,11 +43,11 @@ export default CategoryItem;
 const styles = StyleSheet.create({
   container: {
     marginTop: 10,
-    width: (Dimensions.get('window').width - 45) / 2,
-    marginLeft: 15,
+    width: (Dimensions.get('window').width - 40) / 2,
+    marginRight: 10,
   },
   touchable: {
-    marginBottom: 15,
+    marginBottom: 10,
     borderRadius: 10,
     height: 60,
   },

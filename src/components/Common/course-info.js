@@ -31,15 +31,17 @@ const CourseInfo = (props) => {
           }`}</SubText>
         )}
         <View style={styles.rowInfo}>
-          <Rating
-            type="custom"
-            imageSize={11}
-            readonly
-            startingValue={info.rating}
-            style={styles.rating}
-            ratingBackgroundColor={ratingBackgroundColor}
-            tintColor={tintColor}
-          />
+          {info.rating && (
+            <Rating
+              type="custom"
+              imageSize={11}
+              readonly
+              startingValue={info.rating}
+              style={styles.rating}
+              ratingBackgroundColor={ratingBackgroundColor}
+              tintColor={tintColor}
+            />
+          )}
           <View>
             {info.price !== undefined && (
               <Text style={styles.price}>

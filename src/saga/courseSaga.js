@@ -23,6 +23,10 @@ function* courseRootSaga() {
     yield takeLatest(CourseTypes.GET_INTRO_PAGE_REQUEST, getIntroPage),
     yield takeLatest(CourseTypes.GET_COURSE_DETAIL_REQUEST, getCourseDetail),
     yield takeLatest(CourseTypes.SEARCH_V2_REQUEST, searchV2),
+    yield takeLatest(
+      CourseTypes.GET_FAVORITE_COURSES_REQUEST,
+      getFavoriteCourses,
+    ),
   ]);
 }
 
@@ -119,6 +123,17 @@ function* getCourseDetail({params, actionSuccess}) {
 function* searchV2({params, actionSuccess}) {
   try {
     const response = yield call(apiCourse.searchV2, params);
+    if (actionSuccess) {
+      actionSuccess(response);
+    }
+  } catch (error) {
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* getFavoriteCourses({actionSuccess}) {
+  try {
+    const response = yield call(apiCourse.getFavoriteCourses);
     if (actionSuccess) {
       actionSuccess(response);
     }

@@ -45,6 +45,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Categories);
 
 const styles = StyleSheet.create({
   container: {
-    paddingRight: 15,
+    paddingLeft: 15,
+    paddingRight: 5,
   },
 });
