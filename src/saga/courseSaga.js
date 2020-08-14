@@ -6,6 +6,7 @@ import AppActions from '../redux/appRedux';
 function* courseRootSaga() {
   yield all([
     yield takeLatest(CourseTypes.GET_TOP_SELLING_REQUEST, getTopSelling),
+    yield takeLatest(CourseTypes.GET_TOP_NEW_REQUEST, getTopNew),
     yield takeLatest(CourseTypes.GET_TOP_RATING_REQUEST, getTopRating),
     yield takeLatest(
       CourseTypes.GET_CONTINUE_LEARNING_REQUEST,
@@ -23,12 +24,22 @@ function* courseRootSaga() {
 function* getTopSelling({params, actionSuccess}) {
   try {
     const response = yield call(apiCourse.getTopSelling, params);
-    //yield put(CourseActions.getTopSellingSuccess(response));
     if (actionSuccess) {
       actionSuccess(response);
     }
   } catch (error) {
-    // yield put(CourseActions.getTopSellingFailure(error));
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* getTopNew({params, actionSuccess}) {
+  try {
+    console.log(params);
+    const response = yield call(apiCourse.getTopNew, params);
+    if (actionSuccess) {
+      actionSuccess(response);
+    }
+  } catch (error) {
     yield put(AppActions.showError(error.message));
   }
 }
@@ -36,12 +47,10 @@ function* getTopSelling({params, actionSuccess}) {
 function* getTopRating({params, actionSuccess}) {
   try {
     const response = yield call(apiCourse.getTopRating, params);
-    //yield put(CourseActions.getTopRatingSuccess(response));
     if (actionSuccess) {
       actionSuccess(response);
     }
   } catch (error) {
-    // yield put(CourseActions.getTopRatingFailure(error));
     yield put(AppActions.showError(error.message));
   }
 }
@@ -49,12 +58,10 @@ function* getTopRating({params, actionSuccess}) {
 function* getContinueLearning({actionSuccess}) {
   try {
     const response = yield call(apiCourse.getContinueLearning);
-    //yield put(CourseActions.getTopRatingSuccess(response));
     if (actionSuccess) {
       actionSuccess(response);
     }
   } catch (error) {
-    // yield put(CourseActions.getTopRatingFailure(error));
     yield put(AppActions.showError(error.message));
   }
 }
@@ -62,12 +69,10 @@ function* getContinueLearning({actionSuccess}) {
 function* getCoursesInFavoriteCat({params, actionSuccess}) {
   try {
     const response = yield call(apiCourse.getCoursesInFavoriteCat, params);
-    //yield put(CourseActions.getTopRatingSuccess(response));
     if (actionSuccess) {
       actionSuccess(response);
     }
   } catch (error) {
-    // yield put(CourseActions.getTopRatingFailure(error));
     yield put(AppActions.showError(error.message));
   }
 }
@@ -75,12 +80,10 @@ function* getCoursesInFavoriteCat({params, actionSuccess}) {
 function* getIntroPage({actionSuccess}) {
   try {
     const response = yield call(apiCourse.getIntroPage);
-    //yield put(CourseActions.getTopRatingSuccess(response));
     if (actionSuccess) {
       actionSuccess(response);
     }
   } catch (error) {
-    // yield put(CourseActions.getTopRatingFailure(error));
     yield put(AppActions.showError(error.message));
   }
 }
@@ -88,12 +91,10 @@ function* getIntroPage({actionSuccess}) {
 function* getCourseDetail({params, actionSuccess}) {
   try {
     const response = yield call(apiCourse.getCourseDetail, params);
-    //yield put(CourseActions.getTopRatingSuccess(response));
     if (actionSuccess) {
       actionSuccess(response);
     }
   } catch (error) {
-    // yield put(CourseActions.getTopRatingFailure(error));
     yield put(AppActions.showError(error.message));
   }
 }

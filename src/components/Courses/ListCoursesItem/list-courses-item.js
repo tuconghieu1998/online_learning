@@ -1,27 +1,51 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Image, View} from 'react-native';
 import {CourseInfo, MenuPopup, Avatar} from '../../Common';
-import {BLACK} from '../../../globals/config/color';
+import {BLACK, GREY, LIGHT_GRAY} from '../../../globals/config/color';
 import {useNavigation} from '@react-navigation/native';
 import {ScreenKeys} from '../../../globals/constants';
 
 const ListCoursesItem = (props) => {
   const navigation = useNavigation();
-  const {item} = props;
+  const {
+    id,
+    image,
+    title,
+    instructor,
+    released,
+    countVideo,
+    duration,
+    rating,
+    lastLearningTime,
+    price,
+  } = props;
   return (
     <TouchableOpacity
       style={styles.item}
       onPress={() => navigation.push(ScreenKeys.app.courseDetail)}>
-      <Image style={styles.image} source={{uri: item.image}} />
+      <Image style={styles.image} source={{uri: image}} />
 
       <View style={styles.infoContainer}>
-        <CourseInfo info={item} />
+        <CourseInfo
+          info={{
+            title,
+            instructor,
+            released,
+            countVideo,
+            duration,
+            rating,
+            lastLearningTime,
+            price,
+          }}
+          ratingBackgroundColor={GREY}
+          tintColor={LIGHT_GRAY}
+        />
       </View>
-      {item.author && (
+      {/* {item.author && (
         <View style={styles.menuPopUpConatainer}>
           <MenuPopup iconColor={BLACK} />
         </View>
-      )}
+      )} */}
     </TouchableOpacity>
   );
 };

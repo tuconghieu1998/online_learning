@@ -24,3 +24,7 @@ export const getIntroPage = () => {
 export const getCourseDetail = (params) => {
   return request.get(`/${COURSE}/get-course-detail/${params.id}/underfined`);
 };
+
+export const getTopNew = (params) => {
+  return request.post(`/${COURSE}/top-new`, params);
+};

@@ -4,28 +4,18 @@ import Immutable from 'seamless-immutable';
 /* ---------------------  Types and Action Creators --------------------*/
 const {Types, Creators} = createActions({
   getTopSellingRequest: ['params', 'actionSuccess'],
-  getTopSellingFailure: null,
-  getTopSellingSuccess: ['courses', 'payload'],
+
+  getTopNewRequest: ['params', 'actionSuccess'],
 
   getTopRatingRequest: ['params', 'actionSuccess'],
-  getTopRatingFailure: null,
-  getTopRatingSuccess: ['courses', 'payload'],
 
   getContinueLearningRequest: ['actionSuccess'],
-  getContinueLearningFailure: null,
-  getContinueLearningSuccess: ['courses', 'payload'],
 
   getCoursesInFavoriteCatRequest: ['params', 'actionSuccess'],
-  getCoursesInFavoriteCatFailure: null,
-  getCoursesInFavoriteCatSuccess: ['courses', 'payload'],
 
   getIntroPageRequest: ['actionSuccess'],
-  getIntroPageFailure: null,
-  getIntroPageSuccess: ['courses', 'payload'],
 
   getCourseDetailRequest: ['params', 'actionSuccess'],
-  getCourseDetailFailure: null,
-  getCourseDetailSuccess: ['courses', 'payload'],
 });
 
 export const CourseTypes = Types;
@@ -43,86 +33,44 @@ export const INITIAL_STATE = Immutable({
 const getTopSellingRequest = (state) => {
   return state.merge({});
 };
-const getTopSellingSuccess = (state) => {
-  return state.merge();
-};
-const getTopSellingFailure = (state, {error}) => {
-  return state.merge({error});
+
+const getTopNewRequest = (state) => {
+  return state.merge({});
 };
 
 const getTopRatingRequest = (state) => {
   return state.merge({});
 };
-const getTopRatingSuccess = (state) => {
-  return state.merge();
-};
-const getTopRatingFailure = (state, {error}) => {
-  return state.merge({error});
-};
 
 const getContinueLearningRequest = (state) => {
   return state.merge({});
-};
-const getContinueLearningSuccess = (state) => {
-  return state.merge();
-};
-const getContinueLearningFailure = (state, {error}) => {
-  return state.merge({error});
 };
 
 const getCoursesInFavoriteCatRequest = (state) => {
   return state.merge({});
 };
-const getCoursesInFavoriteCatSuccess = (state) => {
-  return state.merge();
-};
-const getCoursesInFavoriteCatFailure = (state, {error}) => {
-  return state.merge({error});
-};
 
 const getIntroPageRequest = (state) => {
   return state.merge({});
-};
-const getIntroPageSuccess = (state) => {
-  return state.merge();
-};
-const getIntroPageFailure = (state, {error}) => {
-  return state.merge({error});
 };
 
 const getCourseDetailRequest = (state) => {
   return state.merge({});
 };
-const getCourseDetailSuccess = (state) => {
-  return state.merge();
-};
-const getCourseDetailFailure = (state, {error}) => {
-  return state.merge({error});
-};
 
 /* ------------------------- Hookup Reducers To Types -------------*/
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_TOP_SELLING_REQUEST]: getTopSellingRequest,
-  [Types.GET_TOP_SELLING_SUCCESS]: getTopSellingSuccess,
-  [Types.GET_TOP_SELLING_FAILURE]: getTopSellingFailure,
+
+  [Types.GET_TOP_NEW_REQUEST]: getTopNewRequest,
 
   [Types.GET_TOP_RATING_REQUEST]: getTopRatingRequest,
-  [Types.GET_TOP_RATING_SUCCESS]: getTopRatingSuccess,
-  [Types.GET_TOP_RATING_FAILURE]: getTopRatingFailure,
 
   [Types.GET_CONTINUE_LEARNING_REQUEST]: getContinueLearningRequest,
-  [Types.GET_CONTINUE_LEARNING_SUCCESS]: getContinueLearningSuccess,
-  [Types.GET_CONTINUE_LEARNING_FAILURE]: getContinueLearningFailure,
 
   [Types.GET_COURSES_IN_FAVORITE_CAT_REQUEST]: getCoursesInFavoriteCatRequest,
-  [Types.GET_COURSES_IN_FAVORITE_CAT_SUCCESS]: getCoursesInFavoriteCatSuccess,
-  [Types.GET_COURSES_IN_FAVORITE_CAT_FAILURE]: getCoursesInFavoriteCatFailure,
 
   [Types.GET_INTRO_PAGE_REQUEST]: getIntroPageRequest,
-  [Types.GET_INTRO_PAGE_SUCCESS]: getIntroPageSuccess,
-  [Types.GET_INTRO_PAGE_FAILURE]: getIntroPageFailure,
 
   [Types.GET_COURSE_DETAIL_REQUEST]: getCourseDetailRequest,
-  [Types.GET_COURSE_DETAIL_SUCCESS]: getCourseDetailSuccess,
-  [Types.GET_COURSE_DETAIL_FAILURE]: getCourseDetailFailure,
 });

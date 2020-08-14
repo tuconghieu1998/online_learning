@@ -36,6 +36,11 @@ export const ScreenKeys = {
     profile: 'Profile',
     settings: 'Settings',
     courseDetail: 'CourseDetail',
+    newCourse: 'NewCourse',
+    recommendCourse: 'RecommendCourse',
+    categoryCourse: 'CategoryCourse',
+    topSelling: 'TopSelling',
+    topRating: 'TopRating',
   },
   splash: 'Splash',
 };

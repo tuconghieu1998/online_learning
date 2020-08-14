@@ -5,14 +5,18 @@ import ListAuthors from './Author/list-authors';
 import TopRating from './TopRating/top-rating';
 import TopSelling from './TopSelling/top-selling';
 import Categories from './Categories/categories';
+import {useNavigation} from '@react-navigation/native';
+import {ScreenKeys} from '../../../globals/constants';
 
 const Browse = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Header title="Browse" />
       <ScrollView>
         <View style={styles.imagesContainer}>
           <ImageButton
+            onPress={() => navigation.navigate(ScreenKeys.app.newCourse)}
             height={80}
             textAbove="NEW"
             textBelow="RELEASES"

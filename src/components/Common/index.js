@@ -15,6 +15,7 @@ import Avatar from './avatar';
 import SearchBar from './search-bar';
 import MySwitch from './my-switch';
 import Header from './header';
+import HeaderStack from './header-stack';
 
 export {
   Card,
@@ -34,4 +35,5 @@ export {
   SearchBar,
   MySwitch,
   Header,
+  HeaderStack,
 };

@@ -4,7 +4,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {BLACK} from '../../globals/config/color';
 
 const BackButton = (props) => {
-  const {onPress, color} = props;
+  const {onPress, color = BLACK} = props;
   return (
     <TouchableOpacity style={styles.touchContainer} onPress={onPress}>
       <MaterialIcons name="arrow-back" size={27} color={color} />
