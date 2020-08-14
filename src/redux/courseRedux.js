@@ -7,6 +7,8 @@ const {Types, Creators} = createActions({
 
   getTopNewRequest: ['params', 'actionSuccess'],
 
+  getRecommendCourseRequest: ['params', 'actionSuccess'],
+
   getTopRatingRequest: ['params', 'actionSuccess'],
 
   getContinueLearningRequest: ['actionSuccess'],
@@ -38,6 +40,10 @@ const getTopNewRequest = (state) => {
   return state.merge({});
 };
 
+const getRecommendCourseRequest = (state) => {
+  return state.merge({});
+};
+
 const getTopRatingRequest = (state) => {
   return state.merge({});
 };
@@ -63,6 +69,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_TOP_SELLING_REQUEST]: getTopSellingRequest,
 
   [Types.GET_TOP_NEW_REQUEST]: getTopNewRequest,
+
+  [Types.GET_RECOMMEND_COURSE_REQUEST]: getRecommendCourseRequest,
 
   [Types.GET_TOP_RATING_REQUEST]: getTopRatingRequest,
 

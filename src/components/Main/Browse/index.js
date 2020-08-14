@@ -23,6 +23,7 @@ const Browse = () => {
             uri="https://community.arm.com/cfs-file/__key/communityserver-blogs-components-weblogfiles/00-00-00-19-98/Code-on-screen-1600x900.jpg"
           />
           <ImageButton
+            onPress={() => navigation.navigate(ScreenKeys.app.recommendCourse)}
             height={80}
             textAbove="RECOMMENDED"
             textBelow="FOR YOU"

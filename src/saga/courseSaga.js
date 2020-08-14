@@ -7,6 +7,10 @@ function* courseRootSaga() {
   yield all([
     yield takeLatest(CourseTypes.GET_TOP_SELLING_REQUEST, getTopSelling),
     yield takeLatest(CourseTypes.GET_TOP_NEW_REQUEST, getTopNew),
+    yield takeLatest(
+      CourseTypes.GET_RECOMMEND_COURSE_REQUEST,
+      getRecommendCourse,
+    ),
     yield takeLatest(CourseTypes.GET_TOP_RATING_REQUEST, getTopRating),
     yield takeLatest(
       CourseTypes.GET_CONTINUE_LEARNING_REQUEST,
@@ -36,6 +40,18 @@ function* getTopNew({params, actionSuccess}) {
   try {
     console.log(params);
     const response = yield call(apiCourse.getTopNew, params);
+    if (actionSuccess) {
+      actionSuccess(response);
+    }
+  } catch (error) {
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* getRecommendCourse({params, actionSuccess}) {
+  try {
+    console.log(params);
+    const response = yield call(apiCourse.getRecommendCourse, params);
     if (actionSuccess) {
       actionSuccess(response);
     }

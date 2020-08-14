@@ -28,3 +28,9 @@ export const getCourseDetail = (params) => {
 export const getTopNew = (params) => {
   return request.post(`/${COURSE}/top-new`, params);
 };
+
+export const getRecommendCourse = (params) => {
+  return request.get(
+    `/${USER}/recommend-course/${params.userId}/${params.limit}/${params.offset}`,
+  );
+};
