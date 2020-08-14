@@ -7,13 +7,23 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {ScreenKeys} from '../../../../globals/constants';
 
 const CategoryItem = (props) => {
   const {data} = props;
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       {data.map((item) => (
-        <TouchableOpacity style={styles.touchable}>
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={() =>
+            navigation.navigate(ScreenKeys.app.categoryCourse, {
+              categoryId: item.id,
+              categoryName: item.name,
+            })
+          }>
           <Image
             resizeMode="cover"
             style={styles.image}

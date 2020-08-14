@@ -34,3 +34,11 @@ export const getRecommendCourse = (params) => {
     `/${USER}/recommend-course/${params.userId}/${params.limit}/${params.offset}`,
   );
 };
+
+export const search = (params) => {
+  return request.post(`/${COURSE}/search`, params);
+};
+
+export const searchV2 = (params) => {
+  return request.post(`/${COURSE}/searchV2`, params);
+};

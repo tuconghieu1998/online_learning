@@ -5,6 +5,7 @@ import Browse from '../components/Main/Browse';
 import {ScreenKeys} from '../globals/constants';
 import NewCourse from '../components/Main/Browse/New/new-course';
 import RecommendCourse from '../components/Main/Browse/Recommend/recommend-course';
+import CategoryCourse from '../components/Main/Browse/Categories/category-course';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,10 @@ const BrowseStackNavigation = () => {
       <Stack.Screen
         name={ScreenKeys.app.recommendCourse}
         component={RecommendCourse}
+      />
+      <Stack.Screen
+        name={ScreenKeys.app.categoryCourse}
+        component={CategoryCourse}
       />
     </Stack.Navigator>
   );

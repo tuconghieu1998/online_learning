@@ -22,6 +22,7 @@ function* courseRootSaga() {
     ),
     yield takeLatest(CourseTypes.GET_INTRO_PAGE_REQUEST, getIntroPage),
     yield takeLatest(CourseTypes.GET_COURSE_DETAIL_REQUEST, getCourseDetail),
+    yield takeLatest(CourseTypes.SEARCH_V2_REQUEST, searchV2),
   ]);
 }
 
@@ -107,6 +108,17 @@ function* getIntroPage({actionSuccess}) {
 function* getCourseDetail({params, actionSuccess}) {
   try {
     const response = yield call(apiCourse.getCourseDetail, params);
+    if (actionSuccess) {
+      actionSuccess(response);
+    }
+  } catch (error) {
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* searchV2({params, actionSuccess}) {
+  try {
+    const response = yield call(apiCourse.searchV2, params);
     if (actionSuccess) {
       actionSuccess(response);
     }

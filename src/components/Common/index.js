@@ -16,6 +16,7 @@ import SearchBar from './search-bar';
 import MySwitch from './my-switch';
 import Header from './header';
 import HeaderStack from './header-stack';
+import NoData from './no-data';
 
 export {
   Card,
@@ -36,4 +37,5 @@ export {
   MySwitch,
   Header,
   HeaderStack,
+  NoData,
 };
