@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, SectionList} from 'react-native';
-import {TitleSectionList} from '../../Common';
+import {TitleSectionList, NoData} from '../../Common';
 import ListCoursesItem from '../../Courses/ListCoursesItem/list-courses-item';
 import {LIGHT_GREY} from '../../../globals/config/color';
 import ListAuthorItem from './list-author-item';
@@ -42,39 +42,43 @@ const AllTab = (props) => {
   }, [props.keyword]);
   return (
     <View style={styles.container}>
-      <SectionList
-        sections={result}
-        renderSectionHeader={({section}) => (
-          <View style={styles.headerContainer}>
-            <TitleSectionList
-              title={section.title}
-              textExpand={`${section.total} Result${
-                section.total > 1 ? 's' : ''
-              }`}
-            />
-          </View>
-        )}
-        renderItem={({item}) =>
-          item.avatar ? (
-            <ListAuthorItem item={item} />
-          ) : (
-            <ListCoursesItem
-              id={item.id}
-              image={item.imageUrl}
-              title={item.title}
-              instructor={item.name}
-              released={item.updatedAt}
-              countVideo={item.videoNumber}
-              duration={item.totalHours}
-              rating={item.ratedNumber}
-              price={item.price}
-            />
-          )
-        }
-        keyExtractor={(item, index) => item + index}
-        SectionSeparatorComponent={() => <View style={styles.separator} />}
-        ItemSeparatorComponent={() => <View style={styles.separator} />}
-      />
+      {result.length === 0 && !isLoading ? (
+        <NoData text="Không tìm thấy kết quả nào" />
+      ) : (
+        <SectionList
+          sections={result}
+          renderSectionHeader={({section}) => (
+            <View style={styles.headerContainer}>
+              <TitleSectionList
+                title={section.title}
+                textExpand={`${section.total} Result${
+                  section.total > 1 ? 's' : ''
+                }`}
+              />
+            </View>
+          )}
+          renderItem={({item}) =>
+            item.avatar ? (
+              <ListAuthorItem item={item} />
+            ) : (
+              <ListCoursesItem
+                id={item.id}
+                image={item.imageUrl}
+                title={item.title}
+                instructor={item.name}
+                released={item.updatedAt}
+                countVideo={item.videoNumber}
+                duration={item.totalHours}
+                rating={item.ratedNumber}
+                price={item.price}
+              />
+            )
+          }
+          keyExtractor={(item, index) => item + index}
+          SectionSeparatorComponent={() => <View style={styles.separator} />}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
+        />
+      )}
     </View>
   );
 };

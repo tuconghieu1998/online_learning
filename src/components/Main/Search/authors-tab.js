@@ -4,6 +4,7 @@ import {LIGHT_GREY} from '../../../globals/config/color';
 import ListAuthorItem from './list-author-item';
 import {connect} from 'react-redux';
 import CourseActions from '../../../redux/courseRedux';
+import {NoData} from '../../Common';
 
 const AUTHORS = [
   {
@@ -72,12 +73,16 @@ const AuthorsTab = (props) => {
   }, [props.keyword]);
   return (
     <View style={styles.container}>
-      <FlatList
-        data={authors}
-        renderItem={({item}) => <ListAuthorItem item={item} />}
-        keyExtractor={(item) => item.id}
-        ItemSeparatorComponent={() => <View style={styles.separator} />}
-      />
+      {authors.length === 0 && !isLoading ? (
+        <NoData text="Không tìm thấy kết quả nào" />
+      ) : (
+        <FlatList
+          data={authors}
+          renderItem={({item}) => <ListAuthorItem item={item} />}
+          keyExtractor={(item) => item.id}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
+        />
+      )}
     </View>
   );
 };

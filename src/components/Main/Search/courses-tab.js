@@ -4,6 +4,7 @@ import ListCoursesItem from '../../Courses/ListCoursesItem/list-courses-item';
 import {LIGHT_GREY} from '../../../globals/config/color';
 import {connect} from 'react-redux';
 import CourseActions from '../../../redux/courseRedux';
+import {NoData} from '../../Common';
 
 const CoursesTab = (props) => {
   const [courses, setCourses] = useState([]);
@@ -25,24 +26,28 @@ const CoursesTab = (props) => {
   }, [props.keyword]);
   return (
     <View style={styles.container}>
-      <FlatList
-        data={courses}
-        renderItem={({item}) => (
-          <ListCoursesItem
-            id={item.id}
-            image={item.imageUrl}
-            title={item.title}
-            instructor={item.name}
-            released={item.updatedAt}
-            countVideo={item.videoNumber}
-            duration={item.totalHours}
-            rating={item.ratedNumber}
-            price={item.price}
-          />
-        )}
-        keyExtractor={(item) => item.id}
-        ItemSeparatorComponent={() => <View style={styles.separator} />}
-      />
+      {courses.length === 0 && !isLoading ? (
+        <NoData text="Không tìm thấy kết quả nào" />
+      ) : (
+        <FlatList
+          data={courses}
+          renderItem={({item}) => (
+            <ListCoursesItem
+              id={item.id}
+              image={item.imageUrl}
+              title={item.title}
+              instructor={item.name}
+              released={item.updatedAt}
+              countVideo={item.videoNumber}
+              duration={item.totalHours}
+              rating={item.ratedNumber}
+              price={item.price}
+            />
+          )}
+          keyExtractor={(item) => item.id}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
+        />
+      )}
     </View>
   );
 };
