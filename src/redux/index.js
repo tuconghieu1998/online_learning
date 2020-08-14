@@ -10,6 +10,7 @@ export const reducers = combineReducers({
   app: require('./appRedux').reducer,
   course: require('./courseRedux').reducer,
   instructor: require('./instructorRedux').reducer,
+  category: require('./categoryRedux').reducer,
 });
 
 export default () => {
