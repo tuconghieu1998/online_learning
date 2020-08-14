@@ -29,7 +29,7 @@ const MainApp = (props) => {
       {loadingSplash ? (
         <SplashScreen />
       ) : (
-        <View style={{flex: 1}}>
+        <View style={styles.container}>
           <NavigationContainer>
             {logedIn ? <AppNavigation /> : <AuthNavigation />}
           </NavigationContainer>
@@ -52,4 +52,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainApp);
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

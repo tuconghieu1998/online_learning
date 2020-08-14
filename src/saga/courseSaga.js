@@ -1,4 +1,4 @@
-import {takeLatest, all, call, put} from 'redux-saga/effects';
+import {takeLatest, all, call, put, takeEvery} from 'redux-saga/effects';
 import CourseActions, {CourseTypes} from '../redux/courseRedux';
 import * as apiCourse from '../services/courseServices';
 import AppActions from '../redux/appRedux';
@@ -22,7 +22,7 @@ function* courseRootSaga() {
     ),
     yield takeLatest(CourseTypes.GET_INTRO_PAGE_REQUEST, getIntroPage),
     yield takeLatest(CourseTypes.GET_COURSE_DETAIL_REQUEST, getCourseDetail),
-    yield takeLatest(CourseTypes.SEARCH_V2_REQUEST, searchV2),
+    yield takeEvery(CourseTypes.SEARCH_V2_REQUEST, searchV2),
     yield takeLatest(
       CourseTypes.GET_FAVORITE_COURSES_REQUEST,
       getFavoriteCourses,

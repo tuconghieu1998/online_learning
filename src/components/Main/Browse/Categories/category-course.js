@@ -69,6 +69,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(CategoryCourse);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   separator: {
     height: 1,

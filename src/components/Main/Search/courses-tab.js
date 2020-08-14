@@ -1,83 +1,45 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import ListCoursesItem from '../../Courses/ListCoursesItem/list-courses-item';
 import {LIGHT_GREY} from '../../../globals/config/color';
+import {connect} from 'react-redux';
+import CourseActions from '../../../redux/courseRedux';
 
-const COURSES = [
-  {
-    id: '1',
-    title: 'Building Applications with React and Flux',
-    author: 'Cory Hourse',
-    image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-    level: 'Intermediate',
-    released: 'thg 8 2019',
-    duration: '5h 11m',
-    rating: 4.5,
-    countRating: 1415,
-  },
-  {
-    id: '2',
-    title: 'React: Getting Started',
-    author: 'Samer Buna',
-    image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-    level: 'Beginer',
-    released: 'thg 8 2019',
-    duration: '4h 11m',
-    rating: 3,
-    countRating: 2206,
-  },
-  {
-    id: '3',
-    title: 'Sever Rendering React Components',
-    author: 'Daniel Stern',
-    image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-    level: 'Advanced',
-    released: 'thg 8 2019',
-    duration: '4h 11m',
-    rating: 0,
-    countRating: 0,
-  },
-  {
-    id: '4',
-    title: 'Building Applications with React and Flux',
-    author: 'Cory Hourse',
-    image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-    level: 'Intermediate',
-    released: 'thg 8 2019',
-    duration: '5h 11m',
-    rating: 4.5,
-    countRating: 1415,
-  },
-  {
-    id: '5',
-    title: 'React: Getting Started',
-    author: 'Samer Buna',
-    image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-    level: 'Beginer',
-    released: 'thg 8 2019',
-    duration: '4h 11m',
-    rating: 3,
-    countRating: 2206,
-  },
-  {
-    id: '6',
-    title: 'Sever Rendering React Components',
-    author: 'Daniel Stern',
-    image: 'https://miro.medium.com/max/750/1*41E7KLIvzPvisZY_s4XR0A.png',
-    level: 'Advanced',
-    released: 'thg 8 2019',
-    duration: '4h 11m',
-    rating: 0,
-    countRating: 0,
-  },
-];
+const CoursesTab = (props) => {
+  const [courses, setCourses] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    if (props.keyword) {
+      const params = {
+        keyword: props.keyword,
+        limit: 10,
+        offset: 0,
+      };
+      props.searchV2(params, (res) => {
+        setCourses(res.payload.courses.data);
+        setLoading(false);
+      });
+    }
 
-const CoursesTab = () => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.keyword]);
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
+    <View style={styles.container}>
       <FlatList
-        data={COURSES}
-        renderItem={({item}) => <ListCoursesItem item={item} />}
+        data={courses}
+        renderItem={({item}) => (
+          <ListCoursesItem
+            id={item.id}
+            image={item.imageUrl}
+            title={item.title}
+            instructor={item.name}
+            released={item.updatedAt}
+            countVideo={item.videoNumber}
+            duration={item.totalHours}
+            rating={item.ratedNumber}
+            price={item.price}
+          />
+        )}
         keyExtractor={(item) => item.id}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
@@ -85,9 +47,22 @@ const CoursesTab = () => {
   );
 };
 
-export default CoursesTab;
+const mapStateToProps = (state) => ({
+  keyword: state.course.keyword,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  searchV2: (params, actionSuccess) =>
+    dispatch(CourseActions.searchV2Request(params, actionSuccess)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesTab);
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
   separator: {
     height: 1,
     backgroundColor: LIGHT_GREY,

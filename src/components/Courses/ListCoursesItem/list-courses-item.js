@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Image, View} from 'react-native';
 import {CourseInfo, MenuPopup, Avatar} from '../../Common';
-import {BLACK, GREY, LIGHT_GRAY} from '../../../globals/config/color';
+import {GREY} from '../../../globals/config/color';
 import {useNavigation} from '@react-navigation/native';
 import {ScreenKeys} from '../../../globals/constants';
 
@@ -22,7 +22,7 @@ const ListCoursesItem = (props) => {
   return (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => navigation.push(ScreenKeys.app.courseDetail)}>
+      onPress={() => navigation.push(ScreenKeys.app.courseDetail, {id})}>
       <Image style={styles.image} source={{uri: image}} />
 
       <View style={styles.infoContainer}>
@@ -38,7 +38,7 @@ const ListCoursesItem = (props) => {
             price,
           }}
           ratingBackgroundColor={GREY}
-          tintColor={LIGHT_GRAY}
+          tintColor="white"
         />
       </View>
       {/* {item.author && (
