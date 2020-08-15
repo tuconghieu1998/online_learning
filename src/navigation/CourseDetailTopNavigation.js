@@ -1,5 +1,4 @@
 import React from 'react';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {GREY, GREEN} from '../globals/config/color';
 import Transcript from '../components/CourseDetail/Transcript/transcript';
@@ -32,10 +31,3 @@ const CourseDetailTopNavigation = () => {
 };
 
 export default CourseDetailTopNavigation;
-
-const styles = StyleSheet.create({
-  tabBarContainer: {
-    borderTopColor: GREY,
-    borderTopWidth: 0.5,
-  },
-});

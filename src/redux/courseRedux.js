@@ -18,6 +18,8 @@ const {Types, Creators} = createActions({
   getIntroPageRequest: ['actionSuccess'],
 
   getCourseDetailRequest: ['params', 'actionSuccess'],
+  getCourseDetailSuccess: ['courseDetail'],
+  getCourseDetailFailure: null,
 
   searchV2Request: ['params', 'actionSuccess'],
 
@@ -30,6 +32,10 @@ const {Types, Creators} = createActions({
   getHistoriesSuccess: ['hitories'],
 
   deleteHistoriesRequest: ['params', 'actionSuccess'],
+
+  checkOwnCourseRequest: ['params', 'actionSuccess'],
+  checkOwnCourseFailure: null,
+  checkOwnCourseSuccess: ['isUserOwnCourse'],
 });
 
 export const CourseTypes = Types;
@@ -43,6 +49,8 @@ export const INITIAL_STATE = Immutable({
   payload: undefined,
   error: undefined,
   histories: undefined,
+  isUserOwnCourse: undefined,
+  courseDetail: undefined,
 });
 
 /*-----------------------Reducers ---------------------------------- */
@@ -77,6 +85,12 @@ const getIntroPageRequest = (state) => {
 const getCourseDetailRequest = (state) => {
   return state.merge({});
 };
+const getCourseDetailSuccess = (state, {courseDetail}) => {
+  return state.merge({courseDetail});
+};
+const getCourseDetailFailure = (state, {error}) => {
+  return state.merge({error});
+};
 
 const searchV2Request = (state) => {
   return state.merge({});
@@ -104,6 +118,16 @@ const deleteHistoriesRequest = (state) => {
   return state.merge({});
 };
 
+const checkOwnCourseRequest = (state) => {
+  return state.merge({});
+};
+const checkOwnCourseSuccess = (state, {isUserOwnCourse}) => {
+  return state.merge({isUserOwnCourse});
+};
+const checkOwnCourseFailure = (state, {error}) => {
+  return state.merge({error});
+};
+
 /* ------------------------- Hookup Reducers To Types -------------*/
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_TOP_SELLING_REQUEST]: getTopSellingRequest,
@@ -121,6 +145,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_INTRO_PAGE_REQUEST]: getIntroPageRequest,
 
   [Types.GET_COURSE_DETAIL_REQUEST]: getCourseDetailRequest,
+  [Types.GET_COURSE_DETAIL_SUCCESS]: getCourseDetailSuccess,
+  [Types.GET_COURSE_DETAIL_FAILURE]: getCourseDetailFailure,
 
   [Types.SEARCH_V2_REQUEST]: searchV2Request,
 
@@ -133,4 +159,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_HISTORIES_FAILURE]: getHistoriesFailure,
 
   [Types.DELETE_HISTORIES_REQUEST]: deleteHistoriesRequest,
+
+  [Types.CHECK_OWN_COURSE_REQUEST]: checkOwnCourseRequest,
+  [Types.CHECK_OWN_COURSE_SUCCESS]: checkOwnCourseSuccess,
+  [Types.CHECK_OWN_COURSE_FAILURE]: checkOwnCourseFailure,
 });

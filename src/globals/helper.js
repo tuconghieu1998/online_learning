@@ -13,3 +13,15 @@ export const handleValidate = (string, regex) => {
     .replace(/Đ/g, 'D');
   return regex.test(testString);
 };
+
+export function formatHoursToTime(hours) {
+  const time = hours * 3600;
+  const strHour = hours >= 10 ? Math.floor(hours) : '0' + Math.floor(hours);
+  const strMinute =
+    (time % 3600) / 60 >= 10
+      ? Math.floor((time % 3600) / 60)
+      : '0' + Math.floor((time % 3600) / 60);
+  const strSecond =
+    time % 60 >= 10 ? Math.floor(time % 60) : '0' + Math.floor(time % 60);
+  return `${strHour}:${strMinute}:${strSecond}`;
+}

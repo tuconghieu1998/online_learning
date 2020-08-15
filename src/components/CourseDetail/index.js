@@ -1,25 +1,28 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, ScrollView, Modal} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import VideoPlayer from './VideoPlayer/VideoPlayer';
 import Introdution from './Introdution/introdution';
 import CourseDetailTopNavigation from '../../navigation/CourseDetailTopNavigation';
 import {connect} from 'react-redux';
 import CourseActions from '../../redux/courseRedux';
-import InstructorActions from '../../redux/instructorRedux';
 
 const CourseDetail = (props) => {
   const {id} = props.route.params;
-  console.log(id);
 
   const [data, setData] = useState({});
   const [instructor, setInstructor] = useState({});
   useEffect(() => {
-    props.getCourseDetail({id}, (res) => {
-      setData(res.payload);
-      props.getInstructorDetail({id: res.payload.instructorId}, (res) => {
-        setInstructor(res.payload);
+    props.checkOwnCourse({id}, (response) => {
+      console.log(response);
+      props.getCourseDetail({id}, (res) => {
+        setData(res.payload);
+        setInstructor(res.payload.instructor);
+        // props.getInstructorDetail({id: res.payload.instructorId}, (res) => {
+        //   setInstructor(res.payload);
+        // });
       });
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -34,8 +37,10 @@ const CourseDetail = (props) => {
               authors: [instructor],
               duration: data.totalHours,
               released: data.updatedAt,
-              rating: data.ratedNumber,
+              rating: data.averagePoint,
               countVideo: data.videoNumber,
+              countRating: data.ratedNumber,
+              description: data.description,
             }}
           />
           <CourseDetailTopNavigation />
@@ -50,10 +55,8 @@ const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({
   getCourseDetail: (params, actionSuccess) =>
     dispatch(CourseActions.getCourseDetailRequest(params, actionSuccess)),
-  getInstructorDetail: (params, actionSuccess) =>
-    dispatch(
-      InstructorActions.getInstructorDetailRequest(params, actionSuccess),
-    ),
+  checkOwnCourse: (params, actionSuccess) =>
+    dispatch(CourseActions.checkOwnCourseRequest(params, actionSuccess)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CourseDetail);

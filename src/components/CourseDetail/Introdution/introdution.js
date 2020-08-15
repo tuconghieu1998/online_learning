@@ -1,10 +1,9 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {SubText} from '../../Common';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {Rating} from 'react-native-ratings';
 import AuthorTagList from './author-tag-list';
 import FuncButton from './func-button';
-import {BLACK, GREY, LIGHT_GRAY} from '../../../globals/config/color';
+import {BLACK, GREY, LIGHT_GREY} from '../../../globals/config/color';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontistoIcons from 'react-native-vector-icons/Fontisto';
 import moment from 'moment';
@@ -18,7 +17,12 @@ const Introdution = (props) => {
     rating,
     countRating,
     countVideo,
+    description,
   } = props.data;
+  const [showDescription, setShowDescription] = useState(false);
+  const showMore = () => {
+    setShowDescription(!showDescription);
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -38,6 +42,7 @@ const Introdution = (props) => {
           ratingBackgroundColor={GREY}
           tintColor="white"
         />
+        <Text style={styles.subText}>{` (${countRating}) `}</Text>
       </View>
       <View style={styles.funcButtonContainer}>
         <FuncButton
@@ -53,6 +58,20 @@ const Introdution = (props) => {
           icon={<FontistoIcons name="download" size={24} color={BLACK} />}
         />
       </View>
+      <View style={styles.description}>
+        <Text
+          style={styles.textDescription}
+          numberOfLines={showDescription ? undefined : 2}>
+          {description}
+        </Text>
+        <TouchableOpacity style={styles.touchMore} onPress={showMore}>
+          <MaterialIcons
+            name={showDescription ? 'keyboard-arrow-up' : 'keyboard-arrow-down'}
+            size={24}
+            color={BLACK}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -61,7 +80,9 @@ export default Introdution;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 10,
+    paddingVertical: 10,
+    borderBottomColor: LIGHT_GREY,
+    borderBottomWidth: 0.5,
   },
   title: {
     fontSize: 20,
@@ -80,8 +101,20 @@ const styles = StyleSheet.create({
   },
   funcButtonContainer: {
     flexDirection: 'row',
-    marginHorizontal: 15,
+    marginTop: 15,
     marginVertical: 25,
     justifyContent: 'space-around',
+  },
+  description: {
+    marginHorizontal: 15,
+    flexDirection: 'row',
+  },
+  touchMore: {
+    backgroundColor: GREY,
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
+  textDescription: {
+    flex: 1,
   },
 });

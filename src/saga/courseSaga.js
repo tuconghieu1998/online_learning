@@ -29,6 +29,7 @@ function* courseRootSaga() {
     ),
     yield takeLatest(CourseTypes.GET_HISTORIES_REQUEST, getHistories),
     yield takeLatest(CourseTypes.DELETE_HISTORIES_REQUEST, deleteHistories),
+    yield takeLatest(CourseTypes.CHECK_OWN_COURSE_REQUEST, checkOwnCourse),
   ]);
 }
 
@@ -114,10 +115,12 @@ function* getIntroPage({actionSuccess}) {
 function* getCourseDetail({params, actionSuccess}) {
   try {
     const response = yield call(apiCourse.getCourseDetail, params);
+    yield put(CourseActions.getCourseDetailSuccess(response.payload));
     if (actionSuccess) {
       actionSuccess(response);
     }
   } catch (error) {
+    yield put(CourseActions.getCourseDetailFailure(error));
     yield put(AppActions.showError(error.message));
   }
 }
@@ -169,6 +172,22 @@ function* deleteHistories({params, actionSuccess}) {
       actionSuccess(response);
     }
   } catch (error) {
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* checkOwnCourse({params, actionSuccess}) {
+  //yield put (AppActions.showIndicator());
+  try {
+    const {payload} = yield call(apiCourse.checkOwnCourse, params);
+    yield put(CourseActions.checkOwnCourseSuccess(payload.isUserOwnCourse));
+    if (actionSuccess) {
+      actionSuccess({payload});
+    }
+    //yield put(AppActions.hideIndicator());
+  } catch (error) {
+    //yield put(AppActions.hideIndicator());
+    yield put(CourseActions.checkOwnCourseFailure(error));
     yield put(AppActions.showError(error.message));
   }
 }

@@ -52,6 +52,9 @@ export const getHistories = () => {
 };
 
 export const deleteHistories = (params) => {
-  console.log(params);
   return request.delete(`/${COURSE}/delete-search-history/${params.id}`);
+};
+
+export const checkOwnCourse = (params) => {
+  return request.get(`/${USER}/check-own-course/${params.id}`);
 };
