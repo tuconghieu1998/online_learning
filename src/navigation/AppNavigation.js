@@ -25,7 +25,7 @@ const AppNavigation = (props) => {
   }, []);
   return (
     <Stack.Navigator
-      mode="modal"
+      // mode="modal"
       screenOptions={{
         headerShown: false,
       }}>

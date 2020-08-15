@@ -40,6 +40,8 @@ const {Types, Creators} = createActions({
   getUrlVideoRequest: ['params', 'actionSuccess'],
   getUrlVideoFailure: null,
   getUrlVideoSuccess: ['videoUrl'],
+
+  setUrlVideoRequest: ['videoUrl'],
 });
 
 export const CourseTypes = Types;
@@ -143,6 +145,10 @@ const getUrlVideoFailure = (state, {error}) => {
   return state.merge({error});
 };
 
+const setUrlVideoRequest = (state, {videoUrl}) => {
+  return state.merge({videoUrl});
+};
+
 /* ------------------------- Hookup Reducers To Types -------------*/
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_TOP_SELLING_REQUEST]: getTopSellingRequest,
@@ -182,4 +188,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_URL_VIDEO_REQUEST]: getUrlVideoRequest,
   [Types.GET_URL_VIDEO_SUCCESS]: getUrlVideoSuccess,
   [Types.GET_URL_VIDEO_FAILURE]: getUrlVideoFailure,
+
+  [Types.SET_URL_VIDEO_REQUEST]: setUrlVideoRequest,
 });

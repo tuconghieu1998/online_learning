@@ -33,7 +33,6 @@ const VideoPlayer = (props) => {
   const [url, setUrl] = useState('');
 
   useEffect(() => {
-    console.log(props.url);
     if (props.url) {
       setUrl(props.url);
       handleStart();
