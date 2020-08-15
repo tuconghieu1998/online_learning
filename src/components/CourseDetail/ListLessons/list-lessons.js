@@ -4,9 +4,11 @@ import ListSectionItem from './list-section-item';
 import {LIGHT_GREY} from '../../../globals/config/color';
 import {connect} from 'react-redux';
 import ListLessonItem from './list-lesson-item';
+import CourseActions from '../../../redux/courseRedux';
 
 const ListLesson = (props) => {
   const [sections, setSections] = useState([]);
+  const [isOwnCourse, setOwnCourse] = useState(false);
   useEffect(() => {
     if (props.courseDetail) {
       const newSections = [];
@@ -17,6 +19,17 @@ const ListLesson = (props) => {
       setSections(newSections);
     }
   }, [props.courseDetail]);
+  useEffect(() => {
+    setOwnCourse(props.isUserOwnCourse);
+  }, [props.isUserOwnCourse]);
+  const onSelectLesson = (id) => {
+    props.getUrlVideo(
+      {courseId: props.courseDetail.id, lessonId: id},
+      (res) => {
+        //console.log(res);
+      },
+    );
+  };
   return (
     <View style={styles.container}>
       <SectionList
@@ -32,7 +45,8 @@ const ListLesson = (props) => {
           <ListLessonItem
             title={item.name}
             duration={item.hours}
-            active={item.isPreview}
+            active={item.isPreview || isOwnCourse}
+            onPress={() => onSelectLesson(item.id)}
           />
         )}
         keyExtractor={(item, index) => item + index}
@@ -45,9 +59,13 @@ const ListLesson = (props) => {
 
 const mapStateToProps = (state) => ({
   courseDetail: state.course.courseDetail,
+  isUserOwnCourse: state.course.isUserOwnCourse,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  getUrlVideo: (params, actionSuccess) =>
+    dispatch(CourseActions.getUrlVideoRequest(params, actionSuccess)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListLesson);
 

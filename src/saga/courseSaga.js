@@ -30,6 +30,7 @@ function* courseRootSaga() {
     yield takeLatest(CourseTypes.GET_HISTORIES_REQUEST, getHistories),
     yield takeLatest(CourseTypes.DELETE_HISTORIES_REQUEST, deleteHistories),
     yield takeLatest(CourseTypes.CHECK_OWN_COURSE_REQUEST, checkOwnCourse),
+    yield takeLatest(CourseTypes.GET_URL_VIDEO_REQUEST, getUrlVideo),
   ]);
 }
 
@@ -186,6 +187,22 @@ function* checkOwnCourse({params, actionSuccess}) {
   } catch (error) {
     //yield put(AppActions.hideIndicator());
     yield put(CourseActions.checkOwnCourseFailure(error));
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* getUrlVideo({params, actionSuccess}) {
+  //yield put (AppActions.showIndicator());
+  try {
+    const res = yield call(apiCourse.getUrlVideo, params);
+    yield put(CourseActions.getUrlVideoSuccess(res.payload.videoUrl));
+    if (actionSuccess) {
+      actionSuccess(res);
+    }
+    //yield put(AppActions.hideIndicator());
+  } catch (error) {
+    //yield put(AppActions.hideIndicator());
+    yield put(CourseActions.getUrlVideoFailure(error));
     yield put(AppActions.showError(error.message));
   }
 }

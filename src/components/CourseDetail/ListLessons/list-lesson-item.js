@@ -5,9 +5,12 @@ import {LIGHT_BLACK, GREEN} from '../../../globals/config/color';
 import {formatHoursToTime} from '../../../globals/helper';
 
 const ListLessonItem = (props) => {
-  const {title, duration, active} = props;
+  const {title, duration, active, onPress} = props;
   return (
-    <TouchableOpacity style={styles.container} disabled={!active}>
+    <TouchableOpacity
+      style={styles.container}
+      disabled={!active}
+      onPress={onPress}>
       {active ? (
         <MaterialIcons name="play-circle-outline" color={GREEN} size={18} />
       ) : (

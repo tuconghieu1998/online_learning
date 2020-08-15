@@ -36,6 +36,10 @@ const {Types, Creators} = createActions({
   checkOwnCourseRequest: ['params', 'actionSuccess'],
   checkOwnCourseFailure: null,
   checkOwnCourseSuccess: ['isUserOwnCourse'],
+
+  getUrlVideoRequest: ['params', 'actionSuccess'],
+  getUrlVideoFailure: null,
+  getUrlVideoSuccess: ['videoUrl'],
 });
 
 export const CourseTypes = Types;
@@ -51,6 +55,7 @@ export const INITIAL_STATE = Immutable({
   histories: undefined,
   isUserOwnCourse: undefined,
   courseDetail: undefined,
+  videoUrl: undefined,
 });
 
 /*-----------------------Reducers ---------------------------------- */
@@ -128,6 +133,16 @@ const checkOwnCourseFailure = (state, {error}) => {
   return state.merge({error});
 };
 
+const getUrlVideoRequest = (state) => {
+  return state.merge({});
+};
+const getUrlVideoSuccess = (state, {videoUrl}) => {
+  return state.merge({videoUrl});
+};
+const getUrlVideoFailure = (state, {error}) => {
+  return state.merge({error});
+};
+
 /* ------------------------- Hookup Reducers To Types -------------*/
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_TOP_SELLING_REQUEST]: getTopSellingRequest,
@@ -163,4 +178,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHECK_OWN_COURSE_REQUEST]: checkOwnCourseRequest,
   [Types.CHECK_OWN_COURSE_SUCCESS]: checkOwnCourseSuccess,
   [Types.CHECK_OWN_COURSE_FAILURE]: checkOwnCourseFailure,
+
+  [Types.GET_URL_VIDEO_REQUEST]: getUrlVideoRequest,
+  [Types.GET_URL_VIDEO_SUCCESS]: getUrlVideoSuccess,
+  [Types.GET_URL_VIDEO_FAILURE]: getUrlVideoFailure,
 });

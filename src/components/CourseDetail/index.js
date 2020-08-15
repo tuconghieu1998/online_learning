@@ -16,9 +16,6 @@ const CourseDetail = (props) => {
       props.getCourseDetail({id}, (res) => {
         setData(res.payload);
         setInstructor(res.payload.instructor);
-        // props.getInstructorDetail({id: res.payload.instructorId}, (res) => {
-        //   setInstructor(res.payload);
-        // });
       });
     });
 
