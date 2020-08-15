@@ -46,3 +46,12 @@ export const search = (params) => {
 export const searchV2 = (params) => {
   return request.post(`/${COURSE}/searchV2`, params);
 };
+
+export const getHistories = () => {
+  return request.get(`/${COURSE}/search-history`);
+};
+
+export const deleteHistories = (params) => {
+  console.log(params);
+  return request.delete(`/${COURSE}/delete-search-history/${params.id}`);
+};

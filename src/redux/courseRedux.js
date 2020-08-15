@@ -24,6 +24,12 @@ const {Types, Creators} = createActions({
   getFavoriteCoursesRequest: ['actionSuccess'],
 
   searchRequest: ['keyword'],
+
+  getHistoriesRequest: ['actionSuccess'],
+  getHistoriesFailure: null,
+  getHistoriesSuccess: ['hitories'],
+
+  deleteHistoriesRequest: ['params', 'actionSuccess'],
 });
 
 export const CourseTypes = Types;
@@ -36,6 +42,7 @@ export const INITIAL_STATE = Immutable({
   courses: undefined,
   payload: undefined,
   error: undefined,
+  histories: undefined,
 });
 
 /*-----------------------Reducers ---------------------------------- */
@@ -83,6 +90,20 @@ const searchRequest = (state, {keyword}) => {
   return state.merge({keyword});
 };
 
+const getHistoriesRequest = (state) => {
+  return state.merge({});
+};
+const getHistoriesSuccess = (state, {histories}) => {
+  return state.merge({histories});
+};
+const getHistoriesFailure = (state, {error}) => {
+  return state.merge({error});
+};
+
+const deleteHistoriesRequest = (state) => {
+  return state.merge({});
+};
+
 /* ------------------------- Hookup Reducers To Types -------------*/
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_TOP_SELLING_REQUEST]: getTopSellingRequest,
@@ -106,4 +127,10 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_FAVORITE_COURSES_REQUEST]: getFavoriteCoursesRequest,
 
   [Types.SEARCH_REQUEST]: searchRequest,
+
+  [Types.GET_HISTORIES_REQUEST]: getHistoriesRequest,
+  [Types.GET_HISTORIES_SUCCESS]: getHistoriesSuccess,
+  [Types.GET_HISTORIES_FAILURE]: getHistoriesFailure,
+
+  [Types.DELETE_HISTORIES_REQUEST]: deleteHistoriesRequest,
 });

@@ -27,6 +27,8 @@ function* courseRootSaga() {
       CourseTypes.GET_FAVORITE_COURSES_REQUEST,
       getFavoriteCourses,
     ),
+    yield takeLatest(CourseTypes.GET_HISTORIES_REQUEST, getHistories),
+    yield takeLatest(CourseTypes.DELETE_HISTORIES_REQUEST, deleteHistories),
   ]);
 }
 
@@ -134,6 +136,35 @@ function* searchV2({params, actionSuccess}) {
 function* getFavoriteCourses({actionSuccess}) {
   try {
     const response = yield call(apiCourse.getFavoriteCourses);
+    if (actionSuccess) {
+      actionSuccess(response);
+    }
+  } catch (error) {
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* getHistories({actionSuccess}) {
+  //yield put (AppActions.showIndicator());
+  try {
+    const {
+      payload: {data: histories},
+    } = yield call(apiCourse.getHistories);
+    yield put(CourseActions.getHistoriesSuccess(histories));
+    if (actionSuccess) {
+      actionSuccess({histories});
+    }
+    //yield put(AppActions.hideIndicator());
+  } catch (error) {
+    //yield put(AppActions.hideIndicator());
+    yield put(CourseActions.getHistoriesFailure(error));
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* deleteHistories({params, actionSuccess}) {
+  try {
+    const response = yield call(apiCourse.deleteHistories, params);
     if (actionSuccess) {
       actionSuccess(response);
     }
