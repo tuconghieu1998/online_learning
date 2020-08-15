@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {BLACK, LIGHT_BLACK, GREEN, GREY} from '../../../globals/config/color';
+import {LIGHT_BLACK, GREEN} from '../../../globals/config/color';
 import {formatHoursToTime} from '../../../globals/helper';
 
 const ListLessonItem = (props) => {

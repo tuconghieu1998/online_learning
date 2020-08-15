@@ -22,7 +22,6 @@ const CategoryCourse = (props) => {
       },
     };
     props.searchV2(params, (res) => {
-      console.log(res);
       setCourses(res.payload.courses.data);
       setLoading(false);
     });

@@ -24,7 +24,6 @@ const ForgotPassword = (props) => {
   const navigation = useNavigation();
 
   const handleChange = (input, name) => {
-    // console.log(input + ',' + name);
     setData((prevState) => ({
       ...prevState,
       [name]: {...prevState[name], value: input},
@@ -42,7 +41,6 @@ const ForgotPassword = (props) => {
         email: data.email.value,
       };
       props.forgotPassword(params, (res) => {
-        // console.log(reponse);
         navigation.navigate(ScreenKeys.auth.login);
       });
     }

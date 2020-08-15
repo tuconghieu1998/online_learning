@@ -6,25 +6,26 @@ import {connect} from 'react-redux';
 import CourseActions from '../../../../redux/courseRedux';
 import ListCoursesItem from '../../../Courses/ListCoursesItem/list-courses-item';
 import {LIGHT_GREY} from '../../../../globals/config/color';
+import {useIsFocused} from '@react-navigation/native';
 
 const RecommendCourse = (props) => {
   const [courses, setCourses] = useState([]);
+  const isFocused = useIsFocused();
   const navigation = useNavigation();
   useEffect(() => {
-    if (props.userInfo) {
+    if (props.userInfo && isFocused) {
       const params = {
         userId: props.userInfo.id,
         limit: 20,
         offset: 0,
       };
       props.getRecommendCourse(params, (res) => {
-        //console.log(res.payload);
         setCourses(res.payload);
       });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.userInfo]);
+  }, [props.userInfo, isFocused]);
   return (
     <View style={styles.container}>
       <HeaderStack title="RECOMMENDED FOR YOU" />

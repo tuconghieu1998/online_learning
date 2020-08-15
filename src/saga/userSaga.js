@@ -12,6 +12,11 @@ function* userRootSagas() {
     yield takeLatest(UserTypes.LOGOUT, logout),
     yield takeLatest(UserTypes.GET_INFO_USER_REQUEST, getInfoUser),
     yield takeLatest(UserTypes.FORGOT_PASSWORD_REQUEST, forgotPassword),
+    yield takeLatest(
+      UserTypes.GET_COURSE_LIKE_STATUS_REQUEST,
+      getCourseLikeStatus,
+    ),
+    yield takeLatest(UserTypes.LIKE_COURSE_REQUEST, likeCourse),
   ]);
 }
 
@@ -105,6 +110,28 @@ function* forgotPassword({params, actionSuccess}) {
   } catch (error) {
     //yield put(AppActions.hideIndicator());
     yield put(UserActions.forgotPasswordFailure(error));
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* getCourseLikeStatus({params, actionSuccess}) {
+  try {
+    const response = yield call(api.getCourseLikeStatus, params);
+    if (actionSuccess) {
+      actionSuccess(response);
+    }
+  } catch (error) {
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* likeCourse({params, actionSuccess}) {
+  try {
+    const response = yield call(api.likeCourse, params);
+    if (actionSuccess) {
+      actionSuccess(response);
+    }
+  } catch (error) {
     yield put(AppActions.showError(error.message));
   }
 }

@@ -13,7 +13,6 @@ const CourseDetail = (props) => {
   const [instructor, setInstructor] = useState({});
   useEffect(() => {
     props.checkOwnCourse({id}, (response) => {
-      console.log(response);
       props.getCourseDetail({id}, (res) => {
         setData(res.payload);
         setInstructor(res.payload.instructor);
@@ -33,6 +32,7 @@ const CourseDetail = (props) => {
         <ScrollView stickyHeaderIndices={[2]}>
           <Introdution
             data={{
+              id,
               title: data.title,
               authors: [instructor],
               duration: data.totalHours,

@@ -3,15 +3,19 @@ import {StyleSheet, FlatList, View} from 'react-native';
 import {Card, TitleSectionList} from '../../Common';
 import {connect} from 'react-redux';
 import CourseActions from '../../../redux/courseRedux';
+import {useIsFocused} from '@react-navigation/native';
 
 const ContinueLearning = (props) => {
   const [courses, setCourses] = useState([]);
+  const isFocused = useIsFocused();
   useEffect(() => {
-    props.getContinueLearning((res) => {
-      setCourses(res.payload);
-    });
+    if (isFocused) {
+      props.getContinueLearning((res) => {
+        setCourses(res.payload);
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isFocused]);
   return (
     <View>
       {courses && (

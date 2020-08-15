@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {Rating} from 'react-native-ratings';
 import AuthorTagList from './author-tag-list';
@@ -7,9 +7,12 @@ import {BLACK, GREY, LIGHT_GREY} from '../../../globals/config/color';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontistoIcons from 'react-native-vector-icons/Fontisto';
 import moment from 'moment';
+import UserActions from '../../../redux/userRedux';
+import {connect} from 'react-redux';
 
 const Introdution = (props) => {
   const {
+    id,
     title,
     authors,
     duration,
@@ -20,9 +23,21 @@ const Introdution = (props) => {
     description,
   } = props.data;
   const [showDescription, setShowDescription] = useState(false);
+  const [isLike, setLike] = useState(false);
   const showMore = () => {
     setShowDescription(!showDescription);
   };
+  const handleLikeCourse = () => {
+    props.likeCourse({courseId: id}, (res) => {
+      setLike(res.likeStatus);
+    });
+  };
+  useEffect(() => {
+    props.getCourseLikeStatus({courseId: id}, (res) => {
+      setLike(res.likeStatus);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -46,8 +61,15 @@ const Introdution = (props) => {
       </View>
       <View style={styles.funcButtonContainer}>
         <FuncButton
-          name="Bookmark"
-          icon={<FontistoIcons name="bookmark" size={24} color={BLACK} />}
+          name="Favorite"
+          icon={
+            <MaterialIcons
+              name={isLike ? 'favorite' : 'favorite-border'}
+              size={24}
+              color={BLACK}
+            />
+          }
+          onPress={handleLikeCourse}
         />
         <FuncButton
           name="Add to Chanel"
@@ -76,7 +98,16 @@ const Introdution = (props) => {
   );
 };
 
-export default Introdution;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  getCourseLikeStatus: (params, actionSuccess) =>
+    dispatch(UserActions.getCourseLikeStatusRequest(params, actionSuccess)),
+  likeCourse: (params, actionSuccess) =>
+    dispatch(UserActions.likeCourseRequest(params, actionSuccess)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Introdution);
 
 const styles = StyleSheet.create({
   container: {

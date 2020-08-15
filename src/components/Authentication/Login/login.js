@@ -56,10 +56,7 @@ const Login = (props) => {
         email: data.email.value,
         password: data.password.value,
       };
-      props.login(params, (response) => {
-        // console.log(response, 'HIEU');
-        //navigation.navigate(ScreenKeys.auth.login);
-      });
+      props.login(params, (response) => {});
     }
 
     //

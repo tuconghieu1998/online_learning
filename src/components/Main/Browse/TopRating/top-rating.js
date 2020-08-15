@@ -3,19 +3,23 @@ import {StyleSheet, Text, View, FlatList} from 'react-native';
 import {TitleSectionList, Card} from '../../../Common';
 import CourseActions from '../../../../redux/courseRedux';
 import {connect} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
 
 const TopRating = (props) => {
   const [courses, setCourses] = useState([]);
+  const isFocused = useIsFocused();
   useEffect(() => {
-    const params = {
-      limit: 10,
-      page: 1,
-    };
-    props.getTopRating(params, (res) => {
-      setCourses(res.payload);
-    });
+    if (isFocused) {
+      const params = {
+        limit: 10,
+        page: 1,
+      };
+      props.getTopRating(params, (res) => {
+        setCourses(res.payload);
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isFocused]);
   return (
     <View>
       <TitleSectionList title="Top rating" />

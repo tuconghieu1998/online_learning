@@ -2,15 +2,20 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, Image, Dimensions} from 'react-native';
 import {connect} from 'react-redux';
 import CourseActions from '../../../redux/courseRedux';
+import {useIsFocused} from '@react-navigation/native';
 
 const Introduction = (props) => {
+  const isFocused = useIsFocused();
   const [data, setData] = useState({});
   useEffect(() => {
-    props.getIntroPage((res) => {
-      setData(res);
-    });
+    if (isFocused) {
+      props.getIntroPage((res) => {
+        setData(res);
+      });
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isFocused]);
   return (
     <View style={styles.introContainer}>
       <Image

@@ -6,20 +6,25 @@ import {connect} from 'react-redux';
 import CourseActions from '../../../../redux/courseRedux';
 import ListCoursesItem from '../../../Courses/ListCoursesItem/list-courses-item';
 import {LIGHT_GREY} from '../../../../globals/config/color';
+import {useIsFocused} from '@react-navigation/native';
 
 const NewCourse = (props) => {
+  const isFocused = useIsFocused();
   const [courses, setCourses] = useState([]);
   const navigation = useNavigation();
   useEffect(() => {
-    const params = {
-      limit: 20,
-      page: 1,
-    };
-    props.getTopNew(params, (res) => {
-      setCourses(res.payload);
-    });
+    if (isFocused) {
+      const params = {
+        limit: 20,
+        page: 1,
+      };
+      props.getTopNew(params, (res) => {
+        setCourses(res.payload);
+      });
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isFocused]);
   return (
     <View style={styles.container}>
       <HeaderStack title="NEW RELEASES" />

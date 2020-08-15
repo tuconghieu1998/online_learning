@@ -1,18 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import {StyleSheet, View, FlatList} from 'react-native';
 import {TitleSectionList} from '../../../Common';
 import ListAuthorItem from './list-author-item';
 import InstructorActions from '../../../../redux/instructorRedux';
 import {connect} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
 
 const ListAuthors = (props) => {
   const [authors, setAuthors] = useState([]);
+  const isFocused = useIsFocused();
   useEffect(() => {
-    props.getInstructors((res) => {
-      setAuthors(res.payload);
-    });
+    if (isFocused) {
+      props.getInstructors((res) => {
+        setAuthors(res.payload);
+      });
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isFocused]);
   return (
     <View>
       <TitleSectionList title="Top authors" />

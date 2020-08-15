@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  Dimensions,
-} from 'react-native';
-import SectionListHorizontal from './section-list-horizontal';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import {Header} from '../../Common';
 import Introduction from './introduction';
 import ContinueLearning from './continue-learning';
@@ -23,7 +15,6 @@ const Home = () => {
         <ContinueLearning />
         <CoursesInFavoriteCat />
         <FavoriteCourse />
-        {/* <SectionListHorizontal data={DATA} /> */}
       </ScrollView>
     </View>
   );

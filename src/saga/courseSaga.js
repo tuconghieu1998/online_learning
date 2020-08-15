@@ -46,7 +46,6 @@ function* getTopSelling({params, actionSuccess}) {
 
 function* getTopNew({params, actionSuccess}) {
   try {
-    console.log(params);
     const response = yield call(apiCourse.getTopNew, params);
     if (actionSuccess) {
       actionSuccess(response);
@@ -58,7 +57,6 @@ function* getTopNew({params, actionSuccess}) {
 
 function* getRecommendCourse({params, actionSuccess}) {
   try {
-    console.log(params);
     const response = yield call(apiCourse.getRecommendCourse, params);
     if (actionSuccess) {
       actionSuccess(response);

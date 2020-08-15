@@ -1,9 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {Input, SearchBar} from '../../Common';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {LIGHT_BLACK, LIGHT_GREY, GREY} from '../../../globals/config/color';
-import SectionListResult from './section-list-result';
+import {StyleSheet, View} from 'react-native';
+import {SearchBar} from '../../Common';
 import SearchTopNavigation from '../../../navigation/SearchTopNavigation';
 import {connect} from 'react-redux';
 import Histories from './histories';

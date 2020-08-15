@@ -4,15 +4,19 @@ import {GREY, LIGHT_GREY} from '../../../globals/config/color';
 import {connect} from 'react-redux';
 import CourseActions from '../../../redux/courseRedux';
 import HistoryItem from './history-item';
+import {useIsFocused} from '@react-navigation/native';
 
 const Histories = (props) => {
   const [histories, setHistories] = useState([]);
+  const isFocused = useIsFocused();
   useEffect(() => {
-    props.getHistories((res) => {
-      setHistories(res.histories);
-    });
+    if (isFocused) {
+      props.getHistories((res) => {
+        setHistories(res.histories);
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.keyword]);
+  }, [props.keyword, isFocused]);
 
   const pressHistories = (text) => {
     props.search(text);

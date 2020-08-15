@@ -36,7 +36,6 @@ const AuthorsTab = (props) => {
 
   const handleLoadMore = () => {
     if (total > page * LIMIT) {
-      console.log('load');
       const params = {
         keyword: props.keyword,
         limit: LIMIT,

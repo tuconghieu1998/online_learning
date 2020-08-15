@@ -45,7 +45,6 @@ const Regiter = (props) => {
   const navigation = useNavigation();
 
   const handleChange = (input, name) => {
-    // console.log(input + ',' + name);
     setData((prevState) => ({
       ...prevState,
       [name]: {...prevState[name], value: input},
@@ -84,7 +83,6 @@ const Regiter = (props) => {
         password: data.password.value,
       };
       props.register(params, (reponse) => {
-        // console.log(reponse);
         navigation.navigate(ScreenKeys.auth.login);
       });
     }

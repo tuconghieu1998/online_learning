@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import {StyleSheet, View, FlatList} from 'react-native';
 import ListCoursesItem from '../../Courses/ListCoursesItem/list-courses-item';
 import {LIGHT_GREY} from '../../../globals/config/color';
 import {connect} from 'react-redux';
@@ -34,7 +34,6 @@ const CoursesTab = (props) => {
   }, [props.keyword, isFocused, props.token]);
   const handleLoadMore = () => {
     if (total > page * LIMIT) {
-      console.log('load');
       const params = {
         keyword: props.keyword,
         limit: LIMIT,

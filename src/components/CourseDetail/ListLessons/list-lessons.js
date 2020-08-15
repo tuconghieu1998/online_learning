@@ -5,49 +5,6 @@ import {LIGHT_GREY} from '../../../globals/config/color';
 import {connect} from 'react-redux';
 import ListLessonItem from './list-lesson-item';
 
-const LESSONS = [
-  {
-    id: '1',
-    title: 'Course Overview',
-    source:
-      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    duration: 1980,
-    active: true,
-  },
-  {
-    id: '2',
-    title: 'The Basics',
-    source:
-      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    duration: 2550,
-    active: true,
-  },
-  {
-    id: '3',
-    title: 'Modern JavaScript Crash Courseabcd',
-    source:
-      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    duration: 1202,
-    active: false,
-  },
-  {
-    id: '4',
-    title: 'The GitHub Cards App',
-    source:
-      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    duration: 2412,
-    active: false,
-  },
-  {
-    id: '5',
-    title: 'The Star Match Game',
-    source:
-      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    duration: 2610,
-    active: false,
-  },
-];
-
 const ListLesson = (props) => {
   const [sections, setSections] = useState([]);
   useEffect(() => {
@@ -62,14 +19,6 @@ const ListLesson = (props) => {
   }, [props.courseDetail]);
   return (
     <View style={styles.container}>
-      {/* <FlatList
-        data={sections}
-        renderItem={({item, index}) => (
-          <ListLessonItem item={item} index={index} />
-        )}
-        keyExtractor={(item) => item.id}
-        ItemSeparatorComponent={() => <View style={styles.separator} />}
-      /> */}
       <SectionList
         sections={sections}
         renderSectionHeader={({section}) => (

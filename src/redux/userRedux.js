@@ -20,6 +20,10 @@ const {Types, Creators} = createActions({
   forgotPasswordSuccess: ['message'],
 
   logout: ['actionSuccess'],
+
+  getCourseLikeStatusRequest: ['params', 'actionSuccess'],
+
+  likeCourseRequest: ['params', 'actionSuccess'],
 });
 
 export const UserTypes = Types;
@@ -80,6 +84,14 @@ const forgotPasswordFailure = (state, {error}) => {
   return state.merge({error});
 };
 
+const getCourseLikeStatusRequest = (state) => {
+  return state.merge({});
+};
+
+const likeCourseRequest = (state) => {
+  return state.merge({});
+};
+
 /* ------------------------- Hookup Reducers To Types -------------*/
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.REGISTER_REQUEST]: registerRequest,
@@ -99,4 +111,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.FORGOT_PASSWORD_REQUEST]: forgotPasswordRequest,
   [Types.FORGOT_PASSWORD_SUCCESS]: forgotPasswordSuccess,
   [Types.FORGOT_PASSWORD_FAILURE]: forgotPasswordFailure,
+
+  [Types.GET_COURSE_LIKE_STATUS_REQUEST]: getCourseLikeStatusRequest,
+
+  [Types.LIKE_COURSE_REQUEST]: likeCourseRequest,
 });

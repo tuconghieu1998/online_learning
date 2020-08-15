@@ -3,17 +3,20 @@ import {StyleSheet, FlatList, View} from 'react-native';
 import {Card, TitleSectionList} from '../../Common';
 import {connect} from 'react-redux';
 import CourseActions from '../../../redux/courseRedux';
+import {useIsFocused} from '@react-navigation/native';
 
 const FavoriteCourse = (props) => {
   const [courses, setCourses] = useState([]);
+  const isFocused = useIsFocused();
   useEffect(() => {
-    props.getFavoriteCourses((res) => {
-      //console.log(res);
-      setCourses(res.payload);
-    });
+    if (isFocused) {
+      props.getFavoriteCourses((res) => {
+        setCourses(res.payload);
+      });
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isFocused]);
   return (
     <View>
       {courses && (
