@@ -40,9 +40,7 @@ const Introdution = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleRegisterCourse = () => {
-    props.registerFreeCourse({courseId: id}, (res) => {
-      console.log(res);
-    });
+    props.registerFreeCourse({courseId: id});
   };
   return (
     <View style={styles.container}>

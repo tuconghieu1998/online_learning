@@ -5,10 +5,8 @@ import {BackButton, Input, HeaderText, Button} from '../Common';
 import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {GREY, GREEN, BLACK} from '../../globals/config/color';
-import loGet from 'lodash/get';
 import {connect} from 'react-redux';
 import UserActions from '../../redux/userRedux';
-import {ScreenKeys} from '../../globals/constants';
 import {VN_PHONE, IMAGE_URL} from '../../globals/config/regex';
 import {handleValidate} from '../../globals/helper';
 
@@ -43,7 +41,6 @@ const ProfileEdit = (props) => {
 
   useEffect(() => {
     if (props.userInfo) {
-      console.log(props.userInfo);
       setData((prevState) => ({
         ...prevState,
         name: {...prevState.name, value: props.userInfo.name},

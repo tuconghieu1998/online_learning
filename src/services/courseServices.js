@@ -64,7 +64,6 @@ export const getUrlVideo = (params) => {
 };
 
 export const updateCurrentTimeLearnVideo = (params) => {
-  console.log(params);
   return request.put(`/${LESSON}/update-current-time-learn-video`, params);
 };
 
@@ -73,6 +72,5 @@ export const getLastWatchedLesson = (params) => {
 };
 
 export const registerFreeCourse = (params) => {
-  console.log(params);
   return request.post(`/${PAYMENT}/get-free-courses`, params);
 };

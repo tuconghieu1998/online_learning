@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, SectionList, Text} from 'react-native';
+import {StyleSheet, View, SectionList} from 'react-native';
 import ListSectionItem from './list-section-item';
 import {LIGHT_GREY} from '../../../globals/config/color';
 import {connect} from 'react-redux';
@@ -24,12 +24,7 @@ const ListLesson = (props) => {
   }, [props.isUserOwnCourse]);
   const onSelectLesson = (id, url) => {
     if (isOwnCourse) {
-      props.getUrlVideo(
-        {courseId: props.courseDetail.id, lessonId: id},
-        (res) => {
-          console.log(res, 'Hieu');
-        },
-      );
+      props.getUrlVideo({courseId: props.courseDetail.id, lessonId: id});
     } else {
       props.setUrlVideo(url, 0, id);
     }
