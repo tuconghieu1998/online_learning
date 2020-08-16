@@ -48,6 +48,10 @@ const {Types, Creators} = createActions({
   getLastWatchedLessonRequest: ['params', 'actionSuccess'],
   getLastWatchedLessonFailure: null,
   getLastWatchedLessonSuccess: ['videoUrl', 'currentTime', 'lessonId'],
+
+  registerFreeCourseRequest: ['params', 'actionSuccess'],
+  registerFreeCourseFailure: null,
+  registerFreeCourseSuccess: ['isUserOwnCourse'],
 });
 
 export const CourseTypes = Types;
@@ -174,6 +178,16 @@ const getLastWatchedLessonFailure = (state, {error}) => {
   return state.merge({error});
 };
 
+const registerFreeCourseRequest = (state) => {
+  return state.merge({});
+};
+const registerFreeCourseSuccess = (state, {isUserOwnCourse}) => {
+  return state.merge({isUserOwnCourse});
+};
+const registerFreeCourseFailure = (state, {error}) => {
+  return state.merge({error});
+};
+
 /* ------------------------- Hookup Reducers To Types -------------*/
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_TOP_SELLING_REQUEST]: getTopSellingRequest,
@@ -221,4 +235,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_LAST_WATCHED_LESSON_REQUEST]: getLastWatchedLessonRequest,
   [Types.GET_LAST_WATCHED_LESSON_SUCCESS]: getLastWatchedLessonSuccess,
   [Types.GET_LAST_WATCHED_LESSON_FAILURE]: getLastWatchedLessonFailure,
+
+  [Types.REGISTER_FREE_COURSE_REQUEST]: registerFreeCourseRequest,
+  [Types.REGISTER_FREE_COURSE_SUCCESS]: registerFreeCourseSuccess,
+  [Types.REGISTER_FREE_COURSE_FAILURE]: registerFreeCourseFailure,
 });

@@ -1,5 +1,5 @@
 import {request} from '../globals/config/axios';
-import {COURSE, USER, LESSON} from '../globals/config/url';
+import {COURSE, USER, LESSON, PAYMENT} from '../globals/config/url';
 
 export const getTopSelling = (params) => {
   return request.post(`/${COURSE}/top-sell`, params);
@@ -70,4 +70,9 @@ export const updateCurrentTimeLearnVideo = (params) => {
 
 export const getLastWatchedLesson = (params) => {
   return request.get(`/${COURSE}/last-watched-lesson/${params.courseId}`);
+};
+
+export const registerFreeCourse = (params) => {
+  console.log(params);
+  return request.post(`/${PAYMENT}/get-free-courses`, params);
 };

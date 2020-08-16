@@ -39,6 +39,10 @@ function* courseRootSaga() {
       CourseTypes.GET_LAST_WATCHED_LESSON_REQUEST,
       getLastWatchedLesson,
     ),
+    yield takeLatest(
+      CourseTypes.REGISTER_FREE_COURSE_REQUEST,
+      registerFreeCourse,
+    ),
   ]);
 }
 
@@ -248,6 +252,23 @@ function* getLastWatchedLesson({params, actionSuccess}) {
   } catch (error) {
     yield put(CourseActions.getLastWatchedLessonFailure(error));
     yield put(AppActions.showError(error.message));
+  }
+}
+
+function* registerFreeCourse({params, actionSuccess}) {
+  //yield put (AppActions.showIndicator());
+  try {
+    const res = yield call(apiCourse.registerFreeCourse, params);
+    yield put(CourseActions.registerFreeCourseSuccess(true));
+    if (actionSuccess) {
+      actionSuccess(res);
+    }
+    //yield put(AppActions.hideIndicator());
+  } catch (error) {
+    //yield put(AppActions.hideIndicator());
+    yield put(CourseActions.registerFreeCourseSuccess(true));
+    //yield put(CourseActions.registerFreeCourseFailure(error));
+    //yield put(AppActions.showError(error.message));
   }
 }
 

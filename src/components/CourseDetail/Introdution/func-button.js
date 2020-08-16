@@ -3,9 +3,12 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {LIGHT_GREY, BLACK} from '../../../globals/config/color';
 
 const FuncButton = (props) => {
-  const {name, icon, onPress} = props;
+  const {name, icon, onPress, disabled = false} = props;
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.container}
+      disabled={disabled}>
       <View style={styles.iconContainer}>{icon}</View>
       <Text style={styles.text}>{name}</Text>
     </TouchableOpacity>

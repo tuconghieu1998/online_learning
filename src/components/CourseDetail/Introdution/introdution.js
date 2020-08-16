@@ -9,6 +9,7 @@ import FontistoIcons from 'react-native-vector-icons/Fontisto';
 import moment from 'moment';
 import UserActions from '../../../redux/userRedux';
 import {connect} from 'react-redux';
+import CourseActions from '../../../redux/courseRedux';
 
 const Introdution = (props) => {
   const {
@@ -38,6 +39,11 @@ const Introdution = (props) => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const handleRegisterCourse = () => {
+    props.registerFreeCourse({courseId: id}, (res) => {
+      console.log(res);
+    });
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -72,8 +78,18 @@ const Introdution = (props) => {
           onPress={handleLikeCourse}
         />
         <FuncButton
-          name="Add to Chanel"
-          icon={<MaterialIcons name="playlist-add" size={24} color={BLACK} />}
+          disabled={props.isUserOwnCourse}
+          name={props.isUserOwnCourse ? 'Got' : 'Get it'}
+          icon={
+            <MaterialIcons
+              name={
+                props.isUserOwnCourse ? 'playlist-add-check' : 'playlist-add'
+              }
+              size={24}
+              color={BLACK}
+            />
+          }
+          onPress={handleRegisterCourse}
         />
         <FuncButton
           name="Download"
@@ -98,13 +114,17 @@ const Introdution = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  isUserOwnCourse: state.course.isUserOwnCourse,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   getCourseLikeStatus: (params, actionSuccess) =>
     dispatch(UserActions.getCourseLikeStatusRequest(params, actionSuccess)),
   likeCourse: (params, actionSuccess) =>
     dispatch(UserActions.likeCourseRequest(params, actionSuccess)),
+  registerFreeCourse: (params, actionSuccess) =>
+    dispatch(CourseActions.registerFreeCourseRequest(params, actionSuccess)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Introdution);
