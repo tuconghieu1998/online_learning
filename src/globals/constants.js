@@ -34,6 +34,7 @@ export const ScreenKeys = {
       author: 'Author',
     },
     profile: 'Profile',
+    profileEdit: 'ProfileEdit',
     settings: 'Settings',
     courseDetail: 'CourseDetail',
     newCourse: 'NewCourse',

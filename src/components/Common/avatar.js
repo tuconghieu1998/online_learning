@@ -8,7 +8,7 @@ const Avatar = (props) => {
       <Image
         source={{uri: source}}
         style={{height: size, width: size, borderRadius: size / 2}}
-        loadingIndicatorSource={require('../../assets/images/loading.png')}
+        defaultSource={require('../../assets/images/default-avatar.jpg')}
       />
     </View>
   );

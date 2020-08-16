@@ -50,7 +50,7 @@ const CoursesInFavoriteCat = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  userInfo: state.user.payload,
+  userInfo: state.user.userInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({

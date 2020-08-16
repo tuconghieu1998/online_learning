@@ -7,6 +7,7 @@ import ProfileManagementItem from './profile-management-item';
 import {useNavigation} from '@react-navigation/native';
 import UserActions from '../../redux/userRedux';
 import {connect} from 'react-redux';
+import {ScreenKeys} from '../../globals/constants';
 
 const ACTIONS = [
   {
@@ -48,11 +49,11 @@ const ACTIONS = [
 ];
 
 const Profile = (props) => {
-  const {payload} = props;
-  const handleEditProfile = () => {
-    console.log('edit profile');
-  };
+  const {userInfo} = props;
   const navigation = useNavigation();
+  const handleEditProfile = () => {
+    navigation.navigate(ScreenKeys.app.profileEdit);
+  };
 
   const handleSignOut = () => {
     props.logout();
@@ -67,9 +68,9 @@ const Profile = (props) => {
           </View>
         </View>
         <Information
-          avatar={payload && payload.avatar}
-          name={payload && payload.name}
-          sub_info={payload && payload.type}
+          avatar={userInfo && userInfo.avatar}
+          name={userInfo && userInfo.name}
+          sub_info={userInfo && userInfo.type}
           onPressEdit={handleEditProfile}
         />
       </View>
@@ -104,7 +105,7 @@ const Profile = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  payload: state.user.payload,
+  userInfo: state.user.userInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({

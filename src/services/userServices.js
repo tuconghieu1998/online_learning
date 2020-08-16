@@ -25,3 +25,7 @@ export const getCourseLikeStatus = (params) => {
 export const likeCourse = (params) => {
   return request.post(`/${USER}/like-course`, params);
 };
+
+export const editProfile = (params) => {
+  return request.put(`/${USER}/update-profile`, params);
+};

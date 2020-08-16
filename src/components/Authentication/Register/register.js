@@ -119,6 +119,7 @@ const Regiter = (props) => {
             leftIcon={<MaterialIcons name="phone" size={22} color={GREY} />}
             placeholder="Enter your phone"
             handleChange={handleChange}
+            keyboardType="phone-pad"
           />
           <Input
             name="password"

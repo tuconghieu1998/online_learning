@@ -17,6 +17,7 @@ function* userRootSagas() {
       getCourseLikeStatus,
     ),
     yield takeLatest(UserTypes.LIKE_COURSE_REQUEST, likeCourse),
+    yield takeLatest(UserTypes.EDIT_PROFILE_REQUEST, editProfile),
   ]);
 }
 
@@ -132,6 +133,23 @@ function* likeCourse({params, actionSuccess}) {
       actionSuccess(response);
     }
   } catch (error) {
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* editProfile({params, actionSuccess}) {
+  //yield put (AppActions.showIndicator());
+  try {
+    const res = yield call(api.editProfile, params);
+    yield put(UserActions.editProfileSuccess(res.payload));
+    if (actionSuccess) {
+      actionSuccess(res);
+    }
+    yield put(AppActions.showSuccess('Đổi thông tin cá nhân thành công'));
+    //yield put(AppActions.hideIndicator());
+  } catch (error) {
+    //yield put(AppActions.hideIndicator());
+    yield put(UserActions.editProfileFailure(error));
     yield put(AppActions.showError(error.message));
   }
 }

@@ -13,7 +13,7 @@ const {Types, Creators} = createActions({
 
   getInfoUserRequest: ['params', 'actionSuccess'],
   getInfoUserFailure: null,
-  getInfoUserSuccess: ['payload', 'message'],
+  getInfoUserSuccess: ['userInfo', 'message'],
 
   forgotPasswordRequest: ['params', 'actionSuccess'],
   forgotPasswordFailure: null,
@@ -24,6 +24,10 @@ const {Types, Creators} = createActions({
   getCourseLikeStatusRequest: ['params', 'actionSuccess'],
 
   likeCourseRequest: ['params', 'actionSuccess'],
+
+  editProfileRequest: ['params', 'actionSuccess'],
+  editProfileFailure: null,
+  editProfileSuccess: ['userInfo'],
 });
 
 export const UserTypes = Types;
@@ -67,8 +71,8 @@ const logout = (state) => {
 const getInfoUserRequest = (state) => {
   return state.merge({});
 };
-const getInfoUserSuccess = (state, {payload, message}) => {
-  return state.merge({payload, message});
+const getInfoUserSuccess = (state, {userInfo, message}) => {
+  return state.merge({userInfo, message});
 };
 const getInfoUserFailure = (state, {error}) => {
   return state.merge({error});
@@ -90,6 +94,16 @@ const getCourseLikeStatusRequest = (state) => {
 
 const likeCourseRequest = (state) => {
   return state.merge({});
+};
+
+const editProfileRequest = (state) => {
+  return state.merge({});
+};
+const editProfileSuccess = (state, {userInfo}) => {
+  return state.merge({userInfo});
+};
+const editProfileFailure = (state, {error}) => {
+  return state.merge({error});
 };
 
 /* ------------------------- Hookup Reducers To Types -------------*/
@@ -115,4 +129,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_COURSE_LIKE_STATUS_REQUEST]: getCourseLikeStatusRequest,
 
   [Types.LIKE_COURSE_REQUEST]: likeCourseRequest,
+
+  [Types.EDIT_PROFILE_REQUEST]: editProfileRequest,
+  [Types.EDIT_PROFILE_SUCCESS]: editProfileSuccess,
+  [Types.EDIT_PROFILE_FAILURE]: editProfileFailure,
 });

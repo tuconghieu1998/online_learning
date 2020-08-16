@@ -7,13 +7,13 @@ import SearchStackNavigation from './SearchStackNavigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {LIGHT_BLACK, GREEN} from '../globals/config/color';
 import {ScreenKeys} from '../globals/constants';
-import loGet from 'lodash/get';
 import UserActions from '../redux/userRedux';
 import {connect} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import CourseDetail from '../components/CourseDetail';
 import Profile from '../components/AccountManagement/profile';
 import Settings from '../components/AccountManagement/settings';
+import ProfileEdit from '../components/AccountManagement/profile-edit';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -35,6 +35,7 @@ const AppNavigation = (props) => {
         name={ScreenKeys.app.courseDetail}
       />
       <Stack.Screen name={ScreenKeys.app.profile} component={Profile} />
+      <Stack.Screen name={ScreenKeys.app.profileEdit} component={ProfileEdit} />
       <Stack.Screen name={ScreenKeys.app.settings} component={Settings} />
     </Stack.Navigator>
   );
