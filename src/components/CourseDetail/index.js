@@ -17,10 +17,14 @@ const CourseDetail = (props) => {
   const [instructor, setInstructor] = useState({});
   useEffect(() => {
     props.checkOwnCourse({id}, (response) => {
+      if (response.payload.isUserOwnCourse) {
+        props.getLastWatchedLesson({courseId: id});
+      } else {
+        props.setUrlVideo(null, 0, '');
+      }
       props.getCourseDetail({id}, (res) => {
         setData(res.payload);
         setInstructor(res.payload.instructor);
-        props.setUrlVideo('');
       });
     });
 
@@ -70,8 +74,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(CourseActions.getCourseDetailRequest(params, actionSuccess)),
   checkOwnCourse: (params, actionSuccess) =>
     dispatch(CourseActions.checkOwnCourseRequest(params, actionSuccess)),
-  setUrlVideo: (videoUrl) =>
-    dispatch(CourseActions.setUrlVideoRequest(videoUrl)),
+  setUrlVideo: (videoUrl, currentTime, lessonId) =>
+    dispatch(CourseActions.setUrlVideoRequest(videoUrl, currentTime, lessonId)),
+  getLastWatchedLesson: (params, actionSuccess) =>
+    dispatch(CourseActions.getLastWatchedLessonRequest(params, actionSuccess)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CourseDetail);

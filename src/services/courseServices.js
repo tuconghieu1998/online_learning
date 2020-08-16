@@ -62,3 +62,12 @@ export const checkOwnCourse = (params) => {
 export const getUrlVideo = (params) => {
   return request.get(`/${LESSON}/video/${params.courseId}/${params.lessonId}`);
 };
+
+export const updateCurrentTimeLearnVideo = (params) => {
+  console.log(params);
+  return request.put(`/${LESSON}/update-current-time-learn-video`, params);
+};
+
+export const getLastWatchedLesson = (params) => {
+  return request.get(`/${COURSE}/last-watched-lesson/${params.courseId}`);
+};

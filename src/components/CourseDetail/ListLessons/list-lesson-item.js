@@ -3,9 +3,11 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {LIGHT_BLACK, GREEN} from '../../../globals/config/color';
 import {formatHoursToTime} from '../../../globals/helper';
+import {connect} from 'react-redux';
+import {color} from 'react-native-reanimated';
 
 const ListLessonItem = (props) => {
-  const {title, duration, active, onPress} = props;
+  const {id, title, duration, active, onPress} = props;
   return (
     <TouchableOpacity
       style={styles.container}
@@ -17,13 +19,31 @@ const ListLessonItem = (props) => {
         <MaterialIcons name="lock-outline" color={LIGHT_BLACK} size={18} />
       )}
 
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.duration}>{formatHoursToTime(duration)}</Text>
+      <Text
+        style={{
+          ...styles.title,
+          ...{color: id === props.lessonId ? GREEN : LIGHT_BLACK},
+        }}>
+        {title}
+      </Text>
+      <Text
+        style={{
+          ...styles.duration,
+          ...{color: id === props.lessonId ? GREEN : LIGHT_BLACK},
+        }}>
+        {formatHoursToTime(duration)}
+      </Text>
     </TouchableOpacity>
   );
 };
 
-export default ListLessonItem;
+const mapStateToProps = (state) => ({
+  lessonId: state.course.lessonId,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListLessonItem);
 
 const styles = StyleSheet.create({
   container: {

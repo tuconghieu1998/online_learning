@@ -39,9 +39,15 @@ const {Types, Creators} = createActions({
 
   getUrlVideoRequest: ['params', 'actionSuccess'],
   getUrlVideoFailure: null,
-  getUrlVideoSuccess: ['videoUrl'],
+  getUrlVideoSuccess: ['videoUrl', 'currentTime', 'lessonId'],
 
-  setUrlVideoRequest: ['videoUrl'],
+  setUrlVideoRequest: ['videoUrl', 'currentTime', 'lessonId'],
+
+  updateCurrentTimeLearnVideoRequest: ['params', 'actionSuccess'],
+
+  getLastWatchedLessonRequest: ['params', 'actionSuccess'],
+  getLastWatchedLessonFailure: null,
+  getLastWatchedLessonSuccess: ['videoUrl', 'currentTime', 'lessonId'],
 });
 
 export const CourseTypes = Types;
@@ -58,6 +64,8 @@ export const INITIAL_STATE = Immutable({
   isUserOwnCourse: undefined,
   courseDetail: undefined,
   videoUrl: undefined,
+  currentTime: undefined,
+  lessonId: undefined,
 });
 
 /*-----------------------Reducers ---------------------------------- */
@@ -138,15 +146,32 @@ const checkOwnCourseFailure = (state, {error}) => {
 const getUrlVideoRequest = (state) => {
   return state.merge({});
 };
-const getUrlVideoSuccess = (state, {videoUrl}) => {
-  return state.merge({videoUrl});
+const getUrlVideoSuccess = (state, {videoUrl, currentTime, lessonId}) => {
+  return state.merge({videoUrl, currentTime, lessonId});
 };
 const getUrlVideoFailure = (state, {error}) => {
   return state.merge({error});
 };
 
-const setUrlVideoRequest = (state, {videoUrl}) => {
-  return state.merge({videoUrl});
+const setUrlVideoRequest = (state, {videoUrl, currentTime, lessonId}) => {
+  return state.merge({videoUrl, currentTime, lessonId});
+};
+
+const updateCurrentTimeLearnVideoRequest = (state) => {
+  return state.merge({});
+};
+
+const getLastWatchedLessonRequest = (state) => {
+  return state.merge({});
+};
+const getLastWatchedLessonSuccess = (
+  state,
+  {videoUrl, currentTime, lessonId},
+) => {
+  return state.merge({videoUrl, currentTime, lessonId});
+};
+const getLastWatchedLessonFailure = (state, {error}) => {
+  return state.merge({error});
 };
 
 /* ------------------------- Hookup Reducers To Types -------------*/
@@ -190,4 +215,10 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_URL_VIDEO_FAILURE]: getUrlVideoFailure,
 
   [Types.SET_URL_VIDEO_REQUEST]: setUrlVideoRequest,
+
+  [Types.UPDATE_CURRENT_TIME_LEARN_VIDEO_REQUEST]: updateCurrentTimeLearnVideoRequest,
+
+  [Types.GET_LAST_WATCHED_LESSON_REQUEST]: getLastWatchedLessonRequest,
+  [Types.GET_LAST_WATCHED_LESSON_SUCCESS]: getLastWatchedLessonSuccess,
+  [Types.GET_LAST_WATCHED_LESSON_FAILURE]: getLastWatchedLessonFailure,
 });

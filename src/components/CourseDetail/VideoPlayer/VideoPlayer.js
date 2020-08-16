@@ -7,6 +7,7 @@ import {
   StatusBar,
   TouchableWithoutFeedback,
   Text,
+  Alert,
 } from 'react-native';
 import Video, {
   OnSeekData,
@@ -18,6 +19,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import PlayerControls from './PlayerControls';
 import ProgressBar from './ProgressBar';
 import {connect} from 'react-redux';
+import CourseActions from '../../../redux/courseRedux';
 
 const initialState = {
   fullscreen: false,
@@ -30,13 +32,14 @@ const initialState = {
 const VideoPlayer = (props) => {
   const videoRef = useRef(null);
   const [state, setState] = useState(initialState);
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState(null);
 
   useEffect(() => {
     if (props.url) {
-      setUrl(props.url);
-      handleStart();
+      handleStart({seekTime: Math.floor(props.currentTime)});
     }
+    setUrl(props.url);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.url]);
 
@@ -64,6 +67,7 @@ const VideoPlayer = (props) => {
             onProgress={onProgress}
             onEnd={onEnd}
             paused={!state.play}
+            autoplay={false}
           />
           {state.showControls && (
             <View style={styles.controlOverlay}>
@@ -123,6 +127,13 @@ const VideoPlayer = (props) => {
     // If playing, pause and show controls immediately.
     if (state.play) {
       setState({...state, play: false, showControls: true});
+      if (props.isOwnCourse) {
+        props.updateCurrentTimeLearnVideo({
+          lessonId: props.lessonId,
+          currentTime: state.currentTime,
+        });
+      }
+
       return;
     }
 
@@ -130,9 +141,11 @@ const VideoPlayer = (props) => {
     setTimeout(() => setState((s) => ({...s, showControls: false})), 2000);
   }
 
-  function handleStart() {
+  function handleStart(data) {
     // If playing, pause and show controls immediately.
-    setState({...state, play: true});
+
+    setState({...state, ...{currentTime: data.seekTime, play: true}});
+    videoRef.current.seek(data.seekTime);
     setTimeout(() => setState((s) => ({...s, showControls: false})), 2000);
   }
 
@@ -152,6 +165,13 @@ const VideoPlayer = (props) => {
   }
 
   function onLoadEnd(data) {
+    if (props.isOwnCourse) {
+      props.updateCurrentTimeLearnVideo({
+        lessonId: props.lessonId,
+        currentTime: data.currentTime,
+      });
+    }
+
     setState((s) => ({
       ...s,
       duration: data.duration,
@@ -179,10 +199,17 @@ const VideoPlayer = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  url: state.course.videoUrl,
+  currentTime: state.course.currentTime,
+  lessonId: state.course.lessonId,
+  isOwnCourse: state.course.isUserOwnCourse,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  updateCurrentTimeLearnVideo: (params, actionSuccess) =>
+    dispatch(
+      CourseActions.updateCurrentTimeLearnVideoRequest(params, actionSuccess),
+    ),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(VideoPlayer);
 

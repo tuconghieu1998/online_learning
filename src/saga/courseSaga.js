@@ -31,6 +31,14 @@ function* courseRootSaga() {
     yield takeLatest(CourseTypes.DELETE_HISTORIES_REQUEST, deleteHistories),
     yield takeLatest(CourseTypes.CHECK_OWN_COURSE_REQUEST, checkOwnCourse),
     yield takeLatest(CourseTypes.GET_URL_VIDEO_REQUEST, getUrlVideo),
+    yield takeLatest(
+      CourseTypes.UPDATE_CURRENT_TIME_LEARN_VIDEO_REQUEST,
+      updateCurrentTimeLearnVideo,
+    ),
+    yield takeLatest(
+      CourseTypes.GET_LAST_WATCHED_LESSON_REQUEST,
+      getLastWatchedLesson,
+    ),
   ]);
 }
 
@@ -195,7 +203,13 @@ function* getUrlVideo({params, actionSuccess}) {
   //yield put (AppActions.showIndicator());
   try {
     const res = yield call(apiCourse.getUrlVideo, params);
-    yield put(CourseActions.getUrlVideoSuccess(res.payload.videoUrl));
+    yield put(
+      CourseActions.getUrlVideoSuccess(
+        res.payload.videoUrl,
+        res.payload.currentTime,
+        params.lessonId,
+      ),
+    );
     if (actionSuccess) {
       actionSuccess(res);
     }
@@ -203,6 +217,36 @@ function* getUrlVideo({params, actionSuccess}) {
   } catch (error) {
     //yield put(AppActions.hideIndicator());
     yield put(CourseActions.getUrlVideoFailure(error));
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* updateCurrentTimeLearnVideo({params, actionSuccess}) {
+  try {
+    const response = yield call(apiCourse.updateCurrentTimeLearnVideo, params);
+    if (actionSuccess) {
+      actionSuccess(response);
+    }
+  } catch (error) {
+    yield put(AppActions.showError(error.message));
+  }
+}
+
+function* getLastWatchedLesson({params, actionSuccess}) {
+  try {
+    const res = yield call(apiCourse.getLastWatchedLesson, params);
+    yield put(
+      CourseActions.getUrlVideoSuccess(
+        res.payload.videoUrl,
+        res.payload.currentTime,
+        res.payload.lessonId,
+      ),
+    );
+    if (actionSuccess) {
+      actionSuccess(res);
+    }
+  } catch (error) {
+    yield put(CourseActions.getLastWatchedLessonFailure(error));
     yield put(AppActions.showError(error.message));
   }
 }

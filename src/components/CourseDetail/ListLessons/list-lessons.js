@@ -22,13 +22,17 @@ const ListLesson = (props) => {
   useEffect(() => {
     setOwnCourse(props.isUserOwnCourse);
   }, [props.isUserOwnCourse]);
-  const onSelectLesson = (id) => {
-    props.getUrlVideo(
-      {courseId: props.courseDetail.id, lessonId: id},
-      (res) => {
-        //console.log(res);
-      },
-    );
+  const onSelectLesson = (id, url) => {
+    if (isOwnCourse) {
+      props.getUrlVideo(
+        {courseId: props.courseDetail.id, lessonId: id},
+        (res) => {
+          console.log(res, 'Hieu');
+        },
+      );
+    } else {
+      props.setUrlVideo(url, 0, id);
+    }
   };
   return (
     <View style={styles.container}>
@@ -43,10 +47,11 @@ const ListLesson = (props) => {
         )}
         renderItem={({item}) => (
           <ListLessonItem
+            id={item.id}
             title={item.name}
             duration={item.hours}
             active={item.isPreview || isOwnCourse}
-            onPress={() => onSelectLesson(item.id)}
+            onPress={() => onSelectLesson(item.id, item.videoUrl)}
           />
         )}
         keyExtractor={(item, index) => item + index}
@@ -65,6 +70,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getUrlVideo: (params, actionSuccess) =>
     dispatch(CourseActions.getUrlVideoRequest(params, actionSuccess)),
+  setUrlVideo: (videoUrl, currentTime, lessonId) =>
+    dispatch(CourseActions.setUrlVideoRequest(videoUrl, currentTime, lessonId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListLesson);
